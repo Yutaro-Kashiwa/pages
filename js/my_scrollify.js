@@ -3,10 +3,11 @@ $(function() {
         section:".panel",
         scrollbars:false,
         interstitialSection:"#header",
-        easing: "swing",
+        easing: "easeOutExpo",
         updateHash: false,
-        scrollSpeed: 300,
-
+        scrollSpeed: 100,
+        overflowScroll: false,
+        touchScroll:false,
         before:function(i,panels) {
             var ref = panels[i].attr("data-section-name");
             $(".pagination .active").removeClass("active");
@@ -24,8 +25,18 @@ $(function() {
             });
 
             pagination += "</ul>";
-            $("#panel1").append(pagination);
+            $("#panel0").append(pagination);
             $(".pagination a").on("click",$.scrollify.move);
         }
     });
 });
+$('.link0').click(function(){
+    $.scrollify.move("#Top");
+});
+$('.link1').click(function(){
+    $.scrollify.move("#About");
+});
+$('.link3').click(function(){
+    $.scrollify.move("#Contact");
+});
+
