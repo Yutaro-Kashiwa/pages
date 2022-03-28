@@ -36,7 +36,10 @@ $('.link0').click(function(){
 $('.link1').click(function(){
     $.scrollify.move("#About");
 });
+$('.link2').click(function(){
+    $.scrollify.move("#Projects");
+});
 $('.link3').click(function(){
-    $.scrollify.move("#Contact");
+    $.scrollify.move("#Publications");
 });
 
