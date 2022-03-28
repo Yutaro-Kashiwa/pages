@@ -42,4 +42,6 @@ $('.link2').click(function(){
 $('.link3').click(function(){
     $.scrollify.move("#Publications");
 });
-
+$('.publink').click(function(){
+    window.location.href = 'publications.html';
+});

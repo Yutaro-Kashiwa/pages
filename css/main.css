@@ -1,3 +1,19 @@
+/*publication page*/
+.pubp {/*親div*/
+    position: relative;/*相対配置*/
+}
+
+.pubp span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.pubp img {
+    width: 100%;
+}
+
+
 /*first page*/
 .toppic {/*親div*/
     position: relative;/*相対配置*/
@@ -46,8 +62,22 @@
     margin-top:13%;
     display:inline-block;
     height:100px;
+    cursor: pointer;
 }
 .scroll:hover {
     text-decoration:none;
 }
 
+.pubbox {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #223a70;/*文字色*/
+    background: #FFF;
+    border: solid 3px #223a70;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+
+.links {
+    cursor: pointer;
+}
