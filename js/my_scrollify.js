@@ -3,15 +3,18 @@ $(function() {
         section:".panel",
         scrollbars:false,
         interstitialSection:"#header",
-        easing: "easeOutExpo",
+        easing: "swing",
         updateHash: false,
-        scrollSpeed: 100,
+        scrollSpeed: 500,
         overflowScroll: false,
-        touchScroll:false,
+        touchScroll:true,
         before:function(i,panels) {
             var ref = panels[i].attr("data-section-name");
-            $(".pagination .active").removeClass("active");
-            $(".pagination").find("a[href=\"#" + ref + "\"]").addClass("active");
+            if (ref){
+                $(".pagination .active").removeClass("active");
+                $(".pagination").find("a[href=\"#" + ref + "\"]").addClass("active");
+            }
+
         },
         afterRender:function() {
             var pagination = "<ul class=\"pagination\">";
