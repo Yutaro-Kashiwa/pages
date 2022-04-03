@@ -84,9 +84,9 @@
 
 .face img{ width: 50%; }
 
-.intro p{text-align: justify;font-size:clamp(9px, 2vw, 18px);}
+.intro p{text-align: justify; font-size:clamp(9px, 2vw, 18px);}
 
 .address  {
     color: #223a70;/*文字色*/
-    table-layout:   auto;
+    table-layout: auto;
 }

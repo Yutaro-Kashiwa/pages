@@ -1,0 +1,13 @@
+.box {
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    color: #232323;
+    background: whitesmoke;
+    border-left: solid 10px #5d627b;
+    text-align: justify;
+    font-size:clamp(7px, 2vw, 12px);
+}
+.box p {
+    margin: 0;
+    padding: 0;
+}

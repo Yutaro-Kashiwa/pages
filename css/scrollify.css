@@ -63,7 +63,7 @@
 }
 
 .pagination a .hover-text {
-    display:none
+    display:none;
 }
 
 .pagination a:hover .hover-text {
