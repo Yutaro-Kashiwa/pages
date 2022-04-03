@@ -31,7 +31,13 @@
     background: #000;
 }
 
+#panel5{
+    background: #000;
+}
 
+#panel6{
+    background: #000;
+}
 .pagination {
     position:fixed;
     right:20px;

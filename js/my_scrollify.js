@@ -45,6 +45,15 @@ $('.link2').click(function(){
 $('.link3').click(function(){
     $.scrollify.move("#Publications");
 });
+$('.link4').click(function(){
+    $.scrollify.move("#Awards");
+});
+$('.link5').click(function(){
+    $.scrollify.move("#Service");
+});
+$('.link6').click(function(){
+    $.scrollify.move("#Contacts");
+});
 $('.publink').click(function(){
     window.location.href = 'publications.html';
 });
@@ -60,5 +69,14 @@ $('.plink2').click(function(){
 });
 $('.plink3').click(function(){
     window.location.href = 'publications.html';
+});
+$('.plink4').click(function(){
+    window.location.href = 'index.html#Awards';
+});
+$('.plink5').click(function(){
+    window.location.href = 'index.html#Service';
+});
+$('.plink6').click(function(){
+    window.location.href = 'index.html#Contacts';
 });
 
