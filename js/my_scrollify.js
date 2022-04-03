@@ -39,7 +39,26 @@ $('.link0').click(function(){
 $('.link1').click(function(){
     $.scrollify.move("#About");
 });
+$('.link2').click(function(){
+    $.scrollify.move("#Projects");
+});
 $('.link3').click(function(){
-    $.scrollify.move("#Contact");
+    $.scrollify.move("#Publications");
+});
+$('.publink').click(function(){
+    window.location.href = 'publications.html';
+});
+
+$('.plink0').click(function(){
+    window.location.href = 'index.html';
+});
+$('.plink1').click(function(){
+    window.location.href = 'index.html#About';
+});
+$('.plink2').click(function(){
+    window.location.href = 'index.html#Projects';
+});
+$('.plink3').click(function(){
+    window.location.href = 'publications.html';
 });
 

@@ -13,7 +13,6 @@
     max-width: 100%;
     height: auto;
     justify-content: normal;
-
 }
 #panel1{
     background: #333;
@@ -22,7 +21,11 @@
     background: #666;
 }
 #panel3{
-    background: #888;
+    padding: 0;
+    padding-top: 10px;
+    max-width: 100%;
+    height: auto;
+    justify-content: normal;
 }
 #panel4{
     background: #000;
