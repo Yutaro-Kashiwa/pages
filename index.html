@@ -114,7 +114,7 @@
     </div>
   </main>
   <!-- NEWS詳細 -->
-  <main class="page-news-details page-common">
+  <main class="page-news-details page-common" style="display: none">
     <h2 class="pc page-common__title">WHAT’S NEW</h2>
     <div class="page-news-details__header">
       <p class="page-news-details__date">2022 . 11 . 9</p>
@@ -132,37 +132,42 @@
     <p class="page-common__back-to-list"><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- 自己紹介 -->
-  <main class="page-self-intro page-common" style="display: none">
+  <main class="page-self-intro page-common">
     <h1 class="pc page-common__title">SELF-INTRODUCTION</h1>
-    <div>
+    <div class="page-self-intro__container">
       <div>
-        <div>
-          <img src="/images/image-YutaroKASHIWA-1.jpg" alt="顔写真">
+        <div class="page-self-intro__person">
+          <img class="page-self-intro__image" src="/images/image-YutaroKASHIWA-1.jpg" alt="顔写真">
           <div>
-            <h2>柏　祐太郎<span>－ YUTARO KASHIWA</span></h2>
-            <ul>
+            <h2 class="page-self-intro__name">柏　祐太郎<span>－ YUTARO KASHIWA</span></h2>
+            <ul class="pc page-self-intro__position">
               <li>奈良先端科学技術大学院大学（NAIST）</li>
               <li>先端科学技術研究科 情報領域 助教</li>
               <li>総合情報基盤センター（兼務）</li>
             </ul>
           </div>
         </div>
-        <p>専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事． 近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．</p>
-        <p class="sp"><a class="prev-next-link" href="">略歴↓</a></p>
+        <ul class="sp page-self-intro__position">
+          <li>奈良先端科学技術大学院大学（NAIST）</li>
+          <li>先端科学技術研究科 情報領域 助教</li>
+          <li>総合情報基盤センター（兼務）</li>
+        </ul>
+        <p class="page-self-intro__description">専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事． 近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．</p>
+        <p class="sp page-self-intro__back"><a class="prev-next-link" href="">略歴↓</a></p>
       </div>
       <div>
-        <h3>略歴</h3>
-        <ol>
-          <li>2013年 4月～2015年 3月　和歌山大学大学院システム工学研究科 博士前期課程</li>
-          <li>2015年 4月～2017年 3月　株式会社 日立製作所</li>
-          <li>2017年 4月～2020年 3月　和歌山大学大学院システム工学研究科 博士後期課程</li>
-          <li>2017年 4月～2020年 3月　日本学術振興会 特別研究員（DC1）</li>
-          <li>2019年 4月～2019年 9月　Polytechnique Montréal 客員研究員</li>
-          <li>2020年 4月～2022年 3月　九州大学 システム情報科学研究院 特任助教</li>
-          <li>2021年 11月～2022年 2月　Università della Svizzera italiana 客員研究員</li>
-          <li>2022年 4月～現在　奈良先端科学技術大学院大学 先端科学技術研究科 助教</li>
+        <h3 class="pc page-self-intro__biography">略歴</h3>
+        <ol class="page-self-intro__list">
+          <li><span class="date"><span>2013</span>年 <span>4</span>月～<span>2015</span>年 <span>3</span>月　</span>和歌山大学大学院システム工学研究科 博士前期課程</li>
+          <li><span class="date"><span>2015</span>年 <span>4</span>月～<span>2017</span>年 <span>3</span>月　</span>株式会社 日立製作所</li>
+          <li><span class="date"><span>2017</span>年 <span>4</span>月～<span>2020</span>年 <span>3</span>月　</span>和歌山大学大学院システム工学研究科 博士後期課程</li>
+          <li><span class="date"><span>2017</span>年 <span>4</span>月～<span>2020</span>年 <span>3</span>月　</span>日本学術振興会 特別研究員（DC1）</li>
+          <li><span class="date"><span>2019</span>年 <span>4</span>月～<span>2019</span>年 <span>9</span>月　</span>Polytechnique Montréal 客員研究員</li>
+          <li><span class="date"><span>2020</span>年 <span>4</span>月～<span>2022</span>年 <span>3</span>月　</span>九州大学 システム情報科学研究院 特任助教</li>
+          <li><span class="date"><span>2021</span>年 <span>11</span>月～<span>2022</span>年 <span>2</span>月　</span>Università della Svizzera italiana 客員研究員</li>
+          <li><span class="date"><span>2022</span>年 <span>4</span>月～現在　</span>奈良先端科学技術大学院大学 先端科学技術研究科 助教</li>
         </ol>
-        <p class="sp"><a class="prev-next-link" href="">自己紹介↑</a></p>
+        <p class="sp page-self-intro__back"><a class="prev-next-link" href="">自己紹介↑</a></p>
       </div>
     </div>
   </main>
@@ -176,7 +181,7 @@
         <p>初期研究として、動的な変化量(トレースの変化量)と不具合混入コミットの関係性を調査した。その結果、不具合混入コミットでは動的な変化量が大きく変化することが観察された。さらに静的な変化量(ソースコードの変更行)を加えて分析したところ、小さな変更でも動作が大幅に変化し不具合に繋がることが判明した。</p>
       </div>
       <p class="fh--details-link"><a class="details-link details-link--bottom details-link--blue" href="">詳しくはこちら<span></span></a></p>
-      <p class="sp"><a class="prev-next-link" href="">研究2へ↓</a></p>
+      <p class="sp page-project__back"><a class="prev-next-link" href="">研究2へ↓</a></p>
     </div>
     <div>
       <h2>研究 2. テキストテキストテキストテキストテキストテキスト</h2>
@@ -185,7 +190,7 @@
         <img src="/images/image-dummy-news_project.jpg" alt="project サムネイル">
       </div>
       <p class="fh--details-link"><a class="details-link details-link--bottom details-link--blue" href="">詳しくはこちら<span></span></a></p>
-      <p class="sp"><a class="prev-next-link" href="">研究1へ↑</a></p>
+      <p class="sp page-project__back"><a class="prev-next-link" href="">研究1へ↑</a></p>
     </div>
   </main>
   <!-- 研究紹介詳細 -->
