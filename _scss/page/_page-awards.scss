@@ -4,4 +4,59 @@
       content: "\0041\0077\0061\0072\0064\0073";
     }
   }
+  & > ol {
+    & > li {
+      margin-top: 40px;
+      @include mq-up() {
+        display: flex;
+        column-gap: 40px;
+        align-items: flex-start;
+      }
+      & > div {
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+        @include mq-up() {
+          column-gap: 40px;
+        }
+        & + ul {
+          & li {
+            & + li {
+              margin-top: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__year {
+    font-family: $ubuntu;
+    font-size: 18px;
+    font-weight: 700;
+    color: rgba($blue, 0.6);
+    @include mq-up() {
+      width: 133px;
+      font-size: 32px;
+      line-height: 1;
+    }
+  }
+  &__name {
+    font-size: 13px;
+    @include mq-up() {
+      font-size: 20px;
+      line-height: 1;
+    }
+  }
+  & p {
+    @include mq-up() {
+      font-size: 20px;
+    }
+    & + p {
+      font-size: 12px;
+      color: $gray5;
+      @include mq-up() {
+        font-size: 18px;
+      }
+    }
+  }
 }
