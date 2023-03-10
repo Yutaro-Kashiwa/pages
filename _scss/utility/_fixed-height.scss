@@ -1,0 +1,7 @@
+.fh {
+  &--details-link {
+    @include mq-up() {
+      height: 39px;
+    }
+  }
+}
