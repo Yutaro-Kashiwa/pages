@@ -15,16 +15,20 @@ body {
   min-height: 100vh;
   font-family: $noto-sans;
   font-size: 15px;
-  // font-size: 16px;
   font-weight: 400;
   line-height: 1.67;
-  // line-height: 1.88;
   color: $black;
   background-color: $gray1;
   background-image: url("/images/bg-page-sp.png");
+  background-attachment: fixed;
   background-size: cover;
   background-position: right top;
   background-repeat: no-repeat;
+  @include mq-up() {
+    font-size: 16px;
+    line-height: 1.88;
+    background-image: url("/images/bg-page-pc.png");
+  }
 }
 
 img {
@@ -43,6 +47,10 @@ a {
 
 ul,ol,dl {
   list-style: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-weight: inherit;
 }
 
 button {
