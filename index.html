@@ -172,7 +172,7 @@
     </div>
   </main>
   <!-- 研究紹介 -->
-  <main class="page-projects page-common">
+  <main class="page-projects page-common" style="display: none">
     <h1 class="pc page-common__title">PROJECTS</h1>
     <div>
       <h2 class="sp page-projects__heading">研究 1. <br />入出力テストに頼らない不具合・異常検出手法の確立</h2>
@@ -200,20 +200,22 @@
     </div>
   </main>
   <!-- 研究紹介詳細 -->
-  <main class="page-projects-details page-common" style="display: none">
+  <main class="page-projects-details page-common">
     <h2 class="pc page-common__title">ABOUT STUDY</h2>
-    <h1>研究 1. 入出力テストに頼らない不具合・異常検出手法の確立</h1>
-    <p>
+    <h1 class="page-projects-details__title">研究 1. <br class="sp" />入出力テストに頼らない不具合・異常検出手法の確立</h1>
+    <img class="page-projects-details__image" src="/images/image-dummy-news_project.jpg" alt="project サムネイル">
+    <p class="page-projects-details__body">
       デバッグ作業は、ソフトウェア製品の開発時間のうち約50%を占めると言われている。より早い段階でバグを検出するための方法としてソフトウェアの変更に対するバグ予測が研究されている。ソフトウェアの変更に対するバグ予測では、開発者が実装工程中に行うファイルの変更に対して、その変更がバグを含むか否かを予測する。例えば、Kameiらは、バージョン管理システムから計測できる14種類のメトリクスを用いてJust-In-Time(JIT)バグ予測モデルを構築した。また、Sohnらは、バグの局所性を利用し、バグレポートとファイルの変更の語彙的な類似性を用いてバグ予測モデルを構築した。これらのバグ予測は静的な情報を利用している。静的な情報とは、プログラムの実行を必要とせずに得られるソフトウェアの変更情報などのことである。
       <br>
       <br>
       一方、プログラムの実行によって得られる動的な情報を用いたバグ予測に関する研究は未だ多く行われていない。特に、変更した箇所とは異なる箇所の動作が大きく変化した場合、不具合が含まれている可能性が高い。本研究では、プログラム変更前後の動作を比較しながら、予想外の動作変更が含まれていないかを検出する。本研究課題では、動作した箇所の特定にトレースログを利用し、動作を観察する。トレースログとは、プログラムが動作した箇所や変数情報などをファイル書き出したものである。
     </p>
-    <img src="/images/image-dummy-news_project.jpg" alt="project サムネイル">
-    <h3>発表論文</h3>
-    <ul>
-      <li><a href="">論文のリストorリンクが入ります論文のリストorリンクが入ります論文のリストorリンクが入ります</a></li>
-    </ul>
+    <div class="page-projects-details__thesis">
+      <h3>発表論文</h3>
+      <ul>
+        <li><a href="">論文のリストorリンクが入ります論文のリストorリンクが入ります論文のリストorリンクが入ります</a></li>
+      </ul>
+    </div>
     <p class="page-common__back-to-list"><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- メンバー -->
