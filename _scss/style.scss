@@ -16,6 +16,17 @@
 @import 'module/news-list';
 
 /* page */
+@import 'page/page-common';
+@import 'page/page-top';
+@import 'page/page-news';
+@import 'page/page-news-details';
+@import 'page/page-self-intro';
+@import 'page/page-projects';
+@import 'page/page-projects-details';
+@import 'page/page-members';
+@import 'page/page-publications';
+@import 'page/page-awards';
+@import 'page/page-access';
 
 /* utility */
 @import 'utility/margin';

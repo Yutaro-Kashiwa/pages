@@ -1,0 +1,26 @@
+.page-common {
+  width: 91%;
+  padding-top: 24px;
+  margin: 0 auto;
+  @include mq-up() {
+    width: 100%;
+    max-width: 1440px;
+    padding-top: 80px;
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+  &.page-top {
+    padding-top: 77px;
+    @include mq-up() {
+      padding-top: 15vw;
+      padding-left: 39px;
+      padding-right: 39px;
+    }
+  }
+  @include mq-down() {
+    &.page-news,
+    &.page-members {
+      padding-top: 77px;
+    }
+  }
+}

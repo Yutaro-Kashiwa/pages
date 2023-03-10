@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body>
+<body class="fv">
   <header class="header">
-    <div class="header__title header__title--page">
+    <div class="header__title">
       <img src="/images/logo.jpg" alt="さきがけ PRESTO">
       <p>プログラム異常動作の<br class="sp" />自動検出技術の創出プロジェクト</p>
     </div>
@@ -35,16 +35,15 @@
   </header>
 
   <!-- TOP -->
-  <main>
-    <h1>ソフトウェアの動きから異常を自動検知</h1>
-    <p>本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。</p>
-    <p>具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。</p>
+  <main class="page-top page-common">
+    <h1>ソフトウェアの動きから<br class="sp" />異常を自動検知</h1>
+    <p>本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。<br>具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。</p>
     <p>変更後の動作が変更前の動作と著しく異なる場合や、開発者の変更意図(コミットメッセージ等)から逸脱している場合を異常な変更として検出します。</p>
     <p>右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。</p>
     <p class="fh--details-link"><a class="details-link details-link--right details-link--white" href="">詳しくはこちら<span></span></a></p>
   </main>
   <!-- NEWS -->
-  <main style="display: none">
+  <main class="page-news page-common" style="display: none">
     <h1>WHAT’S NEW</h1>
     <ul class="news-list">
       <li class="news-list__item">
@@ -113,7 +112,7 @@
     <a href="">scroll</a>
   </main>
   <!-- NEWS詳細 -->
-  <main style="display: none">
+  <main class="page-news-details page-common" style="display: none">
     <h2>WHAT’S NEW</h2>
     <p>2022 . 11 . 9</p>
     <h1>タイトルが入ります。</h1>
@@ -127,7 +126,7 @@
     <p><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- 自己紹介 -->
-  <main style="display: none">
+  <main class="page-self-intro page-common" style="display: none">
     <h1>SELF-INTRODUCTION</h1>
     <div>
       <div>
@@ -162,7 +161,7 @@
     </div>
   </main>
   <!-- 研究紹介 -->
-  <main style="display: none">
+  <main class="page-projects page-common" style="display: none">
     <h1>PROJECTS</h1>
     <div>
       <h2>研究 1. 入出力テストに頼らない不具合・異常検出手法の確立</h2>
@@ -184,7 +183,7 @@
     </div>
   </main>
   <!-- 研究紹介詳細 -->
-  <main style="display: none">
+  <main class="page-projects-details page-common" style="display: none">
     <h2>ABOUT STUDY</h2>
     <h1>研究 1. 入出力テストに頼らない不具合・異常検出手法の確立</h1>
     <p>
@@ -201,7 +200,7 @@
     <p><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- メンバー -->
-  <main style="display: none">
+  <main class="page-members page-common" style="display: none">
     <h1>MEMBERS</h1>
     <ul>
       <li>
@@ -237,7 +236,7 @@
     </ul>
   </main>
   <!-- 論文 -->
-  <main style="display: none">
+  <main class="page-publications page-common" style="display: none">
     <h1>PUBLICATIONS</h1>
     <ol>
       <li>
@@ -315,7 +314,7 @@
     <a href="">scroll</a>
   </main>
   <!-- 受賞履歴 -->
-  <main style="display: none">
+  <main class="page-awards page-common" style="display: none">
     <h1>AWARDS</h1>
     <ol>
       <li>
@@ -436,7 +435,7 @@
     <a href="">scroll</a>
   </main>
   <!-- アクセス -->
-  <main style="display: none">
+  <main class="page-access page-common" style="display: none">
     <h1>ACCESS</h1>
     <h2>奈良先端科学技術大学院大学</h2>
     <div>
@@ -466,7 +465,7 @@
   </main>
 
   <footer class="footer">
-    <ul class="footer__menu footer__menu--page">
+    <ul class="footer__menu">
       <li class="here"><a href="">TOP</a></li>
       <li><a href="">NEWS</a></li>
       <li><a href="">自己紹介</a></li>
