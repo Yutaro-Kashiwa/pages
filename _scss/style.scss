@@ -1,16 +1,17 @@
 // variable
 @import 'setting/color';
 @import 'setting/font-family';
+// mixin
+@import 'mixin/breakpoint';
 // foundation
 @import 'foundation/reset';
 @import 'foundation/base';
-// mixin
-@import 'mixin/breakpoint';
 /* component */
 
 /* module */
 @import 'module/details-link';
 @import 'module/prev-next-link';
+@import 'module/news-list';
 
 /* page */
 

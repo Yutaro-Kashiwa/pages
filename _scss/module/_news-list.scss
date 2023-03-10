@@ -1,0 +1,19 @@
+.news-list {
+  &__item {
+    width: 73%;
+    padding: 12px 0;
+    border-bottom: 1px solid $black;
+    & a {
+      display: flex;
+      align-items: center;
+      column-gap: 18px;
+    }
+  }
+  &--image {}
+  &--date {
+    font-size: 14px;
+  }
+  &--title {
+    font-size: 16px;
+  }
+}
