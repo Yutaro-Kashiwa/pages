@@ -1,0 +1,118 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 15px;
+  @include mq-up() {
+    height: auto;
+    padding-left: 39px;
+  }
+  &__title {
+    display: flex;
+    column-gap: 10.5px;
+    @include mq-up() {
+      column-gap: 25px;
+    }
+    & img {
+      width: 81px;
+      height: 42px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      @include mq-up() {
+        width: 149px;
+        height: 77px;
+      }
+    }
+    & p {
+      padding-top: 8px;
+      font-size: 12px;
+      line-height: 1.45;
+      @include mq-up() {
+        padding-top: 40px;
+        font-size: 20px;
+      }
+    }
+    &--page {
+      @include mq-up() {
+        column-gap: 18px;
+      }
+      @include mq-up() {
+        & img {
+          width: 123px;
+          height: 63.5px;
+        }
+      }
+      & p {
+        color: $blue;
+        @include mq-up() {
+          padding-top: 20px;
+        }
+      }
+    }
+  }
+  &__button {
+    width: 47px;
+    height: 47px;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: url("/images/icon-menu-hamburger.svg");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+  &__menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    background-color: rgb($black, 0.2);
+    & button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 47px;
+      height: 47px;
+      z-index: 2;
+      &::after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url("/images/icon-menu-close.svg");
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+    & ul {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 43.5%;
+      height: 100%;
+      padding-top: 66px;
+      padding-left: 29px;
+      background-color: $white;
+      z-index: 1;
+      & li {
+        & + li {
+          margin-top: 23px;
+        }
+        & a {
+          font-size: 18px;
+          font-weight: 700;
+          line-height: 26px;
+          color: rgb($blue, 0.7);
+        }
+      }
+    }
+  }
+}
