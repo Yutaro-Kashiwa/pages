@@ -76,4 +76,10 @@
       }
     }
   }
+  &__back-to-list {
+    margin-top: 40px;
+    @include mq-up() {
+      margin-top: initial;
+    }
+  }
 }

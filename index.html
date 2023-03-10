@@ -43,7 +43,7 @@
     <p class="fh--details-link"><a class="details-link details-link--right details-link--white" href="">詳しくはこちら<span></span></a></p>
   </main>
   <!-- NEWS -->
-  <main class="page-news page-common">
+  <main class="page-news page-common" style="display: none">
     <h1 class="pc page-common__title">WHAT’S NEW</h1>
     <ul class="page-news__list news-list">
       <li class="news-list__item">
@@ -114,20 +114,22 @@
     </div>
   </main>
   <!-- NEWS詳細 -->
-  <main class="page-news-details page-common" style="display: none">
-    <h2> class="pc"WHAT’S NEW</h2>
   <main class="page-news-details page-common">
     <h2 class="pc page-common__title">WHAT’S NEW</h2>
-    <p>2022 . 11 . 9</p>
-    <h1>タイトルが入ります。</h1>
-    <p>
-      テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
-      <br>
-      <br>
-      テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
-    </p>
-    <img src="/images/image-dummy-news_project.jpg" alt="news サムネイル">
-    <p><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
+    <div class="page-news-details__header">
+      <p class="page-news-details__date">2022 . 11 . 9</p>
+      <h1 class="page-news-details__title">タイトルが入ります。</h1>
+    </div>
+    <div class="page-news-details__body">
+      <img class="page-news-details__thumbnail" src="/images/image-dummy-news_project.jpg" alt="news サムネイル">
+      <p class="page-news-details__description">
+        テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+        <br>
+        <br>
+        テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+      </p>
+    </div>
+    <p class="page-common__back-to-list"><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- 自己紹介 -->
   <main class="page-self-intro page-common" style="display: none">
@@ -201,7 +203,7 @@
     <ul>
       <li><a href="">論文のリストorリンクが入ります論文のリストorリンクが入ります論文のリストorリンクが入ります</a></li>
     </ul>
-    <p><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
+    <p class="page-common__back-to-list"><a class="prev-next-link prev-next-link--small" href="">一覧へ戻る↑</a></p>
   </main>
   <!-- メンバー -->
   <main class="page-members page-common" style="display: none">
