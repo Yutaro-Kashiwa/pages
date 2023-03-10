@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Ubuntu:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body class="fv">
+<body class="">
   <header class="header">
-    <div class="header__title">
+    <div class="header__title header__title--page">
       <img src="/images/logo.jpg" alt="さきがけ PRESTO">
       <p>プログラム異常動作の<br class="sp" />自動検出技術の創出プロジェクト</p>
     </div>
@@ -35,7 +35,7 @@
   </header>
 
   <!-- TOP -->
-  <main class="page-top page-common">
+  <main class="page-top page-common" style="display: none">
     <h1>ソフトウェアの動きから<br class="sp" />異常を自動検知</h1>
     <p>本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。<br>具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。</p>
     <p>変更後の動作が変更前の動作と著しく異なる場合や、開発者の変更意図(コミットメッセージ等)から逸脱している場合を異常な変更として検出します。</p>
@@ -43,9 +43,9 @@
     <p class="fh--details-link"><a class="details-link details-link--right details-link--white" href="">詳しくはこちら<span></span></a></p>
   </main>
   <!-- NEWS -->
-  <main class="page-news page-common" style="display: none">
-    <h1>WHAT’S NEW</h1>
-    <ul class="news-list">
+  <main class="page-news page-common">
+    <h1 class="pc page-common__title">WHAT’S NEW</h1>
+    <ul class="page-news__list news-list">
       <li class="news-list__item">
         <a href="">
           <img class="pc news-list__image" src="/images/image-dummy-news_project.jpg" alt="news サムネイル">
@@ -103,17 +103,19 @@
         </a>
       </li>
     </ul>
-    <ol>
-      <li><a href="">1</a></li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li><a href="">4</a></li>
-    </ol>
-    <a href="">scroll</a>
+    <div class="page-common__pagination list-pagination">
+      <ol>
+        <li class="here"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+      </ol>
+      <p class="list-pagination__scroll">scroll</p>
+    </div>
   </main>
   <!-- NEWS詳細 -->
   <main class="page-news-details page-common" style="display: none">
-    <h2>WHAT’S NEW</h2>
+    <h2> class="pc"WHAT’S NEW</h2>
     <p>2022 . 11 . 9</p>
     <h1>タイトルが入ります。</h1>
     <p>
@@ -127,7 +129,7 @@
   </main>
   <!-- 自己紹介 -->
   <main class="page-self-intro page-common" style="display: none">
-    <h1>SELF-INTRODUCTION</h1>
+    <h1 class="pc page-common__title">SELF-INTRODUCTION</h1>
     <div>
       <div>
         <div>
@@ -162,7 +164,7 @@
   </main>
   <!-- 研究紹介 -->
   <main class="page-projects page-common" style="display: none">
-    <h1>PROJECTS</h1>
+    <h1 class="pc page-common__title">PROJECTS</h1>
     <div>
       <h2>研究 1. 入出力テストに頼らない不具合・異常検出手法の確立</h2>
       <div>
@@ -184,7 +186,7 @@
   </main>
   <!-- 研究紹介詳細 -->
   <main class="page-projects-details page-common" style="display: none">
-    <h2>ABOUT STUDY</h2>
+    <h2> class="pc"ABOUT STUDY</h2>
     <h1>研究 1. 入出力テストに頼らない不具合・異常検出手法の確立</h1>
     <p>
       デバッグ作業は、ソフトウェア製品の開発時間のうち約50%を占めると言われている。より早い段階でバグを検出するための方法としてソフトウェアの変更に対するバグ予測が研究されている。ソフトウェアの変更に対するバグ予測では、開発者が実装工程中に行うファイルの変更に対して、その変更がバグを含むか否かを予測する。例えば、Kameiらは、バージョン管理システムから計測できる14種類のメトリクスを用いてJust-In-Time(JIT)バグ予測モデルを構築した。また、Sohnらは、バグの局所性を利用し、バグレポートとファイルの変更の語彙的な類似性を用いてバグ予測モデルを構築した。これらのバグ予測は静的な情報を利用している。静的な情報とは、プログラムの実行を必要とせずに得られるソフトウェアの変更情報などのことである。
@@ -201,7 +203,7 @@
   </main>
   <!-- メンバー -->
   <main class="page-members page-common" style="display: none">
-    <h1>MEMBERS</h1>
+    <h1 class="pc page-common__title">MEMBERS</h1>
     <ul>
       <li>
         <img src="/images/image-dummy-member.jpg" alt="生徒氏名">
@@ -237,7 +239,7 @@
   </main>
   <!-- 論文 -->
   <main class="page-publications page-common" style="display: none">
-    <h1>PUBLICATIONS</h1>
+    <h1 class="pc page-common__title">PUBLICATIONS</h1>
     <ol>
       <li>
         <h2>2022</h2>
@@ -305,17 +307,19 @@
         </ul>
       </li>
     </ol>
-    <ol>
-      <li><a href="">1</a></li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li><a href="">4</a></li>
-    </ol>
-    <a href="">scroll</a>
+    <div class="page-common__pagination list-pagination">
+      <ol>
+        <li class="here"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+      </ol>
+      <p class="list-pagination__scroll">scroll</p>
+    </div>
   </main>
   <!-- 受賞履歴 -->
   <main class="page-awards page-common" style="display: none">
-    <h1>AWARDS</h1>
+    <h1 class="pc page-common__title">AWARDS</h1>
     <ol>
       <li>
         <h2>2022 . 9</h2>
@@ -426,17 +430,19 @@
         </ul>
       </li>
     </ol>
-    <ol>
-      <li><a href="">1</a></li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li><a href="">4</a></li>
-    </ol>
-    <a href="">scroll</a>
+    <div class="page-common__pagination list-pagination">
+      <ol>
+        <li class="here"><a href="">1</a></li>
+        <li><a href="">2</a></li>
+        <li><a href="">3</a></li>
+        <li><a href="">4</a></li>
+      </ol>
+      <p class="list-pagination__scroll">scroll</p>
+    </div>
   </main>
   <!-- アクセス -->
   <main class="page-access page-common" style="display: none">
-    <h1>ACCESS</h1>
+    <h1 class="pc page-common__title">ACCESS</h1>
     <h2>奈良先端科学技術大学院大学</h2>
     <div>
       <iframe
@@ -465,7 +471,7 @@
   </main>
 
   <footer class="footer">
-    <ul class="footer__menu">
+    <ul class="footer__menu footer__menu--page">
       <li class="here"><a href="">TOP</a></li>
       <li><a href="">NEWS</a></li>
       <li><a href="">自己紹介</a></li>

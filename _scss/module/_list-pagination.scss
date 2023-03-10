@@ -1,0 +1,56 @@
+.list-pagination {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  @include mq-up() {
+    gap: 80px;
+  }
+  & ol {
+    display: flex;
+    gap: 10px;
+    writing-mode: vertical-rl;
+    color: $blue;
+    & li {
+      & a {
+        display: block;
+        height: 23px;
+        border-radius: 50%;
+        font-family: $ubuntu;
+        font-size: 12px;
+        line-height: 23px;
+        text-align: center;
+        @include mq-up() {
+          height: 42px;
+          font-size: 24px;
+          line-height: 42px;
+        }
+      }
+      &.here {
+        & a {
+          background-color: $yellow;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  &__scroll {
+    font-family: $ubuntu;
+    font-size: 12px;
+    writing-mode: vertical-rl;
+    @include mq-up() {
+      font-size: 20px;
+    }
+    color: $blue;
+    &::before {
+      content: "";
+      position: relative;
+      right: 2px;
+      display: inline-block;
+      width: 1px;
+      height: 89px;
+      margin-bottom: 15px;
+      background-color: $blue;
+    }
+  }
+}
