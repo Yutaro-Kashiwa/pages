@@ -1,3 +1,7 @@
 .page-members {
-  &__ {}
+  @include mq-up() {
+    &::after {
+      content: "\004d\0065\006d\0062\0065\0072\0073";
+    }
+  }
 }
