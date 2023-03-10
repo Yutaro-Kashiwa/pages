@@ -4,4 +4,32 @@
       content: "\0050\0072\006f\006a\0065\0063\0074\0073";
     }
   }
+  @include mq-up() {
+    & h1 + div + div {
+      margin-top: 43px;
+    }
+  }
+  &__body {
+    @include mq-up() {
+      display: flex;
+      gap: 48px;
+      &--1 {
+        flex-direction: row-reverse;
+      }
+    }
+  }
+  &__heading {
+    @include mq-up() {
+      font-size: 24px;
+      & + p {
+        margin-top: 10px;
+      }
+    }
+  }
+  &__image {
+    @include mq-up() {
+      width: 320px;
+      height: 180px;
+    }
+  }
 }
