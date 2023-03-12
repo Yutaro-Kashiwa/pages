@@ -1,0 +1,40 @@
+.news-list {
+  @include mq-up() {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 63px 90px;
+    padding-right: 43px;
+  }
+  &__item {
+    width: 80%;
+    padding: 12px 0;
+    border-bottom: 0.5px solid $black;
+    @include mq-up() {
+      width: 240px;
+      padding: initial;
+      border-bottom: initial;
+    }
+    & a {
+      display: flex;
+      align-items: center;
+      column-gap: 18px;
+      @include mq-up() {
+        display: block;
+      }
+    }
+  }
+  @include mq-up() {
+    &__image {
+      height: 135px;
+    }
+  }
+  &__date {
+    font-size: 14px;
+    @include mq-up() {
+      margin-top: 10px;
+    }
+  }
+  &__title {
+    font-size: 16px;
+  }
+}

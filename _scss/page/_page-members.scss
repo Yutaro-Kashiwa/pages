@@ -1,0 +1,44 @@
+.page-members {
+  @include mq-up() {
+    &::after {
+      content: "\004d\0065\006d\0062\0065\0072\0073";
+    }
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 56px 29px;
+    justify-content: space-between;
+    text-align: center;
+    @include mq-up() {}
+    & li {
+      width: 90px;
+      @include mq-up() {
+        width: 155px;
+      }
+    }
+    & img {
+      width: 68px;
+      height: 90.5px;
+      margin: auto;
+      @include mq-up() {
+        width: 135px;
+        height: 180px;
+      }
+    }
+    & h2 {
+      margin-top: 5px;
+      font-size: 16px;
+      @include mq-up() {
+        margin-top: 10px;
+        font-size: 20px;
+      }
+    }
+    & p {
+      font-size: 12px;
+      @include mq-up() {
+        font-size: 16px;
+      }
+    }
+  }
+}
