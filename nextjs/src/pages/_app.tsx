@@ -1,10 +1,11 @@
 import type { AppProps } from 'next/app'
 import { ChakraProvider } from '@chakra-ui/react'
 import { RootLayout } from "./root_layout";
+import { theme } from '@/config/theme';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <RootLayout>
         <Component {...pageProps} />
       </RootLayout>
