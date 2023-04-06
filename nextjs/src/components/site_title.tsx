@@ -1,19 +1,25 @@
 import { FC } from "react"
 import { withRouter } from "next/router"
-import { Center, HStack, Image, Text } from "@chakra-ui/react"
+import { AspectRatio, Center, HStack, VStack, Image, Text, Spacer } from "@chakra-ui/react"
 import SakigakePrestoLogo from "@/images/sakigake_presto_logo.svg"
 
 export const SakigakeLogo: FC = () => (
-  <Center w="148px" h="76px" bg="white" borderBottomLeftRadius="10px" borderBottomRightRadius="10px">
-    <SakigakePrestoLogo width="116px" />
+  <Center pl="12px" pr="16px" pt="8px" pb="12px"  bg="white" borderBottomLeftRadius="10px" borderBottomRightRadius="10px">
+    <AspectRatio flexGrow={1} maxW="116px">
+      <SakigakePrestoLogo />
+    </AspectRatio>
   </Center>
 )
 
 export const SiteTitle = withRouter(({ router }) => (
-  <HStack w="100%" pl="40px" alignItems="baseline" spacing="24px" bg="transparent">
-    <SakigakeLogo />
+  <HStack w="100%" pl="40px" alignItems="flex-end" spacing="24px" bg="transparent">
+    <AspectRatio w={router.pathname === "/" ? "148px" : "123px"} flexShrink={1} ratio={148 / 76}>
+      <SakigakeLogo />
+    </AspectRatio>
 
-    <Text fontWeight={400} fontSize="20px" color={router.pathname === "/" ? "#333333" : "#0168B7"}>プログラム異常動作の自動検出技術の創出プロジェクト</Text>
+    <VStack p={0} pb="12px" m={0}>
+      <Text fontWeight={400} fontSize="20px" color={router.pathname === "/" ? "#333333" : "#0168B7"}>プログラム異常動作の自動検出技術の創出プロジェクト</Text>
+    </VStack>
   </HStack>
 )
 )
