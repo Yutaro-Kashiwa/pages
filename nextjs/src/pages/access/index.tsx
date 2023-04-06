@@ -27,11 +27,11 @@ export const AccessPage: NextPageWithLayout = () => {
   return (
     <Center w="100vw" h="100vh">
       <VStack
-        maxW="1440px"
+        maxW="1280px"
         w="100%"
         h="70%"
         px="40px"
-        justifyContent="space-evenly"
+        justifyContent="space-between"
         alignItems="flex-start"
       >
         <Show above="lg">
@@ -60,7 +60,7 @@ export const AccessPage: NextPageWithLayout = () => {
           </HStack>
         </Show>
 
-        <VStack w="100%" alignItems="inherit">
+        <VStack w="100%" alignItems="inherit" spacing="24px">
           <Heading as="h3" fontWeight={600} fontSize="24px" color="main">
             奈良先端科学技術大学院大学
           </Heading>
@@ -72,7 +72,7 @@ export const AccessPage: NextPageWithLayout = () => {
             justifyContent="space-between"
             alignItems="flex-start"
           >
-            <AspectRatio maxW="572px" w="100%" h="100%" ratio={16 / 9}>
+            <AspectRatio maxW="572px" w="100%" h="100%" ratio={572 / 428}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.94645321968!2d135.73156196523308!3d34.73174408042649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600122e9fc7b1ce7%3A0x2109b99d4ee8a89c!2z5aWI6Imv5YWI56uv56eR5a2m5oqA6KGT5aSn5a2m6Zmi5aSn5a2m!5e0!3m2!1sja!2sjp!4v1680743732897!5m2!1sja!2sjp"
                 allowFullScreen
