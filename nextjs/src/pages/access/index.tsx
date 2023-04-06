@@ -107,7 +107,7 @@ export const AccessPage: NextPageWithLayout = () => {
                     </VStack>
 
                     <LinkBox p={0} color="main">
-                      <LinkOverlay href="">
+                      <LinkOverlay isExternal href="http://www.naist.jp/accessmap/">
                         <Box
                           display="inline-flex"
                           alignItems="center"
