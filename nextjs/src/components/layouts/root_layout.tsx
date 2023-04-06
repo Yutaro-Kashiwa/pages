@@ -1,6 +1,6 @@
 import { ReactElement, useEffect } from "react";
 import { Box, Container, HStack } from "@chakra-ui/react";
-import { NavigationLinks } from "../components/navigation_links";
+import { NavigationLinks } from "@/components/navigation_links";
 import { SiteTitle } from "@/components/site_title";
 
 type RootLayoutProps = Required<{

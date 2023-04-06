@@ -13,7 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { NextPageWithLayout } from "@/types/next_page_with_layout";
-import { CommonPageLayout } from "../common_page_layout";
+import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 
 const ubuntuFont = Ubuntu({

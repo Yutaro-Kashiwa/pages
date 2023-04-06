@@ -14,7 +14,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { NextPageWithLayout } from "@/types/next_page_with_layout";
-import { CommonPageLayout } from "../common_page_layout";
+import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import { ArrowRight } from "@/components/icons/arrow_right";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { motion } from "framer-motion";

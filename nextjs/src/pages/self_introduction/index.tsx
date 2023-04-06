@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { Fragment, ReactElement, memo } from "react";
-import { CommonPageLayout } from "../common_page_layout";
+import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { Noto_Sans_JP, Ubuntu } from "next/font/google";
 import { format, formatISO } from "date-fns";
