@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { withRouter } from "next/router"
-import { AspectRatio, Center, HStack, VStack, Image, Text, Spacer } from "@chakra-ui/react"
+import { AspectRatio, Center, HStack, VStack, Text } from "@chakra-ui/react"
 import SakigakePrestoLogo from "@/images/sakigake_presto_logo.svg"
 
 export const SakigakeLogo: FC = () => (
