@@ -18,4 +18,11 @@ export const theme = extendTheme({
       },
     },
   },
+  colors: {
+    main: "#0168B7",
+    base: {
+      1: "#D7D7D7",
+      2: "#F5F5F5"
+    }
+  }
 });
