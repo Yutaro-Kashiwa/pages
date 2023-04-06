@@ -32,7 +32,7 @@ export const NavigationLinks = withRouter(({ router }) => (
         {router.pathname === "/" ? (
           <Link
             as={NextLink}
-            href="/news"
+            href="/whats_new"
             fontSize={18}
             fontWeight="700"
             textTransform="uppercase"
@@ -46,12 +46,12 @@ export const NavigationLinks = withRouter(({ router }) => (
         ) : (
           <Link
             as={NextLink}
-            href="/news"
-            fontSize={router.pathname === "/news" ? 40 : 18}
+            href="/whats_new"
+            fontSize={router.pathname === "/whats_new" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/news" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/whats_new" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
