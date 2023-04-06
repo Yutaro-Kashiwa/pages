@@ -29,8 +29,10 @@ export default function TopPage() {
         background="url(/AdobeStock_394174786.png) no-repeat left top / cover"
         backgroundColor="#f5f5f5"
       >
+
         <Spacer />
         <Spacer />
+
         <VStack p={0} pl="40px" zIndex={3}>
           <VStack color="#ffffff" alignItems="flex-start" spacing="36px">
             <Heading
@@ -42,6 +44,7 @@ export default function TopPage() {
             >
               ソフトウェアの動きから異常を自動検知
             </Heading>
+
             <VStack alignItems="inherit" spacing="28px">
               <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap">
                 {/* prettier-ignore */}
@@ -52,6 +55,7 @@ export default function TopPage() {
       
       右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。`}
               </Text>
+
               <LinkBox p={0}>
                 <LinkOverlay href="">
                   <Box
@@ -67,6 +71,7 @@ export default function TopPage() {
                     <Text fontWeight="400" fontSize={16}>
                       詳しくはこちら
                     </Text>
+
                     <Box position="relative" h="16px">
                       <ArrowRight position="absolute" w="38px" left="10px" />
                     </Box>
@@ -76,7 +81,9 @@ export default function TopPage() {
             </VStack>
           </VStack>
         </VStack>
+
         <Spacer />
+
         <Box
           position="absolute"
           left={0}
