@@ -16,6 +16,7 @@ import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import { Ubuntu } from "next/font/google";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { AvatarIcon } from "@/components/icons/avatar_icon";
+import { motion } from "framer-motion";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -85,56 +86,69 @@ MemberSummaryCard.displayName = "MemberSummaryCard";
 
 export const MembersPage: NextPageWithLayout = () => {
   return (
-    <Center w="100vw" h="100vh">
-      <VStack
-        maxW="1280px"
-        w="100%"
-        h="70%"
-        px="40px"
-        justifyContent="space-between"
-        alignItems="flex-start"
-      >
-        <Show above="lg">
-          <HStack position="relative">
-            <Box
-              position="absolute"
-              right="-20px"
-              bottom="-16px"
-              w="199px"
-              zIndex={-1}
-            >
-              <AspectRatio w="100%" ratio={199 / 44}>
-                <TitleBackgroundRect />
-              </AspectRatio>
-            </Box>
-
-            <Heading
-              as="h2"
-              fontFamily={ubuntuFont.style.fontFamily}
-              fontWeight={400}
-              color="main"
-              textTransform="uppercase"
-            >
-              members
-            </Heading>
-          </HStack>
-        </Show>
-
-        <Spacer />
-
-        <HStack w="100%" justifyContent={[null, "flex-start", "space-between"]} flexWrap="wrap">
-          {membersList.map(({ name, grade, pictureURL }) => (
-            <Fragment key={`${name}${grade}${pictureURL}`}>
-              <Box maxH="260px" maxW="136px">
-                <MemberSummaryCard name={"学生 氏名"} grade={"学部4回"} />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 1,
+      }}
+    >
+      <Center w="100vw" h="100vh">
+        <VStack
+          maxW="1280px"
+          w="100%"
+          h="70%"
+          px="40px"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <Show above="lg">
+            <HStack position="relative">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
               </Box>
-            </Fragment>
-          ))}
-        </HStack>
 
-        <Spacer />
-      </VStack>
-    </Center>
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                members
+              </Heading>
+            </HStack>
+          </Show>
+
+          <Spacer />
+
+          <HStack
+            w="100%"
+            justifyContent={[null, "flex-start", "space-between"]}
+            flexWrap="wrap"
+          >
+            {membersList.map(({ name, grade, pictureURL }) => (
+              <Fragment key={`${name}${grade}${pictureURL}`}>
+                <Box maxH="260px" maxW="136px">
+                  <MemberSummaryCard name={"学生 氏名"} grade={"学部4回"} />
+                </Box>
+              </Fragment>
+            ))}
+          </HStack>
+
+          <Spacer />
+        </VStack>
+      </Center>
+    </motion.div>
   );
 };
 
