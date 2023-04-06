@@ -8,6 +8,7 @@ import {
   LinkOverlay,
   Spacer,
 } from "@chakra-ui/react";
+import NextImage from "next/image";
 import { ArrowRight } from "@/components/icons/arrow_right";
 import { motion } from "framer-motion";
 
@@ -26,9 +27,14 @@ export default function TopPage() {
         h="100vh"
         justifyContent="flex-end"
         alignItems="flex-start"
-        background="url(/AdobeStock_394174786.png) no-repeat left top / cover"
         backgroundColor="#f5f5f5"
       >
+        <NextImage
+          src="/AdobeStock_394174786.png"
+          alt="AdobeStock_394174786"
+          fill
+          style={{ position: "absolute" }}
+        />
 
         <Spacer />
         <Spacer />
