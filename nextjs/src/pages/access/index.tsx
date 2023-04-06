@@ -56,6 +56,7 @@ export const AccessPage: NextPageWithLayout = () => {
                   <TitleBackgroundRect />
                 </AspectRatio>
               </Box>
+
               <Heading
                 as="h2"
                 fontFamily={ubuntuFont.style.fontFamily}
@@ -67,10 +68,12 @@ export const AccessPage: NextPageWithLayout = () => {
               </Heading>
             </HStack>
           </Show>
+
           <VStack w="100%" alignItems="inherit" spacing="24px">
             <Heading as="h3" fontWeight={600} fontSize="24px" color="main">
               奈良先端科学技術大学院大学
             </Heading>
+
             <HStack
               w="100%"
               flex="1 1 50%"
@@ -85,25 +88,33 @@ export const AccessPage: NextPageWithLayout = () => {
                   loading="lazy"
                 />
               </AspectRatio>
+
               <Spacer />
+
               <VStack h="100%" justifyContent="space-evenly" align="flex-start">
                 <VStack align="inherit" spacing="32px">
                   <Heading as="h4" fontWeight={600} fontSize="20px" color="main">
                     大学へのアクセス
                   </Heading>
+
                   <VStack align="inherit" spacing="24px">
                     <Text>〒630-0192 奈良県生駒市高山町 8916番地 - 5</Text>
+
                     <HStack justifyContent="baseline">
                       <VStack align="flex-start" spacing="8px">
                         <HStack spacing="16px">
                           <Text>電車</Text>
+
                           <Text>○○駅から徒歩何分</Text>
                         </HStack>
+
                         <HStack spacing="16px">
                           <Text>バス</Text>
+
                           <Text>○○停留所から徒歩何分</Text>
                         </HStack>
                       </VStack>
+
                       <LinkBox p={0} color="main">
                         <LinkOverlay isExternal href="http://www.naist.jp/accessmap/">
                           <Box
@@ -119,6 +130,7 @@ export const AccessPage: NextPageWithLayout = () => {
                             <Text fontWeight="400" fontSize="16px">
                               詳しくはこちら
                             </Text>
+
                             <Box position="relative" h="16px">
                               <ArrowRight
                                 position="absolute"
@@ -132,15 +144,20 @@ export const AccessPage: NextPageWithLayout = () => {
                     </HStack>
                   </VStack>
                 </VStack>
+
                 <Spacer />
+
                 <VStack align="inherit">
                   <Heading as="h4" fontWeight={600} fontSize="20px" color="main">
                     連絡先
                   </Heading>
+
                   <Text>example.dummy@mail.com</Text>
                 </VStack>
+
                 <Spacer />
               </VStack>
+
               <Spacer />
             </HStack>
           </VStack>
