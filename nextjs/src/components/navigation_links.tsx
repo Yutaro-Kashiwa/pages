@@ -51,7 +51,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/whats_new" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/whats_new"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -85,7 +87,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/self_introduction" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/self_introduction"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -119,7 +123,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/projects" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/projects"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -153,7 +159,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/members" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/members"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -187,7 +195,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/publications" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/publications"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -221,7 +231,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/awards" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/awards"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
@@ -255,7 +267,9 @@ export const NavigationLinks = withRouter(({ router }) => (
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/access" ? "#0168B7" : "rgba(1, 104, 183, 0.7)"
+              router.pathname === "/access"
+                ? "#0168B7"
+                : "rgba(1, 104, 183, 0.7)"
             }
             _hover={{
               textDecoration: "none",
