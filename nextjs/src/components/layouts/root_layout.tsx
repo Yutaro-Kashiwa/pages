@@ -5,9 +5,10 @@ import { SiteTitle } from "@/components/site_title";
 
 type RootLayoutProps = Required<{
   readonly children: ReactElement;
+  currentPathname: string
 }>;
 
-export const RootLayout = ({ children }: RootLayoutProps) => (
+export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
   <>
     <Box
       as="header"
@@ -28,6 +29,7 @@ export const RootLayout = ({ children }: RootLayoutProps) => (
     <main>{children}</main>
 
     <Container
+      key={currentPathname}
       as="footer"
       position="fixed"
       left={0}
@@ -45,7 +47,7 @@ export const RootLayout = ({ children }: RootLayoutProps) => (
         },
       }}
     >
-      <NavigationLinks />
+      <NavigationLinks currentPathname={currentPathname} />
     </Container>
   </>
 );

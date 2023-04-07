@@ -1,8 +1,12 @@
 import NextLink from "next/link";
 import { Box, Container, HStack, List, ListItem, Link } from "@chakra-ui/react";
-import { withRouter } from "next/router";
+import { memo } from "react";
 
-export const NavigationLinks = withRouter(({ router }) => (
+type Props = {
+  currentPathname: string;
+};
+
+export const NavigationLinks = memo<Props>(({ currentPathname }) => (
   <Box as="nav">
     <List
       display="flex"
@@ -16,10 +20,10 @@ export const NavigationLinks = withRouter(({ router }) => (
         <Link
           as={NextLink}
           href="/"
-          fontSize={router.pathname === "/" ? 40 : 18}
+          fontSize={currentPathname === "/" ? 40 : 18}
           fontWeight="700"
           textTransform="uppercase"
-          color={router.pathname === "/" ? "white" : "rgba(1, 104, 183, 0.7)"}
+          color={currentPathname === "/" ? "white" : "rgba(1, 104, 183, 0.7)"}
           _hover={{
             textDecoration: "none",
           }}
@@ -29,7 +33,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/whats_new"
@@ -47,11 +51,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/whats_new"
-            fontSize={router.pathname === "/whats_new" ? 40 : 18}
+            fontSize={currentPathname === "/whats_new" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/whats_new"
+              currentPathname === "/whats_new"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -65,7 +69,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/self_introduction"
@@ -83,11 +87,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/self_introduction"
-            fontSize={router.pathname === "/self_introduction" ? 40 : 18}
+            fontSize={currentPathname === "/self_introduction" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/self_introduction"
+              currentPathname === "/self_introduction"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -101,7 +105,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/projects"
@@ -119,11 +123,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/projects"
-            fontSize={router.pathname === "/projects" ? 40 : 18}
+            fontSize={currentPathname === "/projects" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/projects"
+              currentPathname === "/projects"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -137,7 +141,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/members"
@@ -155,11 +159,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/members"
-            fontSize={router.pathname === "/members" ? 40 : 18}
+            fontSize={currentPathname === "/members" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/members"
+              currentPathname === "/members"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -173,7 +177,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/publications"
@@ -191,11 +195,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/publications"
-            fontSize={router.pathname === "/publications" ? 40 : 18}
+            fontSize={currentPathname === "/publications" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/publications"
+              currentPathname === "/publications"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -209,7 +213,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/awards"
@@ -227,11 +231,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/awards"
-            fontSize={router.pathname === "/awards" ? 40 : 18}
+            fontSize={currentPathname === "/awards" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/awards"
+              currentPathname === "/awards"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -245,7 +249,7 @@ export const NavigationLinks = withRouter(({ router }) => (
       </ListItem>
 
       <ListItem>
-        {router.pathname === "/" ? (
+        {currentPathname === "/" ? (
           <Link
             as={NextLink}
             href="/access"
@@ -263,11 +267,11 @@ export const NavigationLinks = withRouter(({ router }) => (
           <Link
             as={NextLink}
             href="/access"
-            fontSize={router.pathname === "/access" ? 40 : 18}
+            fontSize={currentPathname === "/access" ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              router.pathname === "/access"
+              currentPathname === "/access"
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
@@ -282,3 +286,5 @@ export const NavigationLinks = withRouter(({ router }) => (
     </List>
   </Box>
 ));
+
+NavigationLinks.displayName = "NavigationLinks"

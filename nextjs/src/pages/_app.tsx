@@ -16,7 +16,7 @@ export default function App({ Component, pageProps, router }: AppPropsWithLayout
   return (
     <ChakraProvider theme={theme}>
       <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-        <RootLayout>
+        <RootLayout currentPathname={router.pathname}>
           {getLayout(
             <Component key={router.asPath} {...pageProps} />
           )}
