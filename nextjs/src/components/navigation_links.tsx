@@ -16,7 +16,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
       py="24px"
       gap="44px"
     >
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/" ? "translateY(-4px)" : "none",
+        }}
+      >
         <Link
           as={NextLink}
           href="/"
@@ -26,13 +31,19 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
           color={currentPathname === "/" ? "white" : "rgba(1, 104, 183, 0.7)"}
           _hover={{
             textDecoration: "none",
+            color: currentPathname !== "/" ? "main" : undefined
           }}
         >
           Top
         </Link>
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/whats_new" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -43,6 +54,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             News
@@ -61,6 +73,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             News
@@ -68,7 +81,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/self_introduction" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -79,6 +97,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             自己紹介
@@ -97,6 +116,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             自己紹介
@@ -104,7 +124,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/projects" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -115,6 +140,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             研究紹介
@@ -133,6 +159,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             研究紹介
@@ -140,7 +167,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/members" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -151,6 +183,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             メンバー
@@ -169,6 +202,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             メンバー
@@ -176,7 +210,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/publications" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -187,6 +226,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             論文
@@ -205,6 +245,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             論文
@@ -212,7 +253,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/awards" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -223,6 +269,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             受賞履歴
@@ -241,6 +288,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             受賞履歴
@@ -248,7 +296,12 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
         )}
       </ListItem>
 
-      <ListItem>
+      <ListItem
+        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+        _hover={{
+          transform: currentPathname !== "/access" ? "translateY(-4px)" : "none",
+        }}
+      >
         {currentPathname === "/" ? (
           <Link
             as={NextLink}
@@ -259,6 +312,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             color={"rgba(255, 255, 255, 0.7)"}
             _hover={{
               textDecoration: "none",
+              color: "white"
             }}
           >
             アクセス
@@ -277,6 +331,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
             }
             _hover={{
               textDecoration: "none",
+              color: "main"
             }}
           >
             アクセス
@@ -287,4 +342,4 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
   </Box>
 ));
 
-NavigationLinks.displayName = "NavigationLinks"
+NavigationLinks.displayName = "NavigationLinks";
