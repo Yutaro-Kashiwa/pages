@@ -127,7 +127,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
       <ListItem
         transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
         _hover={{
-          transform: currentPathname !== "/projects" ? "translateY(-4px)" : "none",
+          transform: !currentPathname.includes("/projects") ? "translateY(-4px)" : "none",
         }}
       >
         {currentPathname === "/" ? (
@@ -149,11 +149,11 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
           <Link
             as={NextLink}
             href="/projects"
-            fontSize={currentPathname === "/projects" ? 40 : 18}
+            fontSize={currentPathname.includes("/projects") ? 40 : 18}
             fontWeight="700"
             textTransform="uppercase"
             color={
-              currentPathname === "/projects"
+              currentPathname.includes("/projects")
                 ? "#0168B7"
                 : "rgba(1, 104, 183, 0.7)"
             }
