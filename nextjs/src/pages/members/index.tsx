@@ -148,7 +148,7 @@ export const MembersPage: NextPageWithLayout = () => {
             {membersList.map(({ uid, name, grade, pictureURL }) => (
               <Fragment key={uid}>
                 <Box maxH="260px" maxW="136px">
-                  <MemberSummaryCard name={"学生 氏名"} grade={"学部4回"} />
+                  <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
                 </Box>
               </Fragment>
             ))}
