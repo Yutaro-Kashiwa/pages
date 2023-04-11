@@ -96,41 +96,150 @@ const AwardSummaryCard = memo<AwardSummaryCardProps>(
 AwardSummaryCard.displayName = "AwardSummaryCard";
 
 export const AwardsPage: NextPageWithLayout = () => {
+  const contentContainerRef = useRef<HTMLDivElement>(null);
+
+  const [numberOfPages, setNumberOfPages] = useState<number>(0);
+
+  const contentContainerSize = useSize(contentContainerRef);
+
+  const updateInitialNumberOfPages = useCallback<
+    Exclude<SplideProps["onPaginationMounted"], undefined>
+  >((_, paginationData) => {
+    setNumberOfPages(paginationData.items.length);
+  }, []);
+
+  const updateNumberOfPages = useCallback<
+    Exclude<SplideProps["onPaginationUpdated"], undefined>
+  >((_, paginationData) => {
+    setNumberOfPages(paginationData.items.length);
+  }, []);
+
   return (
-    <Center w="100vw" h="100vh">
-      <VStack
-        maxW="1280px"
-        w="100%"
-        h="70%"
-        px="40px"
+    <>
+      {/* global を付けないと splide に認識されない */}
+      <style jsx global>
+        {`
+          /* https://codepen.io/junpei-sugiyama/pen/rNZGJLx */
+
+          /* ページネーションに番号を表示 */
+          .splide__pagination {
+            counter-reset: pagination-num;
+          }
+
+          .splide__pagination__page:before {
+            content: counter(pagination-num);
+            counter-increment: pagination-num;
+          }
+
+          .news-pagination {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            gap: 20px;
+            overflow: hidden;
+          }
+
+          /* ページネーションのスタイル */
+          .news-pagination-page {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+            padding: 8px;
+            width: 40px;
+            height: 40px;
+            font-family: ${ubuntuFont.style.fontFamily};
+            font-weight: 400;
+            font-size: 24px;
+            background-color: transparent;
+            color: #0168b7;
+            transform: rotate(90deg);
+            border-radius: 100%;
+          }
+
+          /* 現在表示されているページネーションのスタイル */
+          .news-pagination-page.is-active {
+            background-color: #f2f947;
+          }
+        `}
+      </style>
+
+      <style jsx global>
+        {`
+          .splide:not(.is-overflow) .splide__list {
+            justify-content: center;
+          }
+
+          .splide:not(.is-overflow) .splide__list:first-child {
+            margin-bottom: 76px !important;
+          }
+
+          .splide:not(.is-overflow) .splide__slide:last-child {
+            margin: 0 !important;
+          }
+        `}
+      </style>
+
+      {/* // TODO: motion.div の追加 */}
+      <Center w="100vw" h="100vh">
+        <Center
+          ref={contentContainerRef}
+          maxW="1280px"
+          w="100%"
+          h="75%"
+          px="40px"
         justifyContent="space-between"
         alignItems="flex-start"
-      >
-        <Show above="lg">
-          <HStack position="relative" w="fit-content">
-            <Box
-              position="absolute"
-              right="-20px"
-              bottom="-16px"
-              w="199px"
-              zIndex={-1}
-            >
-              <AspectRatio w="100%" ratio={199 / 44}>
-                <TitleBackgroundRect />
-              </AspectRatio>
-            </Box>
+        >
+          <Splide
+            onPaginationMounted={updateInitialNumberOfPages}
+            onPaginationUpdated={updateNumberOfPages}
+            hasTrack={false}
+            options={{
+              direction: "ttb",
+              wheel: true,
+              waitForTransition: true,
+              height: "70vh",
+              fixedWidth: !!contentContainerSize
+                ? contentContainerSize.width - 184
+                : "80vw",
+              classes: {
+                pagination: "splide__pagination news-pagination",
+                page: "splide__pagination__page news-pagination-page",
+              },
+              perPage: 5,
+            }}
+          >
+            <VStack align="center" w="100%" h="100%">
+              <HStack alignItems="flex-start" h="100%" spacing="84px">
+                <SplideTrack>
+                  <SplideSlide>
+                    <Show above="lg">
+                      <HStack position="relative" w="fit-content">
+                        <Box
+                          position="absolute"
+                          right="-20px"
+                          bottom="-16px"
+                          w="199px"
+                          zIndex={-1}
+                        >
+                          <AspectRatio w="100%" ratio={199 / 44}>
+                            <TitleBackgroundRect />
+                          </AspectRatio>
+                        </Box>
 
-            <Heading
-              as="h2"
-              fontFamily={ubuntuFont.style.fontFamily}
-              fontWeight={400}
-              color="main"
-              textTransform="uppercase"
-            >
-              awards
-            </Heading>
-          </HStack>
-        </Show>
+                        <Heading
+                          as="h2"
+                          fontFamily={ubuntuFont.style.fontFamily}
+                          fontWeight={400}
+                          color="main"
+                          textTransform="uppercase"
+                        >
+                          awards
+                        </Heading>
+                      </HStack>
+                    </Show>
+                  </SplideSlide>
 
         <List
           w="100%"
@@ -141,29 +250,110 @@ export const AwardsPage: NextPageWithLayout = () => {
           flexFlow="column nowrap"
           justifyContent="space-between"
         >
-          {awardedHistoriesList.map(
-            ({
-              id,
-              awardedDate,
-              awardeeName,
-              awardName,
-              awarderOrganization,
-            }) => (
-              <Fragment key={id}>
-                <ListItem>
-                  <AwardSummaryCard
-                    awardedDate={awardedDate}
-                    awardeeName={awardeeName}
-                    awardName={awardName}
-                    awarderOrganization={awarderOrganization}
+                  {awardedHistoriesList.map(
+                    ({
+                      id,
+                      awardedDate,
+                      awardeeName,
+                      awardName,
+                      awarderOrganization,
+                    }) => (
+                      <SplideSlide key={id}>
+                        <AwardSummaryCard
+                          awardedDate={awardedDate}
+                          awardeeName={awardeeName}
+                          awardName={awardName}
+                          awarderOrganization={awarderOrganization}
+                        />
+                      </SplideSlide>
+                    )
+                  )}
+                </SplideTrack>
+
+                <VStack
+                  visibility={numberOfPages > 1 ? "visible" : "hidden"}
+                  justifyContent="space-evenly"
+                  alignItems="center"
+                  h="64vh"
+                  pt="10vh"
+                >
+                  <List
+                    className="splide__pagination news-pagination"
+                    display="flex"
+                    flexFlow="column nowrap"
+                    justifyContent="space-between"
                   />
-                </ListItem>
-              </Fragment>
-            )
-          )}
-        </List>
-      </VStack>
-    </Center>
+
+                  <VStack
+                    justifyContent="space-between"
+                    alignItems="center"
+                    rowGap="16px"
+                    cursor="default"
+                  >
+                    <Box mr="30%" w="1px" h="88px" bg="main" />
+
+                    <Text
+                      fontFamily={ubuntuFont.style.fontFamily}
+                      fontWeight={400}
+                      fontSize={20}
+                      sx={{ writingMode: "vertical-lr" }}
+                      color="main"
+                      userSelect="none"
+                    >
+                      scroll
+                    </Text>
+                  </VStack>
+                </VStack>
+              </HStack>
+
+              <HStack className="splide__arrows" spacing="44px">
+                {/* onClick は Splide が勝手に注入するので不要 */}
+                <IconButton
+                  className="splide__arrow splide__arrow--next"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#cecece"
+                  _hover={{
+                    bg: "unset",
+                  }}
+                  sx={{
+                    ":not(:disabled)": {
+                      ":hover": {
+                        color: "#adadad",
+                      },
+                    },
+                  }}
+                  icon={<ChevronDown w="32px" h="auto" />}
+                />
+
+                <IconButton
+                  className="splide__arrow splide__arrow--prev"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#cecece"
+                  w="32px"
+                  h="32px"
+                  p={0}
+                  _hover={{
+                    bg: "unset",
+                  }}
+                  sx={{
+                    ":not(:disabled)": {
+                      ":hover": {
+                        color: "#adadad",
+                      },
+                    },
+                  }}
+                  icon={<ChevronUp w="32px" h="auto" />}
+                />
+              </HStack>
+            </VStack>
+          </Splide>
+        </Center>
+      </Center>
+    </>
   );
 };
 
