@@ -463,6 +463,9 @@ export const PublicationsPage: NextPageWithLayout = () => {
                         color: "#cecece",
                       },
                     }}
+                    _disabled={{
+                      opacity: 0.3
+                    }}
                     icon={<ChevronDown w="32px" h="auto" />}
                   />
 
@@ -480,6 +483,9 @@ export const PublicationsPage: NextPageWithLayout = () => {
                       ":not(:disabled)": {
                         color: "#cecece",
                       },
+                    }}
+                    _disabled={{
+                      opacity: 0.3
                     }}
                     icon={<ChevronUp w="32px" h="auto" />}
                   />
