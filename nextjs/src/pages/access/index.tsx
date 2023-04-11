@@ -86,6 +86,10 @@ export const AccessPage: NextPageWithLayout = () => {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3278.94645321968!2d135.73156196523308!3d34.73174408042649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600122e9fc7b1ce7%3A0x2109b99d4ee8a89c!2z5aWI6Imv5YWI56uv56eR5a2m5oqA6KGT5aSn5a2m6Zmi5aSn5a2m!5e0!3m2!1sja!2sjp!4v1680743732897!5m2!1sja!2sjp"
                   allowFullScreen
                   loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  style={{
+                    border: 0
+                  }}
                 />
               </AspectRatio>
 
