@@ -104,7 +104,7 @@ export const MembersPage: NextPageWithLayout = () => {
           alignItems="flex-start"
         >
           <Show above="lg">
-            <HStack position="relative">
+            <HStack position="relative" w="fit-content">
               <Box
                 position="absolute"
                 right="-20px"

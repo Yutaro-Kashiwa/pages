@@ -100,7 +100,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
           alignItems="flex-start"
         >
           <Show above="lg">
-            <HStack position="relative">
+            <HStack position="relative" w="fit-content">
               <Box
                 position="absolute"
                 right="-20px"
