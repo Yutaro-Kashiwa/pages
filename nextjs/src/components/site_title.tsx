@@ -1,5 +1,6 @@
 import { FC, memo } from "react"
 import { AspectRatio, Center, HStack, VStack, Link, LinkOverlay, Text } from "@chakra-ui/react"
+import NextLink from "next/link"
 import SakigakePrestoLogo from "@/images/sakigake_presto_logo.svg"
 
 export const SakigakeLogo: FC = () => (
@@ -23,7 +24,24 @@ export const SiteTitle = memo<SiteTitleProps>(({ currentPathname }) => (
     </Link>
 
     <VStack p={0} pb="12px" m={0}>
-      <Text fontWeight={400} fontSize="20px" color={currentPathname === "/" ? "#333333" : "#0168B7"}>プログラム異常動作の自動検出技術の創出プロジェクト</Text>
+      {currentPathname === "/" ? (
+        <Text fontWeight={400} fontSize="20px" color="#333333">
+          プログラム異常動作の自動検出技術の創出プロジェクト
+        </Text>
+      ) : (
+        <Link
+          as={NextLink}
+          href="/"
+          fontWeight={400}
+          fontSize="20px"
+          color="main"
+          _hover={{
+            textDecoration: "none",
+          }}
+        >
+          プログラム異常動作の自動検出技術の創出プロジェクト
+        </Link>
+      )}
     </VStack>
   </HStack>
 ))
