@@ -7,12 +7,10 @@ import {
   HStack,
   Heading,
   List,
-  ListItem,
   Show,
   VStack,
   Text,
   IconButton,
-  SlideProps,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
