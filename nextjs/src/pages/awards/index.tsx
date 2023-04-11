@@ -1,4 +1,4 @@
-import { Fragment, ReactElement, memo } from "react";
+import { ReactElement, memo, useCallback, useRef, useState } from "react";
 import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
@@ -11,10 +11,22 @@ import {
   Show,
   VStack,
   Text,
+  IconButton,
+  SlideProps,
 } from "@chakra-ui/react";
+import { useSize } from "@chakra-ui/react-use-size";
+import {
+  Splide,
+  SplideProps,
+  SplideSlide,
+  SplideTrack,
+} from "@splidejs/react-splide";
+import "@splidejs/react-splide/css/core";
 import { NextPageWithLayout } from "@/types/next_page_with_layout";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
+import { ChevronDown } from "@/components/icons/chevron_down";
+import { ChevronUp } from "@/components/icons/chevron_up";
 
 const ubuntuFont = Ubuntu({
   weight: ["400", "500", "700"],
@@ -55,6 +67,55 @@ const awardedHistoriesList: Award[] = [
   },
   {
     id: "20148c86-18f5-41c0-be6a-0dd3d996ea6c",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "1282650e-aee6-4a82-873c-71ee7a183fde",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "8352b01f-4861-456c-a645-175fa970c2b3",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "4b93ab61-df30-4bb7-992c-35d1560bcf08",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "8b1b67f1-280a-4db6-89d9-c531fc539ade",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "9ad239ea-91ac-44d0-81c4-801588818b8e",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "b0492ba7-ac8e-4a97-be81-4a28510685be",
+    awardedDate: "2021.5",
+    awardeeName: "受賞者名",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "70083091-fc37-4132-a05b-ac72434f6fca",
     awardedDate: "2021.5",
     awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
@@ -188,8 +249,6 @@ export const AwardsPage: NextPageWithLayout = () => {
           w="100%"
           h="75%"
           px="40px"
-        justifyContent="space-between"
-        alignItems="flex-start"
         >
           <Splide
             onPaginationMounted={updateInitialNumberOfPages}
@@ -241,15 +300,6 @@ export const AwardsPage: NextPageWithLayout = () => {
                     </Show>
                   </SplideSlide>
 
-        <List
-          w="100%"
-          maxW="72%"
-          maxH="70%"
-          flexGrow={1}
-          display="flex"
-          flexFlow="column nowrap"
-          justifyContent="space-between"
-        >
                   {awardedHistoriesList.map(
                     ({
                       id,
