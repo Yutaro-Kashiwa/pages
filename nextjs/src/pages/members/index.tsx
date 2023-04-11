@@ -23,34 +23,43 @@ const ubuntuFont = Ubuntu({
   subsets: ["latin"],
 });
 
-type MemberSummaryCardProps = {
+type Member = {
+  uid: string;
   name: string;
   grade: string;
   pictureURL?: string;
-};
+}
 
-const membersList: MemberSummaryCardProps[] = [
+type MemberSummaryCardProps = Omit<Member, "uid">
+
+const membersList: Member[] = [
   {
+    uid: "0d22c632-6567-46d0-a215-dfde7d6bfb05",
     name: "生徒氏名",
     grade: "学部4回",
   },
   {
+    uid: "39782ec2-b14e-44e3-a99a-e7ce5835dead",
     name: "生徒氏名",
     grade: "学部4回",
   },
   {
+    uid: "196b348d-5eda-46ad-9cf1-0c6f41e49e80",
     name: "生徒氏名",
     grade: "学部4回",
   },
   {
+    uid: "9197c958-fa06-4e96-9d8b-adf0bb6f7f48",
     name: "生徒氏名",
     grade: "学部4回",
   },
   {
+    uid: "1fcf62c9-a8ff-470a-a682-f8208d1ee2c3",
     name: "生徒氏名",
     grade: "学部4回",
   },
   {
+    uid: "3686482f-86ac-4fac-9d19-22fc35ae1d86",
     name: "生徒氏名",
     grade: "学部4回",
   },
@@ -136,8 +145,8 @@ export const MembersPage: NextPageWithLayout = () => {
             justifyContent={[null, "flex-start", "space-between"]}
             flexWrap="wrap"
           >
-            {membersList.map(({ name, grade, pictureURL }) => (
-              <Fragment key={`${name}${grade}${pictureURL}`}>
+            {membersList.map(({ uid, name, grade, pictureURL }) => (
+              <Fragment key={uid}>
                 <Box maxH="260px" maxW="136px">
                   <MemberSummaryCard name={"学生 氏名"} grade={"学部4回"} />
                 </Box>
