@@ -80,7 +80,7 @@ const ProjectSummaryCard = memo<Project & { shouldReverseImagePlacement: boolean
       alt=""
       fallback={
         <Box
-          as="image"
+          as="img"
           float="right"
           ml="60px"
           minW="320px"
