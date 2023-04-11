@@ -459,12 +459,8 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     color="#adadad"
                     _hover={{
                       bg: "unset",
-                    }}
-                    sx={{
                       ":not(:disabled)": {
-                        ":hover": {
-                          color: "#cecece",
-                        },
+                        color: "#cecece",
                       },
                     }}
                     icon={<ChevronDown w="32px" h="auto" />}
@@ -481,12 +477,8 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     p={0}
                     _hover={{
                       bg: "unset",
-                    }}
-                    sx={{
                       ":not(:disabled)": {
-                        ":hover": {
-                          color: "#cecece",
-                        },
+                        color: "#cecece",
                       },
                     }}
                     icon={<ChevronUp w="32px" h="auto" />}
