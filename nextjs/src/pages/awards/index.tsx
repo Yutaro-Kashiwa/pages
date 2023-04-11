@@ -21,33 +21,40 @@ const ubuntuFont = Ubuntu({
   subsets: ["latin"],
 });
 
-type AwardSummaryCardProps = {
+type Award = {
+  id: string;
   awardedDate: string;
   awardeeName: string;
   awardName: string;
   awarderOrganization: string;
 };
 
-const awardedHistoriesList: AwardSummaryCardProps[] = [
+type AwardSummaryCardProps = Omit<Award, "id">;
+
+const awardedHistoriesList: Award[] = [
   {
+    id: "0e611141-f93b-4967-8a14-0ae52e35644a",
     awardedDate: "2022.9",
     awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
     awarderOrganization: "賞を与えた機関名が入ります",
   },
   {
+    id: "8d463553-b4da-46bf-b8e4-69870d19a0bd",
     awardedDate: "2022.7",
     awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
     awarderOrganization: "賞を与えた機関名が入ります",
   },
   {
+    id: "56d84aaa-3ff9-4ae2-aa9c-e8595e7517f9",
     awardedDate: "2021.12",
     awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
     awarderOrganization: "賞を与えた機関名が入ります",
   },
   {
+    id: "20148c86-18f5-41c0-be6a-0dd3d996ea6c",
     awardedDate: "2021.5",
     awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
@@ -135,11 +142,14 @@ export const AwardsPage: NextPageWithLayout = () => {
           justifyContent="space-between"
         >
           {awardedHistoriesList.map(
-            (
-              { awardedDate, awardeeName, awardName, awarderOrganization },
-              index
-            ) => (
-              <Fragment key={`${awardedDate}${index}`}>
+            ({
+              id,
+              awardedDate,
+              awardeeName,
+              awardName,
+              awarderOrganization,
+            }) => (
+              <Fragment key={id}>
                 <ListItem>
                   <AwardSummaryCard
                     awardedDate={awardedDate}
