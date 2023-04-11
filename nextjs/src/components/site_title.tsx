@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { memo } from "react";
 import {
   AspectRatio,
   Center,
@@ -10,7 +10,7 @@ import {
 import NextLink from "next/link";
 import SakigakePrestoLogo from "@/images/sakigake_presto_logo.svg";
 
-export const SakigakeLogo: FC = () => (
+export const SakigakeLogo = memo(() => (
   <Center
     pl="12px"
     pr="16px"
@@ -24,7 +24,9 @@ export const SakigakeLogo: FC = () => (
       <SakigakePrestoLogo />
     </AspectRatio>
   </Center>
-);
+));
+
+SakigakeLogo.displayName = "Logo";
 
 type SiteTitleProps = {
   readonly currentPathname: string;
