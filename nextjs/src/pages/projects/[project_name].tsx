@@ -83,9 +83,9 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 
   return (
     <motion.div
-      initial={refererPath === "/projects" ? { y: 100 } : false}
+      initial={refererPath === "/projects" ? { y: 500 } : false}
       animate={{ y: 0 }}
-      exit={{ y: 100 }}
+      exit={{ y: 500 }}
       transition={{
         duration: 0.5,
       }}
