@@ -282,7 +282,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                         <SplideSlide key={id}>
                           <HStack
                             justifyContent="space-between"
-                            alignItems="center"
+                            alignItems="flex-start"
                           >
                             <Text
                               minW="140px"
