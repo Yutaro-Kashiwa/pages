@@ -285,6 +285,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                             alignItems="center"
                           >
                             <Text
+                              minW="140px"
                               fontFamily={ubuntuFont.style.fontFamily}
                               fontWeight={700}
                               fontSize={32}
