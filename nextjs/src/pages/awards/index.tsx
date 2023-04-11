@@ -40,8 +40,6 @@ type Award = {
   awarderOrganization: string;
 };
 
-type AwardSummaryCardProps = Omit<Award, "id">;
-
 const awardedHistoriesList: Award[] = [
   {
     id: "0e611141-f93b-4967-8a14-0ae52e35644a",
@@ -121,39 +119,6 @@ const awardedHistoriesList: Award[] = [
     awarderOrganization: "賞を与えた機関名が入ります",
   },
 ];
-
-const AwardSummaryCard = memo<AwardSummaryCardProps>(
-  ({ awardedDate, awardeeName, awardName, awarderOrganization }) => (
-    <HStack justifyContent="space-between" alignItems="center">
-      <Text
-        fontFamily={ubuntuFont.style.fontFamily}
-        fontWeight={700}
-        fontSize={32}
-        lineHeight="0.84em"
-        color="main"
-        opacity="0.6"
-      >
-        {awardedDate}
-      </Text>
-
-      <Text fontWeight={500} fontSize={20}>
-        {awardeeName}
-      </Text>
-
-      <VStack alignSelf="flex-start" alignItems="flex-start" spacing="2px">
-        <Text fontWeight={500} fontSize={20}>
-          {awardName}
-        </Text>
-
-        <Text fontWeight={500} fontSize={18}>
-          {awarderOrganization}
-        </Text>
-      </VStack>
-    </HStack>
-  )
-);
-
-AwardSummaryCard.displayName = "AwardSummaryCard";
 
 export const AwardsPage: NextPageWithLayout = () => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
@@ -315,12 +280,39 @@ export const AwardsPage: NextPageWithLayout = () => {
                         awarderOrganization,
                       }) => (
                         <SplideSlide key={id}>
-                          <AwardSummaryCard
-                            awardedDate={awardedDate}
-                            awardeeName={awardeeName}
-                            awardName={awardName}
-                            awarderOrganization={awarderOrganization}
-                          />
+                          <HStack
+                            justifyContent="space-between"
+                            alignItems="center"
+                          >
+                            <Text
+                              fontFamily={ubuntuFont.style.fontFamily}
+                              fontWeight={700}
+                              fontSize={32}
+                              lineHeight="0.84em"
+                              color="main"
+                              opacity="0.6"
+                            >
+                              {awardedDate}
+                            </Text>
+
+                            <Text fontWeight={500} fontSize={20}>
+                              {awardeeName}
+                            </Text>
+
+                            <VStack
+                              alignSelf="flex-start"
+                              alignItems="flex-start"
+                              spacing="2px"
+                            >
+                              <Text fontWeight={500} fontSize={20}>
+                                {awardName}
+                              </Text>
+
+                              <Text fontWeight={500} fontSize={18}>
+                                {awarderOrganization}
+                              </Text>
+                            </VStack>
+                          </HStack>
                         </SplideSlide>
                       )
                     )}
