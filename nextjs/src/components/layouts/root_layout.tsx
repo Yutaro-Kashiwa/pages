@@ -23,7 +23,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
         },
       }}
     >
-      <SiteTitle />
+      <SiteTitle currentPathname={currentPathname} />
     </Box>
 
     <main>{children}</main>
