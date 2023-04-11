@@ -456,14 +456,14 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
                     aria-label=""
                     variant="ghost"
-                    color="#cecece"
+                    color="#adadad"
                     _hover={{
                       bg: "unset",
                     }}
                     sx={{
                       ":not(:disabled)": {
                         ":hover": {
-                          color: "#adadad",
+                          color: "#cecece",
                         },
                       },
                     }}
@@ -475,7 +475,7 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
                     aria-label=""
                     variant="ghost"
-                    color="#cecece"
+                    color="#adadad"
                     w="32px"
                     h="32px"
                     p={0}
@@ -485,7 +485,7 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     sx={{
                       ":not(:disabled)": {
                         ":hover": {
-                          color: "#adadad",
+                          color: "#cecece",
                         },
                       },
                     }}
