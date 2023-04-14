@@ -4,6 +4,7 @@ import {
   Avatar,
   Box,
   Center,
+  Container,
   HStack,
   Heading,
   Show,
@@ -104,58 +105,54 @@ export const MembersPage: NextPageWithLayout = () => {
       }}
     >
       <Center w="100vw" h="100vh">
-        <VStack
-          maxW="1280px"
-          w="100%"
-          h="70%"
-          px="40px"
-          justifyContent="space-between"
-          alignItems="flex-start"
-        >
-          <Show above="lg">
-            <HStack position="relative" w="fit-content">
-              <Box
-                position="absolute"
-                right="-20px"
-                bottom="-16px"
-                w="199px"
-                zIndex={-1}
-              >
-                <AspectRatio w="100%" ratio={199 / 44}>
-                  <TitleBackgroundRect />
-                </AspectRatio>
-              </Box>
-
-              <Heading
-                as="h2"
-                fontFamily={ubuntuFont.style.fontFamily}
-                fontWeight={400}
-                color="main"
-                textTransform="uppercase"
-              >
-                members
-              </Heading>
-            </HStack>
-          </Show>
-
-          <Spacer />
-
-          <HStack
-            w="100%"
-            justifyContent={[null, "flex-start", "space-between"]}
-            flexWrap="wrap"
+        <Container maxW="1280px" w="100%" h="70%">
+          <VStack
+            h="100%"
+            justifyContent="space-between"
+            alignItems="flex-start"
           >
-            {membersList.map(({ uid, name, grade, pictureURL }) => (
-              <Fragment key={uid}>
-                <Box maxH="260px" maxW="136px">
-                  <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
+            <Show above="lg">
+              <HStack position="relative" w="fit-content">
+                <Box
+                  position="absolute"
+                  right="-20px"
+                  bottom="-16px"
+                  w="199px"
+                  zIndex={-1}
+                >
+                  <AspectRatio w="100%" ratio={199 / 44}>
+                    <TitleBackgroundRect />
+                  </AspectRatio>
                 </Box>
-              </Fragment>
-            ))}
-          </HStack>
 
-          <Spacer />
-        </VStack>
+                <Heading
+                  as="h2"
+                  fontFamily={ubuntuFont.style.fontFamily}
+                  fontWeight={400}
+                  color="main"
+                  textTransform="uppercase"
+                >
+                  members
+                </Heading>
+              </HStack>
+            </Show>
+
+            <HStack
+              w="100%"
+              h="100%"
+              justifyContent={[null, "flex-start", "space-between"]}
+              flexWrap="wrap"
+            >
+              {membersList.map(({ uid, name, grade, pictureURL }) => (
+                <Fragment key={uid}>
+                  <Box maxH="260px" maxW="136px">
+                    <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
+                  </Box>
+                </Fragment>
+              ))}
+            </HStack>
+          </VStack>
+        </Container>
       </Center>
     </motion.div>
   );
