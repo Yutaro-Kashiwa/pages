@@ -18,7 +18,6 @@ export const CommonPageLayout = ({
 }: CommonBackgroundLayoutProps) => (
   <Box
     position="relative"
-    w="100vw"
     h="100vh"
     backgroundImage="/common_background.svg"
     backgroundRepeat="no-repeat"
