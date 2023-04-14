@@ -69,7 +69,7 @@ export const AccessPage: NextPageWithLayout = () => {
             </HStack>
           </Show>
 
-          <VStack w="100%" alignItems="inherit" spacing="24px">
+          <VStack flexBasis="80%" w="100%" alignItems="inherit" spacing="24px">
             <Heading as="h3" fontWeight={600} fontSize="24px" color="main">
               奈良先端科学技術大学院大学
             </Heading>
