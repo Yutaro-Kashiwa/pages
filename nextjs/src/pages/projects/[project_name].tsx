@@ -135,11 +135,12 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
               {projectTitle}
             </Heading>
 
-            <VStack h="100%" alignItems="inherit">
+            <VStack alignItems="inherit">
               <Text
                 fontFamily={interFont.style.fontFamily}
                 fontWeight={400}
                 fontSize={16}
+                lineHeight="1.8"
                 whiteSpace="pre-wrap"
               >
                 <Image
