@@ -148,7 +148,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
               </HStack>
             </Show>
 
-            <VStack justifyContent="space-evenly" flexBasis="80%">
+            <VStack justifyContent="space-evenly" flexBasis="90%">
               {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
                 <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
                   <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
