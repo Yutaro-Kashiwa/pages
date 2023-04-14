@@ -288,9 +288,45 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
                 </VStack>
               </HStack>
 
-              <Box>
-                専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事．
-                近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．
+              <Box
+                position="relative"
+                pl="20px"
+                pt="20px"
+                pr="16px"
+                pb="12px"
+                _before={{
+                  content: `''`,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  w:"18px",
+                  h: "18px",
+                  borderLeftColor: "main",
+                  borderTopColor: "main",
+                  borderLeftWidth: "2px",
+                  borderTopWidth: "2px",
+                  borderLeftStyle: "solid",
+                  borderTopStyle: "solid",
+                }}
+                _after={{
+                  content: `''`,
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  w:"27px",
+                  h: "27px",
+                  borderRightColor: "main",
+                  borderBottomColor: "main",
+                  borderRightWidth: "2px",
+                  borderBottomWidth: "2px",
+                  borderRightStyle: "solid",
+                  borderBottomStyle: "solid",
+                }}
+              >
+                <Text m={0} p={0}>
+                  専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事．
+                  近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．
+                </Text>
               </Box>
             </VStack>
 
