@@ -102,10 +102,6 @@ type PageProps = {
 export const ProjectsPage: NextPageWithLayout<PageProps> = ({
   refererPath
 }) => {
-  useEffect(() => {
-    console.log(refererPath)
-  }, [refererPath])
-
   return (
     <motion.div
       initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100%" } : { opacity: 0 }}
