@@ -8,6 +8,7 @@ import {
   List,
   ListItem,
   Show,
+  Spacer,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -78,7 +79,7 @@ const careerList: CareerSummaryCardProps[] = [
 
 const CareerSummaryCard = memo<CareerSummaryCardProps>(
   ({ startedAt, endedAt, careerDetail: careerName }) => (
-    <HStack spacing="12px" alignItems="baseline">
+    <HStack spacing="8px" alignItems="baseline">
       <HStack spacing="2px">
         <Text
           as="time"
@@ -89,6 +90,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           fontSize={16}
           fontWeight={400}
           gap="2px"
+          whiteSpace="nowrap"
         >
           {format(startedAt, "yyyy")}
 
@@ -123,6 +125,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
             fontSize={16}
             fontWeight={400}
             gap="2px"
+            whiteSpace="nowrap"
           >
             {format(endedAt, "yyyy")}
 
@@ -149,6 +152,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
             fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
             fontSize={16}
+            whiteSpace="nowrap"
           >
             現在
           </Text>
@@ -159,6 +163,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
         fontFamily={ubuntuFont.style.fontFamily}
         fontWeight={500}
         fontSize={16}
+        whiteSpace="nowrap"
       >
         {careerName}
       </Text>
@@ -214,48 +219,53 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
           </Show>
 
           <HStack
+            flexBasis="70%"
             flexWrap="wrap"
             justifyContent="space-evenly"
-            alignContent="center"
+            alignItems="flex-start"
             spacing={[null, null, null, "72px"]}
           >
             <VStack
+              flexBasis="50%"
+              flexGrow={1}
               flex={1}
-              w="100%"
+              minW="500px"
+              h="100%"
+              justifyContent="space-evenly"
               alignItems="flex-start"
               spacing={[null, "20px", null, "36px"]}
             >
               <HStack
-                w="100%"
-                flex="1 1 50%"
                 alignItems="flex-end"
                 spacing={[null, "24px", null, "32px"]}
               >
-                <AspectRatio w="100%" maxW="193px" ratio={193 / 222}>
+                <AspectRatio w="193px" maxW="193px" ratio={193 / 222}>
                   <Box w="193px" h="222px" backgroundColor="#d9d9d9" />
                 </AspectRatio>
 
-                <VStack alignItems="flex-start" spacing="48px">
-                  <HStack alignItems="baseline">
-                    <Text
-                      fontWeight={600}
-                      fontSize={36}
-                      color="#333333"
-                      whiteSpace="nowrap"
-                    >
-                      柏　祐太郎
-                    </Text>
+                <VStack h="100%" alignItems="flex-start">
+                  <Center h="100%">
+                    <HStack flexWrap={["wrap", null, "nowrap"]} alignItems="baseline">
+                      <Text
+                        fontWeight={600}
+                        fontSize={36}
+                        color="#333333"
+                        whiteSpace="nowrap"
+                      >
+                        柏　祐太郎
+                      </Text>
 
-                    <Text
-                      fontFamily={ubuntuFont.style.fontFamily}
-                      fontWeight={300}
-                      fontSize={20}
-                      color="main"
-                      whiteSpace="nowrap"
-                    >
-                      － YUTARO KASHIWA
-                    </Text>
-                  </HStack>
+                      <Text
+                        fontFamily={ubuntuFont.style.fontFamily}
+                        fontWeight={300}
+                        fontSize={20}
+                        color="main"
+                        whiteSpace="nowrap"
+                      >
+                        － YUTARO KASHIWA
+                      </Text>
+                    </HStack>
+                  </Center>
 
                   <VStack
                     fontWeight={500}
