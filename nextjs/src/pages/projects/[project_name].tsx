@@ -125,7 +125,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
             </HStack>
           </Show>
 
-          <VStack alignItems="flex-start">
+          <VStack flexBasis="80%" alignItems="flex-start">
             <Heading
               as="h3"
               fontFamily={interFont.style.fontFamily}
@@ -135,7 +135,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
               {projectTitle}
             </Heading>
 
-            <VStack alignItems="inherit">
+            <VStack h="100%" alignItems="inherit">
               <Text
                 fontFamily={interFont.style.fontFamily}
                 fontWeight={400}
