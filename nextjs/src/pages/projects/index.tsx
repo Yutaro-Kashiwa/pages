@@ -111,7 +111,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
         duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
       }}
     >
-      <Center w="100vw" h="100vh">
+      <Center w="100vw" h="100vh" overflow="auto">
         <Container centerContent maxW="1280px" h="70vh">
           <VStack
             h="100%"

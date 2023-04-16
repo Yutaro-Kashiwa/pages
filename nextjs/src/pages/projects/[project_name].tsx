@@ -90,7 +90,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
         duration: 0.5,
       }}
     >
-      <Center as="article" w="100vw" h="100vh">
+      <Center as="article" w="100vw" h="100vh" overflow="auto">
         <VStack
           maxW="1280px"
           w="100%"

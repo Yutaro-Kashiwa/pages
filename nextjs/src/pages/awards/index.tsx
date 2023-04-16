@@ -213,7 +213,7 @@ export const AwardsPage: NextPageWithLayout = () => {
           duration: 1,
         }}
       >
-        <Center w="100vw" h="100vh">
+        <Center w="100vw" h="100vh" overflow="auto">
           <Center
             ref={contentContainerRef}
             maxW="1280px"

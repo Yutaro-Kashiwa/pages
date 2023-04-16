@@ -104,7 +104,7 @@ export const MembersPage: NextPageWithLayout = () => {
         duration: 1,
       }}
     >
-      <Center w="100vw" h="100vh">
+      <Center w="100vw" h="100vh" overflow="auto">
         <Container maxW="1280px" w="100%" h="70%">
           <VStack
             h="100%"

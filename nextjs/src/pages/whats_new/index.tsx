@@ -273,7 +273,7 @@ export const WhatsNewPage: NextPageWithLayout = () => {
           duration: 1,
         }}
       >
-        <Center w="100vw" h="100vh">
+        <Center w="100vw" h="100vh" overflow="auto">
           <VStack
             ref={contentContainerRef}
             maxW="1280px"
