@@ -7,7 +7,7 @@ type Props = {
 };
 
 export const NavigationLinks = memo<Props>(({ currentPathname }) => (
-  <Box as="nav">
+  <Box as="nav" mx="auto">
     <List
       display="flex"
       flexFlow="row nowrap"
