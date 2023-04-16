@@ -22,6 +22,8 @@ export const CommonPageLayout = ({
     backgroundImage="/common_background.svg"
     backgroundRepeat="no-repeat"
     backgroundSize="cover"
+    backgroundPosition="right top"
+    backgroundAttachment="fixed"
     backgroundColor="#f5f5f5"
   >
     <Container position="absolute" bottom="28px" right="0px" zIndex={0}>
