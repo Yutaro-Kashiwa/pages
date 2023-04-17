@@ -4,6 +4,7 @@ import {
   useRef,
 } from "react";
 import { Ubuntu } from "next/font/google";
+import NextLink from "next/link";
 import {
   Center,
   Container,
@@ -17,6 +18,8 @@ import {
   AspectRatio,
   Show,
   List,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
@@ -335,7 +338,11 @@ export const WhatsNewPage: NextPageWithLayout = () => {
                 <SplideTrack>
                   {mockNewsList.map(({ id, title, createdAt }) => (
                     <SplideSlide key={id}>
-                      <WhatsNewGridCard title={title} createdAt={createdAt} />
+                      <LinkBox as="article">
+                        <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
+                          <WhatsNewGridCard title={title} createdAt={createdAt} />
+                        </LinkOverlay>
+                      </LinkBox>
                     </SplideSlide>
                   ))}
                 </SplideTrack>
