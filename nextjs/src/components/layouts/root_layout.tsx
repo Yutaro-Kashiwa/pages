@@ -38,7 +38,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
       overflowX="scroll"
       overflowY="visible"
       whiteSpace="nowrap"
-      maxW="1440px"
+      maxW="1280px"
       centerContent
       zIndex={100}
       css={{
