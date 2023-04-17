@@ -43,6 +43,7 @@ export const SiteTitle = memo<SiteTitleProps>(({ currentPathname }) => (
     <Link
       isExternal
       href="https://www.jst.go.jp/kisoken/presto/about/index.html"
+      alignSelf="flex-start"
     >
       <AspectRatio
         w={currentPathname === "/" ? "148px" : "123px"}
