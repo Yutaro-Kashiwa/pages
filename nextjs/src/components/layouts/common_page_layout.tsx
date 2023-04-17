@@ -19,7 +19,10 @@ export const CommonPageLayout = ({
   <Box
     position="relative"
     h="100vh"
-    backgroundImage="/common_background.svg"
+    backgroundImage={{
+      base: "/common_background_stretchable.svg",
+      xl: "/common_background.svg"
+    }}
     backgroundRepeat="no-repeat"
     backgroundSize="cover"
     backgroundPosition="right top"
