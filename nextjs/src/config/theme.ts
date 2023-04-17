@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { TextProps, extendTheme } from "@chakra-ui/react";
 import { Noto_Sans_JP } from "next/font/google";
 
 const notoSansJPFont = Noto_Sans_JP({
@@ -31,5 +31,17 @@ export const theme = extendTheme({
     lg: '62em', // 992px
     xl: '80em', // 1280px
     '2xl': '96em', // 1536px
+  },
+  components: {
+    Text: {
+      baseStyle: (_: TextProps) => ({
+        color: "#333333"
+      })
+    },
+    Heading: {
+      baseStyle: (_: TextProps) => ({
+        color: "#333333"
+      })
+    }
   }
 });
