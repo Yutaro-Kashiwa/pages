@@ -141,6 +141,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                   <ChakraNextImage
                     src={imageURL ?? ""}
                     alt={title ?? ""}
+                    // @ts-ignore
                     fill
                   />
                 </AspectRatio>
