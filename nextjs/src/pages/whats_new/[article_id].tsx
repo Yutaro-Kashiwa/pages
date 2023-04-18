@@ -22,6 +22,7 @@ import NextImage from "next/image";
 import { GetServerSideProps } from "next";
 import { format, formatISO, parseISO, startOfToday } from "date-fns";
 import { ChakraNextImage } from "@/components/chakra_next_image";
+import { useRouter } from "next/router";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -56,105 +57,111 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
   body,
   createdAt,
   imageURL,
-}) => (
-  <motion.div
-    initial={refererPath === "/whats_new" ? { y: 500 } : { opacity: 0 }}
-    animate={refererPath === "/whats_new" ? { y: 0 } : { opacity: 1 }}
-    exit={{ y: 500 }}
-    transition={{
-      duration: 0.5,
-    }}
-  >
-    <Center w="100vw" h="100vh" overflow="auto">
-      <VStack
-        maxW="1280px"
-        w="100%"
-        h="70%"
-        px="40px"
-        justifyContent="space-between"
-        alignItems="flex-start"
-      >
-        <Show above="lg">
-          <HStack position="relative" w="fit-content">
-            <Box
-              position="absolute"
-              right="-20px"
-              bottom="-16px"
-              w="199px"
-              zIndex={-1}
-            >
-              <AspectRatio w="100%" ratio={199 / 44}>
-                <TitleBackgroundRect />
-              </AspectRatio>
-            </Box>
+}) => {
+  const { asPath } = useRouter()
 
-            <Heading
-              as="h2"
-              fontFamily={ubuntuFont.style.fontFamily}
-              fontWeight={400}
-              color="main"
-              textTransform="uppercase"
-            >
-              {`what's new`}
-            </Heading>
-          </HStack>
-        </Show>
+  const shouldShowSlidingExitAnimation = asPath === "/whats_new"
 
-        <VStack flexBasis="80%" justify="space-between" align="flex-start">
-          <VStack flexBasis="100%" justify="space-evenly" align="inherit" spacing="48px">
-            {!!createdAt && !!title && (
-              <HStack align="baseline" spacing="40px">
-                {!!createdAt && (
-                  <Text
-                    as="time"
-                    dateTime={createdAt}
-                    fontFamily={ubuntuFont.style.fontFamily}
-                    fontWeight={400}
-                    fontSize={18}
-                  >
-                    {format(parseISO(createdAt), "yyyy . MM . dd")}
-                  </Text>
-                )}
+  return (
+    <motion.div
+      initial={refererPath === "/whats_new" ? { y: "100vh" } : { opacity: 0 }}
+      animate={refererPath === "/whats_new" ? { y: 0 } : { opacity: 1 }}
+      exit={shouldShowSlidingExitAnimation ? { y: "100vh" } : { opacity: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+    >
+      <Center w="100vw" h="100vh" overflow="auto">
+        <VStack
+          maxW="1280px"
+          w="100%"
+          h="70%"
+          px="40px"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
 
-                {!!title && (
-                  <Heading as="h2" fontWeight={400} fontSize={32}>
-                    {title}
-                  </Heading>
-                )}
-              </HStack>
-            )}
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                {`what's new`}
+              </Heading>
+            </HStack>
+          </Show>
 
-            <HStack align="flex-start" spacing="36px">
-              {!!body && (
-                <Box p={0} fontSize={16} lineHeight="1.5" whiteSpace="pre-wrap">
-                  {body}
-                </Box>
+          <VStack flexBasis="80%" justify="space-between" align="flex-start">
+            <VStack flexBasis="100%" justify="space-evenly" align="inherit" spacing="48px">
+              {!!createdAt && !!title && (
+                <HStack align="baseline" spacing="40px">
+                  {!!createdAt && (
+                    <Text
+                      as="time"
+                      dateTime={createdAt}
+                      fontFamily={ubuntuFont.style.fontFamily}
+                      fontWeight={400}
+                      fontSize={18}
+                    >
+                      {format(parseISO(createdAt), "yyyy . MM . dd")}
+                    </Text>
+                  )}
+
+                  {!!title && (
+                    <Heading as="h2" fontWeight={400} fontSize={32}>
+                      {title}
+                    </Heading>
+                  )}
+                </HStack>
               )}
 
-              <AspectRatio flexBasis="50%">
-                <ChakraNextImage
-                  src={imageURL ?? ""}
-                  alt={title ?? ""}
-                  fill
-                />
-              </AspectRatio>
-            </HStack>
-          </VStack>
+              <HStack align="flex-start" spacing="36px">
+                {!!body && (
+                  <Box p={0} fontSize={16} lineHeight="1.5" whiteSpace="pre-wrap">
+                    {body}
+                  </Box>
+                )}
 
-          <Link
-            as={NextLink}
-            href="/whats_new"
-            pr="8px"
-            fontSize={16}
-            color="main"
-          >
-            一覧へ戻る ↑
-          </Link>
+                <AspectRatio flexBasis="50%">
+                  <ChakraNextImage
+                    src={imageURL ?? ""}
+                    alt={title ?? ""}
+                    fill
+                  />
+                </AspectRatio>
+              </HStack>
+            </VStack>
+
+            <Link
+              as={NextLink}
+              href="/whats_new"
+              pr="8px"
+              fontSize={16}
+              color="main"
+            >
+              一覧へ戻る ↑
+            </Link>
+          </VStack>
         </VStack>
-      </VStack>
-    </Center>
-  </motion.div>
-);
+      </Center>
+    </motion.div>
+  )
+};
 
 WhatsNewDetailPage.getLayout = (page) => (
   <CommonPageLayout title="what's new">{page}</CommonPageLayout>

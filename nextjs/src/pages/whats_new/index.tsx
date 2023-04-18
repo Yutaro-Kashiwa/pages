@@ -34,6 +34,8 @@ import type { NextPageWithLayout } from "@/types/next_page_with_layout";
 import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -213,10 +215,16 @@ const mockNewsList: NewsSummary[] = [
   },
 ];
 
-export const WhatsNewPage: NextPageWithLayout = () => {
+type PageProps = {
+  refererPath?: string;
+};
+
+export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
+
+  const { asPath } = useRouter()
 
   return (
     <>
@@ -268,12 +276,13 @@ export const WhatsNewPage: NextPageWithLayout = () => {
         `}
       </style>
 
+      {/* TODO: Splide が重すぎてスライディングアニメーションが効かない問題を修正する */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={!!refererPath?.match(/\/whats_new\/[^\s].*/) ? { y: "-100%" } : { opacity: 0 }}
+        animate={!!refererPath?.match(/\/whats_new\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
+        exit={!!asPath.match(/\/whats_new\/[^\s].*/) ? { y: 0 } : { opacity: 0 }}
         transition={{
-          duration: 1,
+          duration: !!refererPath?.match(/\/whats_new\/[^\s].*/) ? 0.5 : 1,
         }}
       >
         <Center w="100vw" h="100vh" overflow="auto">
@@ -386,5 +395,18 @@ export const WhatsNewPage: NextPageWithLayout = () => {
 WhatsNewPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="what's new">{page}</CommonPageLayout>
 );
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+  const referer = context.req.headers.referer;
+
+  const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
+  const refererPath: string | undefined = refererURL?.pathname;
+
+  return {
+    props: {
+      refererPath,
+    },
+  };
+};
 
 export default WhatsNewPage;
