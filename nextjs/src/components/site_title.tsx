@@ -35,7 +35,6 @@ type SiteTitleProps = {
 export const SiteTitle = memo<SiteTitleProps>(({ currentPathname }) => (
   <HStack
     w="100%"
-    pl="40px"
     alignItems="flex-end"
     spacing="24px"
     bg="transparent"

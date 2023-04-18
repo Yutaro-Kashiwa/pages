@@ -1,5 +1,5 @@
 import { ReactElement, useEffect } from "react";
-import { Box, Container, HStack } from "@chakra-ui/react";
+import { Box, Center, Container, HStack } from "@chakra-ui/react";
 import { NavigationLinks } from "@/components/navigation_links";
 import { SiteTitle } from "@/components/site_title";
 
@@ -10,7 +10,7 @@ type RootLayoutProps = Required<{
 
 export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
   <>
-    <Box
+    <Center
       as="header"
       position="fixed"
       top={0}
@@ -23,8 +23,10 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
         },
       }}
     >
-      <SiteTitle currentPathname={currentPathname} />
-    </Box>
+      <Box w="100%" maxW="1440px" pl={{ base: "12px", md: "40px" }}>
+        <SiteTitle currentPathname={currentPathname} />
+      </Box>
+    </Center>
 
     <main>{children}</main>
 
