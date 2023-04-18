@@ -104,9 +104,9 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
 }) => {
   return (
     <motion.div
-      initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100%" } : { opacity: 0 }}
+      initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
       animate={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
-      exit={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 0 }}
+      exit={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
       transition={{
         duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
       }}
