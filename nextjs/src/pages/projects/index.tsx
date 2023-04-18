@@ -23,6 +23,7 @@ import { GetServerSideProps } from "next";
 import NextImage from "next/image";
 import { motion } from "framer-motion";
 import { Project, mockProjectsList } from "./[project_name]";
+import { useRouter } from "next/router";
 
 const ubuntuFont = Ubuntu({
   weight: ["400", "500", "700"],
@@ -102,11 +103,13 @@ type PageProps = {
 export const ProjectsPage: NextPageWithLayout<PageProps> = ({
   refererPath
 }) => {
+  const { asPath } = useRouter()
+
   return (
     <motion.div
       initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
       animate={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
-      exit={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
+      exit={!!asPath.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
       transition={{
         duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
       }}
