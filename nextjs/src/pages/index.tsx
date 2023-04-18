@@ -40,19 +40,20 @@ export default function TopPage() {
         <Spacer />
 
         <VStack p={0} pl="40px" zIndex={3}>
-          <VStack color="#ffffff" alignItems="flex-start" spacing="36px">
+          <VStack alignItems="flex-start" spacing="36px">
             <Heading
               as="h1"
               fontWeight="500"
               fontSize="64px"
               lineHeight="92px"
               textDecoration="underline"
+              color="#ffffff"
             >
               ソフトウェアの動きから異常を自動検知
             </Heading>
 
             <VStack alignItems="inherit" spacing="28px">
-              <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap">
+              <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap" color="#ffffff">
                 {/* prettier-ignore */}
                 {`本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。
       具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。
@@ -74,12 +75,12 @@ export default function TopPage() {
                     borderStyle="solid"
                     borderColor="#ffffff"
                   >
-                    <Text fontWeight="400" fontSize={16}>
+                    <Text fontWeight="400" fontSize={16} color="#ffffff">
                       詳しくはこちら
                     </Text>
 
                     <Box position="relative" h="16px">
-                      <ArrowRight position="absolute" w="38px" left="10px" />
+                      <ArrowRight position="absolute" w="38px" left="10px" color="#ffffff" />
                     </Box>
                   </Box>
                 </LinkOverlay>
