@@ -62,11 +62,14 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 }) => {
   const {
     query: { project_name },
+    asPath
   } = useRouter();
 
   const [projectTitle, setProjectTitle] = useState<string>("");
   const [projectBody, setProjectBody] = useState<string>("");
   const [imageURL, setImageURL] = useState<string | undefined>("");
+
+  const shouldShowSlidingExitAnimation = asPath === "/projects"
 
   useEffect(() => {
     // API取得の代わり
@@ -83,9 +86,9 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 
   return (
     <motion.div
-      initial={refererPath === "/projects" ? { y: "100vh" } : false}
-      animate={{ y: 0 }}
-      exit={{ y: "100vh" }}
+      initial={refererPath === "/projects" ? { y: "100vh" } : { opacity: 0 }}
+      animate={refererPath === "/projects" ? { y: 0 } : { opacity: 1 }}
+      exit={shouldShowSlidingExitAnimation ? { y: "100vh" } : { opacity: 0 }}
       transition={{
         duration: 0.5,
       }}
