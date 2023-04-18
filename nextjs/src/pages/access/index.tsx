@@ -131,7 +131,7 @@ export const AccessPage: NextPageWithLayout = () => {
                             borderStyle="solid"
                             borderColor="main"
                           >
-                            <Text fontWeight="400" fontSize="16px">
+                            <Text fontWeight="400" fontSize="16px" color="main">
                               詳しくはこちら
                             </Text>
 
