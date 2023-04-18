@@ -28,7 +28,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
       </Box>
     </Center>
 
-    <main>{children}</main>
+    <Box as="main" overflow="hidden">{children}</Box>
 
     <Container
       key={currentPathname}
