@@ -21,9 +21,9 @@ export default function App({ Component, pageProps, router }: AppPropsWithLayout
           <title>プログラム異常動作の自動検出技術の創出プロジェクト | さきがけ</title>
         </Head>
 
-        <RootLayout currentPathname={router.pathname}>
+        <RootLayout key={router.asPath} currentPathname={router.pathname}>
           {getLayout(
-            <Component key={router.asPath} {...pageProps} />
+            <Component {...pageProps} />
           )}
         </RootLayout>
       </AnimatePresence>
