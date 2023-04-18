@@ -323,7 +323,7 @@ export const WhatsNewPage: NextPageWithLayout = () => {
                   rows: 2,
                   cols: 4,
                 },
-                heightRatio: 0.5,
+                height: (contentContainerSize?.height ?? 1) * (80 / 100),
                 fixedWidth: !!contentContainerSize
                   ? contentContainerSize.width - 92
                   : "80vw",
@@ -348,8 +348,8 @@ export const WhatsNewPage: NextPageWithLayout = () => {
                 </SplideTrack>
 
                 <VStack
-                  h="100%"
-                  justifyContent="space-evenly"
+                  h="60%"
+                  justifyContent="space-between"
                   alignItems="center"
                 >
                   <List
