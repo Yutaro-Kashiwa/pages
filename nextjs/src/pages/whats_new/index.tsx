@@ -267,6 +267,12 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
             color: #0168b7;
             transform: rotate(90deg);
             border-radius: 100%;
+
+            transition: color 0.5s;
+          }
+
+          .news-pagination-page:hover {
+            color: rgba(1, 104, 183, 0.4);
           }
 
           /* 現在表示されているページネーションのスタイル */
