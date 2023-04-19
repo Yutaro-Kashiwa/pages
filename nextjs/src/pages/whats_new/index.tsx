@@ -216,7 +216,7 @@ const mockNewsList: NewsSummary[] = [
 ];
 
 type PageProps = {
-  refererPath?: string;
+  refererPath: string | null;
 };
 
 export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => {
@@ -404,7 +404,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
 
   return {
     props: {
-      refererPath,
+      refererPath: refererPath ?? null,
     },
   };
 };
