@@ -24,18 +24,10 @@ export default function TopPage() {
     >
       <VStack
         position="relative"
-        h="100vh"
+        h="100%"
         justifyContent="flex-end"
         alignItems="flex-start"
-        backgroundColor="#f5f5f5"
       >
-        <NextImage
-          src="/AdobeStock_394174786.png"
-          alt="AdobeStock_394174786"
-          fill
-          style={{ position: "absolute" }}
-        />
-
         <Spacer />
         <Spacer />
 
@@ -90,18 +82,6 @@ export default function TopPage() {
         </VStack>
 
         <Spacer />
-
-        <Box
-          position="absolute"
-          left={0}
-          right={0}
-          bottom={0}
-          background="linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #0168B7 100%)"
-          zIndex={1}
-          __css={{
-            aspectRatio: "1440 / 442",
-          }}
-        />
       </VStack>
     </motion.div>
   );

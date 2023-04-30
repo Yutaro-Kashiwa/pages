@@ -15,18 +15,32 @@ export default function App({ Component, pageProps, router }: AppPropsWithLayout
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page)
 
   return (
-    <ChakraProvider theme={theme}>
-      <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-        <Head>
-          <title>プログラム異常動作の自動検出技術の創出プロジェクト | さきがけ</title>
-        </Head>
+    <>
+      <style jsx global>
+        {`
+          html, body: {
+            height: 100%;
+          }
 
-        <RootLayout key={router.asPath} currentPathname={router.pathname}>
-          {getLayout(
-            <Component {...pageProps} />
-          )}
-        </RootLayout>
-      </AnimatePresence>
-    </ChakraProvider>
+          #__next {
+            position: relative;
+          }
+        `}
+      </style>
+
+      <ChakraProvider theme={theme}>
+        <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+          <Head>
+            <title>プログラム異常動作の自動検出技術の創出プロジェクト | さきがけ</title>
+          </Head>
+
+          <RootLayout key={router.asPath} currentPathname={router.pathname}>
+            {getLayout(
+              <Component {...pageProps} />
+            )}
+          </RootLayout>
+        </AnimatePresence>
+      </ChakraProvider>
+    </>
   );
 }
