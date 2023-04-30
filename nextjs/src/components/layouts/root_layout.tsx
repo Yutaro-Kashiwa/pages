@@ -5,17 +5,22 @@ import { SiteTitle } from "@/components/site_title";
 
 type RootLayoutProps = Required<{
   readonly children: ReactElement;
-  currentPathname: string
+  currentPathname: string;
 }>;
+
+const FOOTER_HEIGHT_SP = 64
+const FOOTER_HEIGHT_PC = 120
 
 export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
   <>
-    <Center
+    <Box
       as="header"
-      position="fixed"
+      position="sticky"
       top={0}
-      left={0}
-      right={0}
+      w="100%"
+      maxW="1320px"
+      mx="auto"
+      pl={{ base: "12px", md: "40px" }}
       zIndex={100}
       css={{
         "&::-webkit-scrollbar": {
@@ -23,12 +28,12 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
         },
       }}
     >
-      <Box w="100%" maxW="1440px" pl={{ base: "12px", md: "40px" }}>
-        <SiteTitle currentPathname={currentPathname} />
-      </Box>
-    </Center>
+      <SiteTitle currentPathname={currentPathname} />
+    </Box>
 
-    <Box as="main" overflow="hidden">{children}</Box>
+    <Box as="main" overflow="hidden" mb={{ base: `${FOOTER_HEIGHT_SP}px`, md: `${FOOTER_HEIGHT_PC}px` }}>
+      {children}
+    </Box>
 
     <Container
       key={currentPathname}
@@ -41,6 +46,10 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => (
       overflowY="visible"
       whiteSpace="nowrap"
       maxW="1280px"
+      h={{
+        base: `${FOOTER_HEIGHT_SP}px`,
+        md: `${FOOTER_HEIGHT_PC}px`
+      }}
       centerContent
       zIndex={100}
       css={{
