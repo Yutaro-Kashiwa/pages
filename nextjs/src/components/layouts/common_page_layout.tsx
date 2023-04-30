@@ -16,37 +16,44 @@ export const CommonPageLayout = ({
   children,
   title,
 }: CommonBackgroundLayoutProps) => (
-  <Box
-    position="relative"
-    h="100vh"
-    backgroundImage={{
-      base: "/common_background_stretchable.svg",
-      xl: "/common_background.svg"
-    }}
-    backgroundRepeat="no-repeat"
-    backgroundSize="cover"
-    backgroundPosition="right top"
-    backgroundAttachment="fixed"
-    backgroundColor="#f5f5f5"
-  >
-    <Hide below="md">
-      <Container position="absolute" bottom="28px" right="0px" zIndex={0}>
-        <HStack justifyContent="flex-end" textAlign="right" whiteSpace="nowrap">
-          <Text
-            fontFamily={ubuntuFont.style.fontFamily}
-            fontWeight={700}
-            fontSize="180px"
-            color="#d7d7d7"
-            opacity={0.25}
-            textTransform="capitalize"
-            userSelect="none"
-          >
-            {title}
-          </Text>
-        </HStack>
-      </Container>
-    </Hide>
+  <>
+    <style jsx global>
+      {`
+        body {
+          background-color: #f5f5f5;
+          background-image: url("/common_background_stretchable.svg");
+          background-attachment: fixed;
+          background-size: cover;
+          background-position: right top;
+          background-repeat: no-repeat;
 
-    <Box position="relative" zIndex={5}>{children}</Box>
-  </Box>
+          @media (min-width: 1280px) {
+            background-image: url("/common_background.svg");
+          }
+        }
+      `}
+    </style>
+
+    <Box
+      zIndex={5}
+      _after={{
+        xl: {
+          content: `"${title}"`,
+          position: "fixed",
+          zIndex: -1,
+          right: 0,
+          bottom: 12,
+          ...ubuntuFont.style,
+          fontWeight: 700,
+          fontSize: 180,
+          textTransform: "capitalize",
+          whiteSpace: "nowrap",
+          opacity: 0.25,
+          color: "base.1",
+        },
+      }}
+    >
+      {children}
+    </Box>
+  </>
 );

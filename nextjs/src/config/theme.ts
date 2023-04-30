@@ -16,6 +16,10 @@ export const theme = extendTheme({
       "html, body": {
         overflow: "unset",
       },
+      body: {
+        bg: "",
+        bgColor: "#f5f5f5",
+      },
     },
   },
   colors: {
