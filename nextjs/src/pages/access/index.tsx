@@ -4,6 +4,7 @@ import {
   AspectRatio,
   Box,
   Center,
+  Container,
   HStack,
   Heading,
   LinkBox,
@@ -33,13 +34,18 @@ export const AccessPage: NextPageWithLayout = () => {
       transition={{
         duration: 1,
       }}
+      style={{
+        height: "100%"
+      }}
     >
-      <Center w="100vw" h="100vh" overflow="auto">
+      <Container
+        maxW="1280px"
+        h="100%"
+        mt="5vh"
+        overflow="auto"
+      >
         <VStack
-          maxW="1280px"
-          w="100%"
-          h="70%"
-          px="40px"
+          h="100%"
           justifyContent="space-between"
           alignItems="flex-start"
         >
@@ -166,7 +172,7 @@ export const AccessPage: NextPageWithLayout = () => {
             </HStack>
           </VStack>
         </VStack>
-      </Center>
+      </Container>
     </motion.div>
   );
 };

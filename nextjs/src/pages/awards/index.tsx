@@ -11,6 +11,7 @@ import {
   VStack,
   Text,
   IconButton,
+  Container,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
@@ -212,196 +213,197 @@ export const AwardsPage: NextPageWithLayout = () => {
         transition={{
           duration: 1,
         }}
+        style={{
+          height: "100%"
+        }}
       >
-        <Center w="100vw" h="100vh" overflow="auto">
-          <Center
-            ref={contentContainerRef}
-            maxW="1280px"
-            w="100%"
-            h="75%"
-            px="40px"
+        <Container
+          ref={contentContainerRef}
+          maxW="1280px"
+          h="100%"
+          mt="5vh"
+          overflow="auto"
+        >
+          <Splide
+            onPaginationMounted={updateInitialNumberOfPages}
+            onPaginationUpdated={updateNumberOfPages}
+            hasTrack={false}
+            options={{
+              direction: "ttb",
+              wheel: true,
+              waitForTransition: true,
+              height: "70vh",
+              fixedWidth: !!contentContainerSize
+                ? contentContainerSize.width - 184
+                : "80vw",
+              classes: {
+                pagination: "splide__pagination news-pagination",
+                page: "splide__pagination__page news-pagination-page",
+              },
+              perPage: 5,
+            }}
           >
-            <Splide
-              onPaginationMounted={updateInitialNumberOfPages}
-              onPaginationUpdated={updateNumberOfPages}
-              hasTrack={false}
-              options={{
-                direction: "ttb",
-                wheel: true,
-                waitForTransition: true,
-                height: "70vh",
-                fixedWidth: !!contentContainerSize
-                  ? contentContainerSize.width - 184
-                  : "80vw",
-                classes: {
-                  pagination: "splide__pagination news-pagination",
-                  page: "splide__pagination__page news-pagination-page",
-                },
-                perPage: 5,
-              }}
-            >
-              <VStack align="center" w="100%" h="100%">
-                <HStack alignItems="flex-start" h="100%" spacing="84px">
-                  <SplideTrack>
-                    <SplideSlide>
-                      <Show above="lg">
-                        <HStack position="relative" w="fit-content">
-                          <Box
-                            position="absolute"
-                            right="-20px"
-                            bottom="-16px"
-                            w="199px"
-                            zIndex={-1}
-                          >
-                            <AspectRatio w="100%" ratio={199 / 44}>
-                              <TitleBackgroundRect />
-                            </AspectRatio>
-                          </Box>
+            <VStack align="center" w="100%" h="100%">
+              <HStack alignItems="flex-start" h="100%" spacing="84px">
+                <SplideTrack>
+                  <SplideSlide>
+                    <Show above="lg">
+                      <HStack position="relative" w="fit-content">
+                        <Box
+                          position="absolute"
+                          right="-20px"
+                          bottom="-16px"
+                          w="199px"
+                          zIndex={-1}
+                        >
+                          <AspectRatio w="100%" ratio={199 / 44}>
+                            <TitleBackgroundRect />
+                          </AspectRatio>
+                        </Box>
 
-                          <Heading
-                            as="h2"
+                        <Heading
+                          as="h2"
+                          fontFamily={ubuntuFont.style.fontFamily}
+                          fontWeight={400}
+                          color="main"
+                          textTransform="uppercase"
+                        >
+                          awards
+                        </Heading>
+                      </HStack>
+                    </Show>
+                  </SplideSlide>
+
+                  {awardedHistoriesList.map(
+                    ({
+                      id,
+                      awardedDate,
+                      awardeeName,
+                      awardName,
+                      awarderOrganization,
+                    }) => (
+                      <SplideSlide key={id}>
+                        <HStack
+                          justifyContent="space-between"
+                          alignItems="flex-start"
+                        >
+                          <Text
+                            minW="140px"
                             fontFamily={ubuntuFont.style.fontFamily}
-                            fontWeight={400}
+                            fontWeight={700}
+                            fontSize={32}
+                            lineHeight="0.84em"
                             color="main"
-                            textTransform="uppercase"
+                            opacity="0.6"
                           >
-                            awards
-                          </Heading>
-                        </HStack>
-                      </Show>
-                    </SplideSlide>
+                            {awardedDate}
+                          </Text>
 
-                    {awardedHistoriesList.map(
-                      ({
-                        id,
-                        awardedDate,
-                        awardeeName,
-                        awardName,
-                        awarderOrganization,
-                      }) => (
-                        <SplideSlide key={id}>
-                          <HStack
-                            justifyContent="space-between"
+                          <Text fontWeight={500} fontSize={20}>
+                            {awardeeName}
+                          </Text>
+
+                          <VStack
+                            alignSelf="flex-start"
                             alignItems="flex-start"
+                            spacing="2px"
                           >
-                            <Text
-                              minW="140px"
-                              fontFamily={ubuntuFont.style.fontFamily}
-                              fontWeight={700}
-                              fontSize={32}
-                              lineHeight="0.84em"
-                              color="main"
-                              opacity="0.6"
-                            >
-                              {awardedDate}
-                            </Text>
-
                             <Text fontWeight={500} fontSize={20}>
-                              {awardeeName}
+                              {awardName}
                             </Text>
 
-                            <VStack
-                              alignSelf="flex-start"
-                              alignItems="flex-start"
-                              spacing="2px"
-                            >
-                              <Text fontWeight={500} fontSize={20}>
-                                {awardName}
-                              </Text>
+                            <Text fontWeight={500} fontSize={18}>
+                              {awarderOrganization}
+                            </Text>
+                          </VStack>
+                        </HStack>
+                      </SplideSlide>
+                    )
+                  )}
+                </SplideTrack>
 
-                              <Text fontWeight={500} fontSize={18}>
-                                {awarderOrganization}
-                              </Text>
-                            </VStack>
-                          </HStack>
-                        </SplideSlide>
-                      )
-                    )}
-                  </SplideTrack>
+                <VStack
+                  visibility={numberOfPages > 1 ? "visible" : "hidden"}
+                  justifyContent="space-evenly"
+                  alignItems="center"
+                  h="64vh"
+                  pt="10vh"
+                >
+                  <List
+                    className="splide__pagination news-pagination"
+                    display="flex"
+                    flexFlow="column nowrap"
+                    justifyContent="space-between"
+                  />
 
                   <VStack
-                    visibility={numberOfPages > 1 ? "visible" : "hidden"}
-                    justifyContent="space-evenly"
+                    justifyContent="space-between"
                     alignItems="center"
-                    h="64vh"
-                    pt="10vh"
+                    rowGap="16px"
+                    cursor="default"
                   >
-                    <List
-                      className="splide__pagination news-pagination"
-                      display="flex"
-                      flexFlow="column nowrap"
-                      justifyContent="space-between"
-                    />
+                    <Box mr="30%" w="1px" h="88px" bg="main" />
 
-                    <VStack
-                      justifyContent="space-between"
-                      alignItems="center"
-                      rowGap="16px"
-                      cursor="default"
+                    <Text
+                      fontFamily={ubuntuFont.style.fontFamily}
+                      fontWeight={400}
+                      fontSize={20}
+                      sx={{ writingMode: "vertical-lr" }}
+                      color="main"
+                      userSelect="none"
                     >
-                      <Box mr="30%" w="1px" h="88px" bg="main" />
-
-                      <Text
-                        fontFamily={ubuntuFont.style.fontFamily}
-                        fontWeight={400}
-                        fontSize={20}
-                        sx={{ writingMode: "vertical-lr" }}
-                        color="main"
-                        userSelect="none"
-                      >
-                        scroll
-                      </Text>
-                    </VStack>
+                      scroll
+                    </Text>
                   </VStack>
-                </HStack>
+                </VStack>
+              </HStack>
 
-                <HStack className="splide__arrows" spacing="44px">
-                  {/* onClick は Splide が勝手に注入するので不要 */}
-                  <IconButton
-                    className="splide__arrow splide__arrow--next"
-                    // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
-                    aria-label=""
-                    variant="ghost"
-                    color="#adadad"
-                    _hover={{
-                      bg: "unset",
-                    }}
-                    sx={{
-                      ":not(:disabled)": {
-                        ":hover": {
-                          color: "#cecece",
-                        },
+              <HStack className="splide__arrows" spacing="44px">
+                {/* onClick は Splide が勝手に注入するので不要 */}
+                <IconButton
+                  className="splide__arrow splide__arrow--next"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#adadad"
+                  _hover={{
+                    bg: "unset",
+                  }}
+                  sx={{
+                    ":not(:disabled)": {
+                      ":hover": {
+                        color: "#cecece",
                       },
-                    }}
-                    icon={<ChevronDown w="32px" h="auto" />}
-                  />
+                    },
+                  }}
+                  icon={<ChevronDown w="32px" h="auto" />}
+                />
 
-                  <IconButton
-                    className="splide__arrow splide__arrow--prev"
-                    // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
-                    aria-label=""
-                    variant="ghost"
-                    color="#adadad"
-                    w="32px"
-                    h="32px"
-                    p={0}
-                    _hover={{
-                      bg: "unset",
-                    }}
-                    sx={{
-                      ":not(:disabled)": {
-                        ":hover": {
-                          color: "#cecece",
-                        },
+                <IconButton
+                  className="splide__arrow splide__arrow--prev"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#adadad"
+                  w="32px"
+                  h="32px"
+                  p={0}
+                  _hover={{
+                    bg: "unset",
+                  }}
+                  sx={{
+                    ":not(:disabled)": {
+                      ":hover": {
+                        color: "#cecece",
                       },
-                    }}
-                    icon={<ChevronUp w="32px" h="auto" />}
-                  />
-                </HStack>
-              </VStack>
-            </Splide>
-          </Center>
-        </Center>
+                    },
+                  }}
+                  icon={<ChevronUp w="32px" h="auto" />}
+                />
+              </HStack>
+            </VStack>
+          </Splide>
+        </Container>
       </motion.div>
     </>
   );

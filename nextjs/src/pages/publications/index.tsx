@@ -4,6 +4,7 @@ import {
   AspectRatio,
   Box,
   Center,
+  Container,
   Heading,
   HStack,
   IconButton,
@@ -240,260 +241,261 @@ export const PublicationsPage: NextPageWithLayout = () => {
         transition={{
           duration: 1,
         }}
+        style={{
+          height: "100%"
+        }}
       >
-        <Center w="100vw" h="100vh" overflow="auto">
-          <Center
-            ref={contentContainerRef}
-            maxW="1280px"
-            w="100%"
-            h="75%"
-            px="40px"
+        <Container
+          ref={contentContainerRef}
+          maxW="1280px"
+          h="100%" 
+          mt="5vh" 
+          overflow="auto"
+        >
+          <Splide
+            hasTrack={false}
+            options={{
+              direction: "ttb",
+              wheel: true,
+              waitForTransition: true,
+              height: "70vh",
+              fixedWidth: !!contentContainerSize
+                ? contentContainerSize.width - 184
+                : "80vw",
+              classes: {
+                pagination: "splide__pagination news-pagination",
+                page: "splide__pagination__page news-pagination-page",
+              },
+              perPage: 5,
+              gap: 40,
+            }}
           >
-            <Splide
-              hasTrack={false}
-              options={{
-                direction: "ttb",
-                wheel: true,
-                waitForTransition: true,
-                height: "70vh",
-                fixedWidth: !!contentContainerSize
-                  ? contentContainerSize.width - 184
-                  : "80vw",
-                classes: {
-                  pagination: "splide__pagination news-pagination",
-                  page: "splide__pagination__page news-pagination-page",
-                },
-                perPage: 6,
-                gap: 40,
-              }}
-            >
-              <VStack align="center" w="100%" h="100%">
-                <HStack
-                  w="100%"
-                  h="100%"
-                  justify="space-between"
-                  align="flex-start"
-                  spacing="84px"
-                >
-                  <SplideTrack>
-                    <SplideSlide>
-                      <Show above="lg">
-                        <HStack position="relative" w="fit-content">
-                          <Box
-                            position="absolute"
-                            right="-20px"
-                            bottom="-16px"
-                            w="199px"
-                            zIndex={-1}
-                          >
-                            <AspectRatio w="100%" ratio={199 / 44}>
-                              <TitleBackgroundRect />
-                            </AspectRatio>
-                          </Box>
+            <VStack align="center" w="100%" h="100%">
+              <HStack
+                w="100%"
+                h="100%"
+                justify="space-between"
+                align="flex-start"
+                spacing="84px"
+              >
+                <SplideTrack>
+                  <SplideSlide>
+                    <Show above="lg">
+                      <HStack position="relative" w="fit-content">
+                        <Box
+                          position="absolute"
+                          right="-20px"
+                          bottom="-16px"
+                          w="199px"
+                          zIndex={-1}
+                        >
+                          <AspectRatio w="100%" ratio={199 / 44}>
+                            <TitleBackgroundRect />
+                          </AspectRatio>
+                        </Box>
 
-                          <Heading
-                            as="h2"
-                            fontFamily={ubuntuFont.style.fontFamily}
-                            fontWeight={400}
-                            color="main"
-                            textTransform="uppercase"
-                            marginInlineStart={0}
-                          >
-                            publications
-                          </Heading>
-                        </HStack>
-                      </Show>
-                    </SplideSlide>
+                        <Heading
+                          as="h2"
+                          fontFamily={ubuntuFont.style.fontFamily}
+                          fontWeight={400}
+                          color="main"
+                          textTransform="uppercase"
+                          marginInlineStart={0}
+                        >
+                          publications
+                        </Heading>
+                      </HStack>
+                    </Show>
+                  </SplideSlide>
 
-                    {mockPublicationsList.map(
-                      (
-                        {
-                          id,
-                          title,
-                          authors,
-                          appearedJournal,
-                          downloadURL,
-                          publishedYear,
-                        },
-                        _,
-                        sourceArray
-                      ) => {
-                        const publicationsInCurrentYear: Publication[] =
-                          sourceArray.filter(
-                            ({ publishedYear: year }) => year === publishedYear
-                          );
-
-                        const firstPublicationInCurrentYear = first(
-                          publicationsInCurrentYear
+                  {mockPublicationsList.map(
+                    (
+                      {
+                        id,
+                        title,
+                        authors,
+                        appearedJournal,
+                        downloadURL,
+                        publishedYear,
+                      },
+                      _,
+                      sourceArray
+                    ) => {
+                      const publicationsInCurrentYear: Publication[] =
+                        sourceArray.filter(
+                          ({ publishedYear: year }) => year === publishedYear
                         );
 
-                        const isTheFirstPublicationInCurrentYear =
-                          id === firstPublicationInCurrentYear?.id;
+                      const firstPublicationInCurrentYear = first(
+                        publicationsInCurrentYear
+                      );
 
-                        return (
-                          <SplideSlide key={id}>
-                            <HStack justify="space-between">
-                              <Box
-                                w="110px"
-                                minW="110px"
-                                aria-hidden={
-                                  !isTheFirstPublicationInCurrentYear
-                                }
-                              >
-                                {isTheFirstPublicationInCurrentYear && (
-                                  <Heading
-                                    as="h3"
-                                    fontFamily={ubuntuFont.style.fontFamily}
-                                    fontWeight={700}
-                                    fontSize={48}
-                                    color="main"
-                                    opacity="0.6"
-                                  >
-                                    {publishedYear}
-                                  </Heading>
-                                )}
-                              </Box>
+                      const isTheFirstPublicationInCurrentYear =
+                        id === firstPublicationInCurrentYear?.id;
 
-                              <HStack
-                                flexBasis="80%"
-                                justify="space-between"
-                                align="flex-start"
-                              >
-                                <VStack align="flex-start">
-                                  <Heading
-                                    as="h4"
-                                    fontFamily={ubuntuFont.style.fontFamily}
-                                    fontWeight={700}
-                                    fontSize={16}
-                                  >
-                                    {title}
-                                  </Heading>
-
-                                  <VStack align="inherit" spacing="1px">
-                                    <Text
-                                      fontFamily={ubuntuFont.style.fontFamily}
-                                      fontWeight={400}
-                                      fontSize={14}
-                                      whiteSpace="pre-line"
-                                      textAlign="left"
-                                    >
-                                      {authors}
-                                    </Text>
-
-                                    <Text
-                                      fontFamily={ubuntuFont.style.fontFamily}
-                                      fontWeight={400}
-                                      fontSize={14}
-                                      whiteSpace="pre-line"
-                                      textAlign="left"
-                                    >
-                                      {appearedJournal}
-                                    </Text>
-                                  </VStack>
-                                </VStack>
-
-                                <Link
-                                  href={downloadURL}
-                                  isExternal
-                                  boxSize="44px"
-                                  p="12px"
-                                  borderRadius="100%"
-                                  _hover={{ bgColor: "white" }}
+                      return (
+                        <SplideSlide key={id}>
+                          <HStack justify="space-between">
+                            <Box
+                              w="110px"
+                              minW="110px"
+                              aria-hidden={
+                                !isTheFirstPublicationInCurrentYear
+                              }
+                            >
+                              {isTheFirstPublicationInCurrentYear && (
+                                <Heading
+                                  as="h3"
+                                  fontFamily={ubuntuFont.style.fontFamily}
+                                  fontWeight={700}
+                                  fontSize={48}
+                                  color="main"
+                                  opacity="0.6"
                                 >
-                                  <SquareAndArrowDown
-                                    w="100%"
-                                    h="100%"
-                                    fill="main"
-                                  />
-                                </Link>
-                              </HStack>
+                                  {publishedYear}
+                                </Heading>
+                              )}
+                            </Box>
+
+                            <HStack
+                              flexBasis="80%"
+                              justify="space-between"
+                              align="flex-start"
+                            >
+                              <VStack align="flex-start">
+                                <Heading
+                                  as="h4"
+                                  fontFamily={ubuntuFont.style.fontFamily}
+                                  fontWeight={700}
+                                  fontSize={16}
+                                >
+                                  {title}
+                                </Heading>
+
+                                <VStack align="inherit" spacing="1px">
+                                  <Text
+                                    fontFamily={ubuntuFont.style.fontFamily}
+                                    fontWeight={400}
+                                    fontSize={14}
+                                    whiteSpace="pre-line"
+                                    textAlign="left"
+                                  >
+                                    {authors}
+                                  </Text>
+
+                                  <Text
+                                    fontFamily={ubuntuFont.style.fontFamily}
+                                    fontWeight={400}
+                                    fontSize={14}
+                                    whiteSpace="pre-line"
+                                    textAlign="left"
+                                  >
+                                    {appearedJournal}
+                                  </Text>
+                                </VStack>
+                              </VStack>
+
+                              <Link
+                                href={downloadURL}
+                                isExternal
+                                boxSize="44px"
+                                p="12px"
+                                borderRadius="100%"
+                                _hover={{ bgColor: "white" }}
+                              >
+                                <SquareAndArrowDown
+                                  w="100%"
+                                  h="100%"
+                                  fill="main"
+                                />
+                              </Link>
                             </HStack>
-                          </SplideSlide>
-                        );
-                      }
-                    )}
-                  </SplideTrack>
+                          </HStack>
+                        </SplideSlide>
+                      );
+                    }
+                  )}
+                </SplideTrack>
+
+                <VStack
+                  h="60vh"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  pt="10vh"
+                >
+                  <List
+                    className="splide__pagination news-pagination"
+                    display="flex"
+                    flexFlow="column nowrap"
+                    justifyContent="space-between"
+                  />
 
                   <VStack
-                    h="60vh"
                     justifyContent="space-between"
                     alignItems="center"
-                    pt="10vh"
+                    rowGap="16px"
+                    cursor="default"
                   >
-                    <List
-                      className="splide__pagination news-pagination"
-                      display="flex"
-                      flexFlow="column nowrap"
-                      justifyContent="space-between"
-                    />
+                    <Box mr="30%" w="1px" h="88px" bg="main" />
 
-                    <VStack
-                      justifyContent="space-between"
-                      alignItems="center"
-                      rowGap="16px"
-                      cursor="default"
+                    <Text
+                      fontFamily={ubuntuFont.style.fontFamily}
+                      fontWeight={400}
+                      fontSize={20}
+                      sx={{ writingMode: "vertical-lr" }}
+                      color="main"
+                      userSelect="none"
                     >
-                      <Box mr="30%" w="1px" h="88px" bg="main" />
-
-                      <Text
-                        fontFamily={ubuntuFont.style.fontFamily}
-                        fontWeight={400}
-                        fontSize={20}
-                        sx={{ writingMode: "vertical-lr" }}
-                        color="main"
-                        userSelect="none"
-                      >
-                        scroll
-                      </Text>
-                    </VStack>
+                      scroll
+                    </Text>
                   </VStack>
-                </HStack>
+                </VStack>
+              </HStack>
 
-                <HStack className="splide__arrows" spacing="44px">
-                  {/* onClick は Splide が勝手に注入するので不要 */}
-                  <IconButton
-                    className="splide__arrow splide__arrow--next"
-                    // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
-                    aria-label=""
-                    variant="ghost"
-                    color="#adadad"
-                    _hover={{
-                      bg: "unset",
-                      ":not(:disabled)": {
-                        color: "#cecece",
-                      },
-                    }}
-                    _disabled={{
-                      opacity: 0.3
-                    }}
-                    icon={<ChevronDown w="32px" h="auto" />}
-                  />
+              <HStack className="splide__arrows" spacing="44px">
+                {/* onClick は Splide が勝手に注入するので不要 */}
+                <IconButton
+                  className="splide__arrow splide__arrow--next"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#adadad"
+                  _hover={{
+                    bg: "unset",
+                    ":not(:disabled)": {
+                      color: "#cecece",
+                    },
+                  }}
+                  _disabled={{
+                    opacity: 0.3
+                  }}
+                  icon={<ChevronDown w="32px" h="auto" />}
+                />
 
-                  <IconButton
-                    className="splide__arrow splide__arrow--prev"
-                    // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
-                    aria-label=""
-                    variant="ghost"
-                    color="#adadad"
-                    w="32px"
-                    h="32px"
-                    p={0}
-                    _hover={{
-                      bg: "unset",
-                      ":not(:disabled)": {
-                        color: "#cecece",
-                      },
-                    }}
-                    _disabled={{
-                      opacity: 0.3
-                    }}
-                    icon={<ChevronUp w="32px" h="auto" />}
-                  />
-                </HStack>
-              </VStack>
-            </Splide>
-          </Center>
-        </Center>
+                <IconButton
+                  className="splide__arrow splide__arrow--prev"
+                  // alia-label は Splide が勝手に設定してくれるので、ここでは空にする
+                  aria-label=""
+                  variant="ghost"
+                  color="#adadad"
+                  w="32px"
+                  h="32px"
+                  p={0}
+                  _hover={{
+                    bg: "unset",
+                    ":not(:disabled)": {
+                      color: "#cecece",
+                    },
+                  }}
+                  _disabled={{
+                    opacity: 0.3
+                  }}
+                  icon={<ChevronUp w="32px" h="auto" />}
+                />
+              </HStack>
+            </VStack>
+          </Splide>
+        </Container>
       </motion.div>
     </>
   );
