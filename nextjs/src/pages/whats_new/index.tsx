@@ -298,6 +298,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
           ref={contentContainerRef}
           maxW="1280px"
           h="100%"
+          mt="5vh"
           overflow="auto"
         >
           <VStack
