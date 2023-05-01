@@ -11,6 +11,7 @@ import {
   LinkOverlay,
   Show,
   Spacer,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -101,16 +102,18 @@ export const AccessPage: NextPageWithLayout = () => {
 
               <Spacer />
 
-              <VStack h="100%" justifyContent="space-evenly" align="flex-start">
+              <VStack h="100%" justifyContent="space-evenly" align="flex-start" rowGap={{ base: "36px", lg: "0px" }}>
                 <VStack align="inherit" spacing="32px">
-                  <Heading as="h4" fontWeight={600} fontSize="20px" color="main">
-                    大学へのアクセス
-                  </Heading>
+                  <Show above="lg">
+                    <Heading as="h4" fontWeight={600} fontSize="20px" color="main">
+                      大学へのアクセス
+                    </Heading>
+                  </Show>
 
                   <VStack align="inherit" spacing="24px">
                     <Text>〒630-0192 奈良県生駒市高山町 8916番地 - 5</Text>
 
-                    <HStack justifyContent="baseline">
+                    <Stack flexDir={{ base: "column", md: "row" }} justifyContent="baseline">
                       <VStack align="flex-start" spacing="8px">
                         <HStack spacing="16px">
                           <Text>電車</Text>
@@ -151,11 +154,13 @@ export const AccessPage: NextPageWithLayout = () => {
                           </Box>
                         </LinkOverlay>
                       </LinkBox>
-                    </HStack>
+                    </Stack>
                   </VStack>
                 </VStack>
 
-                <Spacer />
+                <Show above="lg">
+                  <Spacer />
+                </Show>
 
                 <VStack align="inherit">
                   <Heading as="h4" fontWeight={600} fontSize="20px" color="main">
