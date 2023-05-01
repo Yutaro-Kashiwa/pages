@@ -13,6 +13,7 @@ import {
   Text,
   VStack,
   Image,
+  Container,
 } from "@chakra-ui/react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
@@ -92,13 +93,14 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
       transition={{
         duration: 0.5,
       }}
+      style={{
+        height: "100%"
+      }}
     >
-      <Center as="article" w="100vw" h="100vh" overflow="auto">
+      <Container as="article" centerContent maxW="1280px" h="100%" overflow="auto">
         <VStack
-          maxW="1280px"
           w="100%"
-          h="70%"
-          px="40px"
+          h="100%"
           justifyContent="space-between"
           alignItems="flex-start"
         >
@@ -206,7 +208,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
             </VStack>
           </VStack>
         </VStack>
-      </Center>
+      </Container>
     </motion.div>
   );
 };
