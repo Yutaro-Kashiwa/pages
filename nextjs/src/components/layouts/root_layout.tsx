@@ -4,6 +4,7 @@ import { NavigationLinks } from "@/components/navigation_links";
 import { SiteTitle } from "@/components/site_title";
 import NextImage from "next/image";
 import { useSize } from "@chakra-ui/react-use-size";
+import Head from "next/head";
 
 type RootLayoutProps = Required<{
   readonly children: ReactElement;
@@ -20,6 +21,10 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
 
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+
       <Box
         ref={headerElementRef}
         as="header"
