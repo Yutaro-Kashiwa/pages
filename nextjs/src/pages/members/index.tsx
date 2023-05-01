@@ -103,57 +103,58 @@ export const MembersPage: NextPageWithLayout = () => {
       transition={{
         duration: 1,
       }}
+      style={{
+        height: "100%"
+      }}
     >
-      <Center w="100vw" h="100vh" overflow="auto">
-        <Container maxW="1280px" w="100%" h="70%">
-          <VStack
-            h="100%"
-            justifyContent="space-between"
-            alignItems="flex-start"
-          >
-            <Show above="lg">
-              <HStack position="relative" w="fit-content">
-                <Box
-                  position="absolute"
-                  right="-20px"
-                  bottom="-16px"
-                  w="199px"
-                  zIndex={-1}
-                >
-                  <AspectRatio w="100%" ratio={199 / 44}>
-                    <TitleBackgroundRect />
-                  </AspectRatio>
-                </Box>
+      <Container maxW="1280px" h="100%"  overflow="auto">
+        <VStack
+          h="100%"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
 
-                <Heading
-                  as="h2"
-                  fontFamily={ubuntuFont.style.fontFamily}
-                  fontWeight={400}
-                  color="main"
-                  textTransform="uppercase"
-                >
-                  members
-                </Heading>
-              </HStack>
-            </Show>
-
-            <HStack
-              w="100%"
-              h="100%"
-              justifyContent={[null, "flex-start", "space-between"]}
-              flexWrap="wrap"
-            >
-              {membersList.map(({ uid, name, grade, pictureURL }) => (
-                <Fragment key={uid}>
-                  <Box maxH="260px" maxW="136px">
-                    <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
-                  </Box>
-                </Fragment>
-              ))}
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                members
+              </Heading>
             </HStack>
-          </VStack>
-        </Container>
-      </Center>
+          </Show>
+
+          <HStack
+            w="100%"
+            h="100%"
+            justifyContent={[null, "flex-start", "space-between"]}
+            flexWrap="wrap"
+          >
+            {membersList.map(({ uid, name, grade, pictureURL }) => (
+              <Fragment key={uid}>
+                <Box maxH="260px" maxW="136px">
+                  <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
+                </Box>
+              </Fragment>
+            ))}
+          </HStack>
+        </VStack>
+      </Container>
     </motion.div>
   );
 };
