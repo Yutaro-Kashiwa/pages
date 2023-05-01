@@ -18,12 +18,19 @@ export default function App({ Component, pageProps, router }: AppPropsWithLayout
     <>
       <style jsx global>
         {`
-          html, body: {
+          html, body {
             height: 100%;
+          }
+
+          body {
+            height: 100%;
+            min-height: 100vh;
+            overflow: hidden;
           }
 
           #__next {
             position: relative;
+            height: 100%;
           }
         `}
       </style>

@@ -36,6 +36,7 @@ export const CommonPageLayout = ({
 
     <Box
       zIndex={5}
+      h="100%"
       _after={{
         xl: {
           content: `"${title}"`,
