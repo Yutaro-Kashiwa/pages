@@ -7,6 +7,7 @@ import {
   LinkBox,
   LinkOverlay,
   Spacer,
+  Container,
 } from "@chakra-ui/react";
 import NextImage from "next/image";
 import { ArrowRight } from "@/components/icons/arrow_right";
@@ -21,68 +22,66 @@ export default function TopPage() {
       transition={{
         duration: 1,
       }}
+      style={{
+        height: "100%"
+      }}
     >
-      <VStack
-        position="relative"
-        h="100%"
-        justifyContent="flex-end"
-        alignItems="flex-start"
-      >
-        <Spacer />
-        <Spacer />
+      <Container maxW="1280px" h="100%">
+        <VStack
+          position="relative"
+          w="100%"
+          h="100%"
+          justifyContent="flex-end"
+          alignItems="flex-start"
+          spacing="36px"
+        >
+          <Heading
+            as="h1"
+            fontWeight="500"
+            fontSize="64px"
+            lineHeight="92px"
+            textDecoration="underline"
+            color="#ffffff"
+          >
+            ソフトウェアの動きから異常を自動検知
+          </Heading>
 
-        <VStack p={0} pl="40px" zIndex={3}>
-          <VStack alignItems="flex-start" spacing="36px">
-            <Heading
-              as="h1"
-              fontWeight="500"
-              fontSize="64px"
-              lineHeight="92px"
-              textDecoration="underline"
-              color="#ffffff"
-            >
-              ソフトウェアの動きから異常を自動検知
-            </Heading>
+          <VStack alignItems="inherit" spacing="28px">
+            <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap" color="#ffffff">
+              {/* prettier-ignore */}
+              {`本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。
+    具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。
+    
+    変更後の動作が変更前の動作と著しく異なる場合や、開発者の変更意図(コミットメッセージ等)から逸脱している場合を異常な変更として検出します。
+    
+    右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。`}
+            </Text>
 
-            <VStack alignItems="inherit" spacing="28px">
-              <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap" color="#ffffff">
-                {/* prettier-ignore */}
-                {`本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。
-      具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。
-      
-      変更後の動作が変更前の動作と著しく異なる場合や、開発者の変更意図(コミットメッセージ等)から逸脱している場合を異常な変更として検出します。
-      
-      右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。`}
-              </Text>
+            <LinkBox p={0}>
+              <LinkOverlay href="">
+                <Box
+                  display="inline-flex"
+                  alignItems="center"
+                  pl="20px"
+                  pr="28px"
+                  py="8px"
+                  borderWidth="1px"
+                  borderStyle="solid"
+                  borderColor="#ffffff"
+                >
+                  <Text fontWeight="400" fontSize={16} color="#ffffff">
+                    詳しくはこちら
+                  </Text>
 
-              <LinkBox p={0}>
-                <LinkOverlay href="">
-                  <Box
-                    display="inline-flex"
-                    alignItems="center"
-                    pl="20px"
-                    pr="28px"
-                    py="8px"
-                    borderWidth="1px"
-                    borderStyle="solid"
-                    borderColor="#ffffff"
-                  >
-                    <Text fontWeight="400" fontSize={16} color="#ffffff">
-                      詳しくはこちら
-                    </Text>
-
-                    <Box position="relative" h="16px">
-                      <ArrowRight position="absolute" w="38px" left="10px" color="#ffffff" />
-                    </Box>
+                  <Box position="relative" h="16px">
+                    <ArrowRight position="absolute" w="38px" left="10px" color="#ffffff" />
                   </Box>
-                </LinkOverlay>
-              </LinkBox>
-            </VStack>
+                </Box>
+              </LinkOverlay>
+            </LinkBox>
           </VStack>
         </VStack>
-
-        <Spacer />
-      </VStack>
+      </Container>
     </motion.div>
   );
 }
