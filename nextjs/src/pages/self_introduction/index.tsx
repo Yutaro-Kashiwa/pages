@@ -3,6 +3,7 @@ import {
   AspectRatio,
   Box,
   Center,
+  Container,
   HStack,
   Heading,
   List,
@@ -182,13 +183,14 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
       transition={{
         duration: 1,
       }}
+      style={{
+        height: "100%",
+        overflow: "hidden",
+      }}
     >
-      <Center w="100vw" h="100vh" overflow="auto">
+      <Container display="block" position="relative" maxW="1280px" h="100%" overflow="auto">
         <VStack
-          maxW="1280px"
-          w="100%"
-          h="80%"
-          px="40px"
+          h="100%"
           justifyContent="space-evenly"
           alignItems="flex-start"
         >
@@ -360,7 +362,7 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
             </VStack>
           </HStack>
         </VStack>
-      </Center>
+      </Container>
     </motion.div>
   );
 };
