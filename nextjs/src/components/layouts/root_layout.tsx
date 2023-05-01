@@ -84,7 +84,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
 
       {currentPathname === "/" && (
         <>
-          <Box position="fixed" w="100%" h="100%" top={0} right={0}>
+          <Box position="fixed" w="100%" h="100%" top={0} right={0} zIndex={-1}>
             <NextImage
               src="/AdobeStock_394174786.png"
               alt="AdobeStock_394174786"
