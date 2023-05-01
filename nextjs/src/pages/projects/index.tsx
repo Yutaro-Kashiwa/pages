@@ -113,50 +113,51 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
       transition={{
         duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
       }}
+      style={{
+        height: "100%",
+      }}
     >
-      <Center w="100vw" h="100vh" overflow="auto">
-        <Container centerContent maxW="1280px" h="70vh">
-          <VStack
-            h="100%"
-            justifyContent="space-between"
-            alignItems="flex-start"
-          >
-            <Show above="lg">
-              <HStack position="relative" w="fit-content">
-                <Box
-                  position="absolute"
-                  right="-20px"
-                  bottom="-16px"
-                  w="199px"
-                  zIndex={-1}
-                >
-                  <AspectRatio w="100%" ratio={199 / 44}>
-                    <TitleBackgroundRect />
-                  </AspectRatio>
-                </Box>
+      <Container maxW="1280px" h="100%" overflow="auto">
+        <VStack
+          h="100%"
+          justifyContent="space-between"
+          alignItems="flex-start"
+        >
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
 
-                <Heading
-                  as="h2"
-                  fontFamily={ubuntuFont.style.fontFamily}
-                  fontWeight={400}
-                  color="main"
-                  textTransform="uppercase"
-                >
-                  projects
-                </Heading>
-              </HStack>
-            </Show>
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                projects
+              </Heading>
+            </HStack>
+          </Show>
 
-            <VStack justifyContent="space-evenly" flexBasis="90%">
-              {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
-                <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
-                  <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
-                </Fragment>
-              ))}
-            </VStack>
+          <VStack justifyContent="space-evenly" flexBasis="90%">
+            {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
+              <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
+                <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
+              </Fragment>
+            ))}
           </VStack>
-        </Container>
-      </Center>
+        </VStack>
+      </Container>
     </motion.div>
   );
 };
