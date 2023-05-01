@@ -290,14 +290,19 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
         transition={{
           duration: !!refererPath?.match(/\/whats_new\/[^\s].*/) ? 0.5 : 1,
         }}
+        style={{
+          height: "100%",
+        }}
       >
-        <Center w="100vw" h="100vh" overflow="auto">
+        <Container
+          ref={contentContainerRef}
+          maxW="1280px"
+          h="100%"
+          overflow="auto"
+        >
           <VStack
-            ref={contentContainerRef}
-            maxW="1280px"
             w="100%"
-            h="75%"
-            px="40px"
+            h="100%"
             justifyContent="space-between"
             alignItems="flex-start"
           >
@@ -392,7 +397,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
               </HStack>
             </Splide>
           </VStack>
-        </Center>
+        </Container>
       </motion.div>
     </>
   );
