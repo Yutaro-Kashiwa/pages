@@ -308,9 +308,15 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
               left={0}
               right={0}
               bottom={0}
-              background="linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #0168B7 100%)"
+              background={{
+                base: "linear-gradient(180deg, rgba(0, 52, 91, 0.05) 0%, #00345B 100%)",
+                md: "linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #0168B7 100%)"
+              }}
               zIndex={1}
-              h="50%"
+              h={{
+                base: "100%",
+                md: "50%"
+              }}
             />
           </Box>
         </>

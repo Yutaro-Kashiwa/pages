@@ -37,17 +37,33 @@ export default function TopPage() {
         >
           <Heading
             as="h1"
+            display="inline-flex"
+            flexFlow="row wrap"
             fontWeight="500"
-            fontSize="64px"
-            lineHeight="92px"
+            fontSize={{
+              base: "calc(1.875rem + ((1vw - 3.75px) * 3.1925))",
+              lg: "64px",
+            }}
+            lineHeight="1.5"
             textDecoration="underline"
+            overflowWrap="break-word"
             color="#ffffff"
           >
-            ソフトウェアの動きから異常を自動検知
+            <Text as="span" minW={0} color="inherit">ソフトウェアの動きから</Text>
+            <Text as="span" minW={0} color="inherit">異常を自動検知</Text>
           </Heading>
 
           <VStack alignItems="inherit" spacing="28px">
-            <Text maxWidth="708px" fontWeight="400" whiteSpace="pre-wrap" color="#ffffff">
+            <Text
+              maxWidth="708px"
+              fontWeight="400"
+              fontSize={{
+                base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                lg: "16px",
+              }}
+              whiteSpace="pre-wrap"
+              color="#ffffff"
+            >
               {/* prettier-ignore */}
               {`本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。
     具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。
@@ -69,12 +85,24 @@ export default function TopPage() {
                   borderStyle="solid"
                   borderColor="#ffffff"
                 >
-                  <Text fontWeight="400" fontSize={16} color="#ffffff">
+                  <Text
+                    fontWeight="400"
+                    fontSize={{
+                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                      lg: "16px",
+                    }}
+                    color="#ffffff"
+                  >
                     詳しくはこちら
                   </Text>
 
                   <Box position="relative" h="16px">
-                    <ArrowRight position="absolute" w="38px" left="10px" color="#ffffff" />
+                    <ArrowRight
+                      position="absolute"
+                      w="38px"
+                      left="10px"
+                      color="#ffffff"
+                    />
                   </Box>
                 </Box>
               </LinkOverlay>
