@@ -21,8 +21,10 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
   const drawerButtonRef = useRef<HTMLButtonElement>(null);
 
   const headerElementRef = useRef<HTMLDivElement>(null);
+  const footerElementRef = useRef<HTMLDivElement>(null);
 
   const headerElementSize = useSize(headerElementRef)
+  const footerElementSize = useSize(footerElementRef);
 
   const { isOpen, onOpen: openDrawerMenu, onClose: closeDrawerMenu } = useDisclosure()
 
@@ -70,15 +72,18 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
       <Box
         as="main"
         flexGrow={1}
-        overflow="hidden"
-        h={`calc(100% - ${headerElementSize?.height ?? 0}px)`}
-        pb={{ base: `${FOOTER_HEIGHT_SP}px`, md: `${FOOTER_HEIGHT_PC}px` }}
+        h={{
+          base: "100%",
+          sm: `calc(100% - ${footerElementSize?.height ?? FOOTER_HEIGHT_PC}px)`
+        }}
+        pb={`${footerElementSize?.height ?? FOOTER_HEIGHT_SP}px`}
       >
         {children}
       </Box>
 
       <Container
         key={currentPathname}
+        ref={footerElementRef}
         as="footer"
         position="fixed"
         left={0}
