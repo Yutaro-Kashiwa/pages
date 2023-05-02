@@ -13,7 +13,7 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => (
       flexFlow="row nowrap"
       justifyContent="space-between"
       alignItems="baseline"
-      py="24px"
+      pb="24px"
       gap="44px"
     >
       <ListItem
