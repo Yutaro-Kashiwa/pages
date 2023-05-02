@@ -20,6 +20,7 @@ import {
   List,
   LinkBox,
   LinkOverlay,
+  Divider,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
@@ -71,6 +72,26 @@ const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
 );
 
 WhatsNewGridCard.displayName = "WhatsNewGridCard";
+
+const WhatsNewListCard = memo<Omit<NewsSummary, "id">>(
+  ({ title, createdAt }) => (
+    <HStack flexWrap="nowrap" align="baseline" h="fit-content" spacing="20px">
+      <Text
+        as="time"
+        dateTime={formatISO(createdAt)}
+        fontFamily={ubuntuFont.style.fontFamily}
+        fontWeight={400}
+        fontSize="14px"
+      >
+        {format(createdAt, "yyyy . MM . dd")}
+      </Text>
+
+      <Text fontSize="16px">{title}</Text>
+    </HStack>
+  )
+);
+
+WhatsNewListCard.displayName = "WhatsNewListCard";
 
 const mockNewsList: NewsSummary[] = [
   {
@@ -228,6 +249,14 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
 
   return (
     <>
+      <style jsx global>
+        {`
+          #__next {
+            overflow: hidden;
+          }
+        `}
+      </style>
+
       {/* global を付けないと splide に認識されない */}
       <style jsx global>
         {`
@@ -269,6 +298,12 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
             border-radius: 100%;
 
             transition: color 0.5s;
+          }
+
+          .news-pagination-page.smartphone {
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
           }
 
           .news-pagination-page:hover {
@@ -333,70 +368,158 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
               </HStack>
             </Show>
 
-            <Splide
-              hasTrack={false}
-              extensions={{ SplideGridExtension }}
-              options={{
-                direction: "ttb",
-                wheel: true,
-                waitForTransition: true,
-                grid: {
-                  rows: 2,
-                  cols: 4,
-                },
-                height: (contentContainerSize?.height ?? 1) * (80 / 100),
-                fixedWidth: !!contentContainerSize
-                  ? contentContainerSize.width - 92
-                  : "80vw",
-                arrows: false,
-                classes: {
-                  pagination: "splide__pagination news-pagination",
-                  page: "splide__pagination__page news-pagination-page",
-                },
-              }}
-            >
-              <HStack alignItems="flex-start" h="100%" spacing="0">
-                <SplideTrack>
-                  {mockNewsList.map(({ id, title, createdAt }) => (
-                    <SplideSlide key={id}>
-                      <LinkBox as="article">
-                        <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
-                          <WhatsNewGridCard title={title} createdAt={createdAt} />
-                        </LinkOverlay>
-                      </LinkBox>
-                    </SplideSlide>
-                  ))}
-                </SplideTrack>
+            {/* スマホレイアウト */}
+            <Show below="md">
+              <Splide
+                hasTrack={false}
+                options={{
+                  direction: "ttb",
+                  wheel: true,
+                  waitForTransition: true,
+                  height: "60vh",
+                  fixedWidth: !!contentContainerSize
+                    ? contentContainerSize.width - 80
+                    : "80vw",
+                  arrows: false,
+                  classes: {
+                    pagination: "splide__pagination news-pagination",
+                    page: "splide__pagination__page news-pagination-page smartphone",
+                  },
+                  perPage: 9,
+                  gap: 0,
+                }}
+              >
+                <HStack justify="space-between" alignItems="flex-start" w="90vw" h="100%" columnGap="2%">
+                  <SplideTrack>
+                    {mockNewsList.map(({ id, title, createdAt }) => (
+                      <SplideSlide key={id}>
+                        <VStack align="flex-start" maxW="70vw">
+                          <LinkBox as="article">
+                            <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
+                              <WhatsNewListCard
+                                title={title}
+                                createdAt={createdAt}
+                              />
+                            </LinkOverlay>
+                          </LinkBox>
 
-                <VStack
-                  h="60%"
-                  justifyContent="space-between"
-                  alignItems="center"
-                >
-                  <List
-                    className="splide__pagination news-pagination"
-                    display="flex"
-                    flexFlow="column nowrap"
+                          <Divider orientation="horizontal" borderColor="#333333" borderWidth="0.5" />
+                        </VStack>
+                      </SplideSlide>
+                    ))}
+                  </SplideTrack>
+
+                  <VStack
+                    h="70%"
                     justifyContent="space-between"
-                  />
+                    alignItems="center"
+                  >
+                    <List
+                      className="splide__pagination news-pagination"
+                      display="flex"
+                      flexFlow="column nowrap"
+                      justifyContent="space-between"
+                    />
 
-                  <VStack justifyContent="space-between" alignItems="center" rowGap="16px" cursor="default">
-                    <Box mr="30%" w="1px" h="88px" bg="main" />
-
-                    <Text
-                      fontFamily={ubuntuFont.style.fontFamily}
-                      fontWeight={400}
-                      fontSize={20}
-                      sx={{ writingMode: "vertical-lr" }}
-                      color="main"
-                      userSelect="none"
+                    <VStack
+                      justifyContent="space-between"
+                      alignItems="center"
+                      rowGap="16px"
+                      cursor="default"
                     >
-                      scroll
-                    </Text>
+                      <Box mr="30%" w="1px" h="88px" bg="main" />
+
+                      <Text
+                        fontFamily={ubuntuFont.style.fontFamily}
+                        fontWeight={400}
+                        fontSize={12}
+                        sx={{ writingMode: "vertical-lr" }}
+                        color="main"
+                        userSelect="none"
+                      >
+                        scroll
+                      </Text>
+                    </VStack>
                   </VStack>
-                </VStack>
-              </HStack>
-            </Splide>
+                </HStack>
+              </Splide>
+            </Show>
+
+            {/* PCレイアウト */}
+            <Show above="md">
+              <Splide
+                hasTrack={false}
+                extensions={{ SplideGridExtension }}
+                options={{
+                  direction: "ttb",
+                  wheel: true,
+                  waitForTransition: true,
+                  grid: {
+                    rows: 2,
+                    cols: 4,
+                  },
+                  height: (contentContainerSize?.height ?? 1) * (80 / 100),
+                  fixedWidth: !!contentContainerSize
+                    ? contentContainerSize.width - 92
+                    : "80vw",
+                  arrows: false,
+                  classes: {
+                    pagination: "splide__pagination news-pagination",
+                    page: "splide__pagination__page news-pagination-page",
+                  },
+                }}
+              >
+                <HStack alignItems="flex-start" h="100%" spacing="0">
+                  <SplideTrack>
+                    {mockNewsList.map(({ id, title, createdAt }) => (
+                      <SplideSlide key={id}>
+                        <LinkBox as="article">
+                          <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
+                            <WhatsNewGridCard
+                              title={title}
+                              createdAt={createdAt}
+                            />
+                          </LinkOverlay>
+                        </LinkBox>
+                      </SplideSlide>
+                    ))}
+                  </SplideTrack>
+
+                  <VStack
+                    h="60%"
+                    justifyContent="space-between"
+                    alignItems="center"
+                  >
+                    <List
+                      className="splide__pagination news-pagination"
+                      display="flex"
+                      flexFlow="column nowrap"
+                      justifyContent="space-between"
+                    />
+
+                    <VStack
+                      justifyContent="space-between"
+                      alignItems="center"
+                      rowGap="16px"
+                      cursor="default"
+                    >
+                      <Box mr="30%" w="1px" h="88px" bg="main" />
+
+                      <Text
+                        fontFamily={ubuntuFont.style.fontFamily}
+                        fontWeight={400}
+                        fontSize={20}
+                        sx={{ writingMode: "vertical-lr" }}
+                        color="main"
+                        userSelect="none"
+                      >
+                        scroll
+                      </Text>
+                    </VStack>
+                  </VStack>
+                </HStack>
+              </Splide>
+            </Show>
           </VStack>
         </Container>
       </motion.div>
