@@ -8,6 +8,7 @@ import {
   HStack,
   Heading,
   Show,
+  SimpleGrid,
   Spacer,
   Text,
   VStack,
@@ -73,18 +74,30 @@ const MemberSummaryCard = memo<MemberSummaryCardProps>(
         src={pictureURL}
         size="100%"
         bg="base.2"
-        icon={
-          <AvatarIcon w="100%" h="100%" fill="base.1" />
-        }
+        icon={<AvatarIcon w="100%" h="100%" fill="base.1" />}
         borderRadius={0}
       />
 
       <VStack spacing="4px">
-        <Text fontWeight={500} fontSize={20} textAlign="center">
+        <Text
+          fontWeight={500}
+          fontSize={{
+            base: "calc(1rem + ((1vw - 3.75px) * 0.3756))",
+            lg: "20",
+          }}
+          textAlign="center"
+        >
           {name}
         </Text>
 
-        <Text fontWeight={500} fontSize={16} textAlign="center">
+        <Text
+          fontWeight={500}
+          fontSize={{
+            base: "calc(0.75rem + ((1vw - 3.75px) * 0.3756))",
+            lg: "16px"
+          }}
+          textAlign="center"
+        >
           {grade}
         </Text>
       </VStack>
@@ -96,66 +109,83 @@ MemberSummaryCard.displayName = "MemberSummaryCard";
 
 export const MembersPage: NextPageWithLayout = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{
-        duration: 1,
-      }}
-      style={{
-        height: "100%"
-      }}
-    >
-      <Container maxW="1280px" h="100%"  overflow="auto">
-        <VStack
-          h="100%"
-          justifyContent="space-between"
-          alignItems="flex-start"
-        >
-          <Show above="lg">
-            <HStack position="relative" w="fit-content">
-              <Box
-                position="absolute"
-                right="-20px"
-                bottom="-16px"
-                w="199px"
-                zIndex={-1}
-              >
-                <AspectRatio w="100%" ratio={199 / 44}>
-                  <TitleBackgroundRect />
-                </AspectRatio>
-              </Box>
+    <>
+      <style jsx global>
+        {`
+          #__next {
+            overflow: hidden;
+          }
+        `}
+      </style>
 
-              <Heading
-                as="h2"
-                fontFamily={ubuntuFont.style.fontFamily}
-                fontWeight={400}
-                color="main"
-                textTransform="uppercase"
-              >
-                members
-              </Heading>
-            </HStack>
-          </Show>
-
-          <HStack
-            w="100%"
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 1,
+        }}
+        style={{
+          height: "100%",
+        }}
+      >
+        <Container maxW="1280px" h="100%" mt="5%" overflow="auto">
+          <VStack
             h="100%"
-            justifyContent={[null, "flex-start", "space-between"]}
-            flexWrap="wrap"
+            justifyContent="space-between"
+            alignItems="flex-start"
           >
-            {membersList.map(({ uid, name, grade, pictureURL }) => (
-              <Fragment key={uid}>
-                <Box maxH="260px" maxW="136px">
-                  <MemberSummaryCard name={name} grade={grade} pictureURL={pictureURL} />
+            <Show above="lg">
+              <HStack position="relative" w="fit-content">
+                <Box
+                  position="absolute"
+                  right="-20px"
+                  bottom="-16px"
+                  w="199px"
+                  zIndex={-1}
+                >
+                  <AspectRatio w="100%" ratio={199 / 44}>
+                    <TitleBackgroundRect />
+                  </AspectRatio>
                 </Box>
-              </Fragment>
-            ))}
-          </HStack>
-        </VStack>
-      </Container>
-    </motion.div>
+
+                <Heading
+                  as="h2"
+                  fontFamily={ubuntuFont.style.fontFamily}
+                  fontWeight={400}
+                  color="main"
+                  textTransform="uppercase"
+                >
+                  members
+                </Heading>
+              </HStack>
+            </Show>
+
+            <SimpleGrid
+              alignSelf="center"
+              w="100%"
+              h="100%"
+              minChildWidth="min(20vw, 136px)"
+              justifyContent="space-between"
+              alignItems="center"
+              columnGap={{ base: "48px" }}
+            >
+              {membersList.map(({ uid, name, grade, pictureURL }) => (
+                <Fragment key={uid}>
+                  <Box maxH="260px" w="20vw" minW="64px" maxW="136px">
+                    <MemberSummaryCard
+                      name={name}
+                      grade={grade}
+                      pictureURL={pictureURL}
+                    />
+                  </Box>
+                </Fragment>
+              ))}
+            </SimpleGrid>
+          </VStack>
+        </Container>
+      </motion.div>
+    </>
   );
 };
 
