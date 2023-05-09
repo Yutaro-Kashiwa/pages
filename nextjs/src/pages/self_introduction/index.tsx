@@ -191,7 +191,7 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
       <Container display="block" position="relative" maxW="1280px" h="100%" overflow="auto">
         <VStack
           h="100%"
-          justifyContent="space-evenly"
+          justifyContent="space-around"
           alignItems="flex-start"
         >
           <Show above="lg">
