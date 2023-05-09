@@ -97,7 +97,7 @@ const ProjectSummaryCard = memo<Project & { shouldReverseImagePlacement: boolean
 ProjectSummaryCard.displayName = "ProjectCard";
 
 type PageProps = {
-  refererPath?: string;
+  refererPath: string | null;
 };
 
 export const ProjectsPage: NextPageWithLayout<PageProps> = ({
@@ -166,11 +166,19 @@ ProjectsPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="projects">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
   const referer = context.req.headers.referer;
 
-  const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
-  const refererPath: string | undefined = refererURL?.pathname;
+  if (!referer) {
+    return { 
+      props: {
+        refererPath: null
+      }
+    }
+  }
+
+  const refererURL: URL = new URL(referer);
+  const refererPath = refererURL.pathname;
 
   return {
     props: {
