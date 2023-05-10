@@ -6,6 +6,7 @@ import {
   AspectRatio,
   Box,
   Center,
+  Container,
   HStack,
   Heading,
   Image,
@@ -70,14 +71,14 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
       transition={{
         duration: 0.5,
       }}
+      style={{
+        height: "100%"
+      }}
     >
-      <Center w="100vw" h="100vh" overflow="auto">
+      <Container maxW="1280px" h="100%" overflow="auto">
         <VStack
-          maxW="1280px"
-          w="100%"
-          h="70%"
-          px="40px"
-          justifyContent="space-between"
+          h="100%"
+          justify="space-around"
           alignItems="flex-start"
         >
           <Show above="lg">
@@ -106,7 +107,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
             </HStack>
           </Show>
 
-          <VStack flexBasis="80%" justify="space-between" align="flex-start">
+          <VStack flexBasis="60%" justify="space-between" align="flex-start">
             <VStack flexBasis="100%" justify="space-evenly" align="inherit" spacing="48px">
               {!!createdAt && !!title && (
                 <HStack align="baseline" spacing="40px">
@@ -159,7 +160,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
             </Link>
           </VStack>
         </VStack>
-      </Center>
+      </Container>
     </motion.div>
   )
 };
