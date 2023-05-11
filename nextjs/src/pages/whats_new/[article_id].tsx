@@ -39,7 +39,7 @@ type NewsData = {
 };
 
 type PageProps = {
-  refererPath?: string;
+  refererPath: string | null;
 } & NewsData;
 
 // API通信レスポンスの代わり
@@ -174,8 +174,17 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
 ) => {
   const referer = context.req.headers.referer;
 
-  const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
-  const refererPath: string | undefined = refererURL?.pathname;
+  if (!referer) {
+    return {
+      props: {
+        refererPath: null,
+        ...mockNewsData
+      }
+    }
+  }
+
+  const refererURL: URL = new URL(referer);
+  const refererPath: string = refererURL.pathname;
 
   return {
     props: {
