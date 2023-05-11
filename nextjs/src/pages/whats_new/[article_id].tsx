@@ -206,7 +206,12 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                 pr="8px"
                 fontSize={16}
                 fontWeight={{ base: 700, lg: 400 }}
-                color={{ base: "#999999", lg: "main" }}
+                color={{ base: "#999999", lg: "rgba(1, 104, 183, 1)" }}
+                _hover={{
+                  textDecoration: "none",
+                  color: "rgba(1, 104, 183, 0.5)",
+                }}
+                transition="ease-in 0.3s"
               >
                 一覧へ戻る ↑
               </Link>
