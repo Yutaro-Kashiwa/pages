@@ -4,12 +4,16 @@ import {
   Box,
   Center,
   Container,
+  Grid,
+  GridItem,
   HStack,
   Heading,
   List,
   ListItem,
   Show,
+  SimpleGrid,
   Spacer,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -19,6 +23,7 @@ import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { Noto_Sans_JP, Ubuntu } from "next/font/google";
 import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
+import { ChakraNextImage } from "@/components/chakra_next_image";
 
 const ubuntuFont = Ubuntu({
   weight: ["300", "400", "500"],
@@ -80,7 +85,12 @@ const careerList: CareerSummaryCardProps[] = [
 
 const CareerSummaryCard = memo<CareerSummaryCardProps>(
   ({ startedAt, endedAt, careerDetail: careerName }) => (
-    <HStack spacing="8px" alignItems="baseline">
+    <Stack
+      flexDir={{ base: "column", lg: "row" }}
+      alignItems="baseline"
+      columnGap="8px"
+      spacing={0}
+    >
       <HStack spacing="2px">
         <Text
           as="time"
@@ -88,17 +98,28 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           display="inline-flex"
           alignItems="baseline"
           fontFamily={ubuntuFont.style.fontFamily}
-          fontSize={16}
+          fontSize={{
+            base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+            lg: 16,
+          }}
           fontWeight={400}
           gap="2px"
           whiteSpace="nowrap"
+          color={{
+            base: "#5F5F5F",
+            lg: "unset",
+          }}
         >
           {format(startedAt, "yyyy")}
 
           <Text
             fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
-            fontSize={12}
+            fontSize={{
+              base: "calc(0.75rem + ((1vw - 3.75px) * 0.1878))",
+              lg: 12,
+            }}
+            color="inherit"
           >
             年
           </Text>
@@ -108,13 +129,24 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           <Text
             fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
-            fontSize={12}
+            fontSize={{
+              base: "calc(0.75rem + ((1vw - 3.75px) * 0.1878))",
+              lg: 12,
+            }}
+            color="inherit"
           >
             月
           </Text>
         </Text>
 
-        <Text>～</Text>
+        <Text
+          color={{
+            base: "#5F5F5F",
+            lg: "unset",
+          }}
+        >
+          ～
+        </Text>
 
         {!!endedAt ? (
           <Text
@@ -123,10 +155,17 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
             display="inline-flex"
             alignItems="baseline"
             fontFamily={ubuntuFont.style.fontFamily}
-            fontSize={16}
+            fontSize={{
+              base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+              lg: 16,
+            }}
             fontWeight={400}
             gap="2px"
             whiteSpace="nowrap"
+            color={{
+              base: "#5F5F5F",
+              lg: "unset",
+            }}
           >
             {format(endedAt, "yyyy")}
 
@@ -134,6 +173,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
               fontFamily={notoSansJPFont.style.fontFamily}
               fontWeight={400}
               fontSize={12}
+              color="inherit"
             >
               年
             </Text>
@@ -144,6 +184,7 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
               fontFamily={notoSansJPFont.style.fontFamily}
               fontWeight={400}
               fontSize={12}
+              color="inherit"
             >
               月
             </Text>
@@ -152,8 +193,15 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           <Text
             fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
-            fontSize={16}
+            fontSize={{
+              base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+              lg: 16,
+            }}
             whiteSpace="nowrap"
+            color={{
+              base: "#5F5F5F",
+              lg: "unset",
+            }}
           >
             現在
           </Text>
@@ -163,12 +211,15 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
       <Text
         fontFamily={ubuntuFont.style.fontFamily}
         fontWeight={500}
-        fontSize={16}
-        whiteSpace="nowrap"
+        fontSize={{
+          base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+          lg: 16,
+        }}
+        whiteSpace="pre-wrap"
       >
         {careerName}
       </Text>
-    </HStack>
+    </Stack>
   )
 );
 
@@ -176,81 +227,137 @@ CareerSummaryCard.displayName = "CareerSummaryCard";
 
 export const SelfIntroductionPage: NextPageWithLayout = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{
-        duration: 1,
-      }}
-      style={{
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Container display="block" position="relative" maxW="1280px" h="100%" overflow="auto">
-        <VStack
+    <>
+      <style jsx global>
+        {`
+          html {
+            overflow-x: hidden;
+            overflow-y: hidden;
+          }
+
+          #__next {
+            overflow-x: visible;
+            overflow-y: scroll;
+          }
+        `}
+      </style>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 1,
+        }}
+        style={{
+          height: "100%",
+        }}
+      >
+        <Container
+          display="block"
+          position="relative"
+          maxW="1280px"
           h="100%"
-          justifyContent="space-around"
-          alignItems="flex-start"
+          overflowX="visible"
+          overflowY="visible"
         >
-          <Show above="lg">
-            <HStack position="relative" w="fit-content">
-              <Box
-                position="absolute"
-                right="-20px"
-                bottom="-16px"
-                w="199px"
-                zIndex={-1}
-              >
-                <AspectRatio w="100%" ratio={199 / 44}>
-                  <TitleBackgroundRect />
-                </AspectRatio>
-              </Box>
-
-              <Heading
-                as="h2"
-                fontFamily={ubuntuFont.style.fontFamily}
-                fontWeight={400}
-                color="main"
-                textTransform="uppercase"
-              >
-                self-introduction
-              </Heading>
-            </HStack>
-          </Show>
-
-          <HStack
-            flexBasis="70%"
-            flexWrap="wrap"
-            justifyContent="space-evenly"
+          <VStack
+            h="100%"
+            w="100%"
+            justifyContent="space-around"
             alignItems="flex-start"
-            spacing={[null, null, null, "72px"]}
           >
-            <VStack
-              flexBasis="50%"
-              flexGrow={1}
-              flex={1}
-              minW="500px"
-              h="100%"
-              justifyContent="space-evenly"
-              alignItems="flex-start"
-              spacing={[null, "20px", null, "36px"]}
-            >
-              <HStack
-                alignItems="flex-end"
-                spacing={[null, "24px", null, "32px"]}
-              >
-                <AspectRatio w="193px" maxW="193px" ratio={193 / 222}>
-                  <Box w="193px" h="222px" backgroundColor="#d9d9d9" />
-                </AspectRatio>
+            <Show above="lg">
+              <HStack position="relative" w="fit-content">
+                <Box
+                  position="absolute"
+                  right="-20px"
+                  bottom="-16px"
+                  w="199px"
+                  zIndex={-1}
+                >
+                  <AspectRatio w="100%" ratio={199 / 44}>
+                    <TitleBackgroundRect />
+                  </AspectRatio>
+                </Box>
 
-                <VStack h="100%" alignItems="flex-start">
-                  <Center h="100%">
-                    <HStack flexWrap={["wrap", null, "nowrap"]} alignItems="baseline">
+                <Heading
+                  as="h2"
+                  fontFamily={ubuntuFont.style.fontFamily}
+                  fontWeight={400}
+                  color="main"
+                  textTransform="uppercase"
+                >
+                  self-introduction
+                </Heading>
+              </HStack>
+            </Show>
+
+            <SimpleGrid
+              w="100%"
+              h="70%"
+              templateRows="auto"
+              minChildWidth="min(50vw, 300px)"
+              justifyContent="space-between"
+              columnGap="72px"
+            >
+              <VStack
+                minW={0}
+                h="100%"
+                justify="space-between"
+                align="flex-start"
+                rowGap={{ base: "20px", lg: "unset" }}
+              >
+                <Grid
+                  gridTemplateRows="auto 1fr"
+                  gridTemplateColumns="minmax(20px, 1fr) 1fr"
+                  templateAreas={{
+                    base: `
+                      "picture name"
+                      "picture name"
+                      "positions positions"
+                    `,
+                    lg: `
+                      "picture name"
+                      "picture name"
+                      "picture positions"
+                    `,
+                  }}
+                  columnGap={{ base: "24px", lg: "32px" }}
+                >
+                  <GridItem area="picture" maxW="200px">
+                    <ChakraNextImage
+                      // @ts-ignore
+                      position="relative !important"
+                      src="/image-YutaroKASHIWA-1.jpg"
+                      alt="顔写真"
+                      // @ts-ignore
+                      fill
+                      objectFit="contain"
+                      fallback={
+                        <AspectRatio
+                          w="100%"
+                          minW={0}
+                          maxW="196px"
+                          ratio={4 / 5}
+                        >
+                          <Box as="img" backgroundColor="#d9d9d9" />
+                        </AspectRatio>
+                      }
+                    />
+                  </GridItem>
+
+                  <GridItem alignSelf="center" area="name">
+                    <HStack
+                      flexWrap={{ base: "wrap", xl: "nowrap" }}
+                      alignItems="baseline"
+                    >
                       <Text
                         fontWeight={600}
-                        fontSize={36}
+                        fontSize={{
+                          base: "calc(1.5rem + ((1vw - 3.75px) * 1.1268))",
+                          lg: 36,
+                        }}
                         color="#333333"
                         whiteSpace="nowrap"
                       >
@@ -260,110 +367,134 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
                       <Text
                         fontFamily={ubuntuFont.style.fontFamily}
                         fontWeight={300}
-                        fontSize={20}
+                        fontSize={{
+                          base: "calc(0.875rem + ((1vw - 3.75px) * 0.5634))",
+                          lg: 20,
+                        }}
                         color="main"
                         whiteSpace="nowrap"
                       >
                         － YUTARO KASHIWA
                       </Text>
                     </HStack>
-                  </Center>
+                  </GridItem>
 
-                  <VStack
-                    fontWeight={500}
-                    fontSize={16}
-                    alignItems="inherit"
-                    spacing="2px"
-                  >
-                    <Text whiteSpace="nowrap">
-                      奈良先端科学技術大学院大学（NAIST）
-                    </Text>
+                  <GridItem area="positions">
+                    <VStack
+                      fontWeight={500}
+                      fontSize={{
+                        base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                        lg: 16,
+                      }}
+                      alignItems="inherit"
+                      spacing="2px"
+                    >
+                      <Text whiteSpace="nowrap">
+                        奈良先端科学技術大学院大学（NAIST）
+                      </Text>
 
-                    <Text whiteSpace="nowrap">
-                      先端科学技術研究科 情報領域 助教
-                    </Text>
+                      <Text whiteSpace="nowrap">
+                        先端科学技術研究科 情報領域 助教
+                      </Text>
 
-                    <Text whiteSpace="nowrap">
-                      総合情報基盤センター（兼務）
-                    </Text>
-                  </VStack>
-                </VStack>
-              </HStack>
+                      <Text whiteSpace="nowrap">
+                        総合情報基盤センター（兼務）
+                      </Text>
+                    </VStack>
+                  </GridItem>
+                </Grid>
 
-              <Box
-                position="relative"
-                pl="20px"
-                pt="20px"
-                pr="16px"
-                pb="12px"
-                _before={{
-                  content: `''`,
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  w:"18px",
-                  h: "18px",
-                  borderLeftColor: "main",
-                  borderTopColor: "main",
-                  borderLeftWidth: "2px",
-                  borderTopWidth: "2px",
-                  borderLeftStyle: "solid",
-                  borderTopStyle: "solid",
-                }}
-                _after={{
-                  content: `''`,
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                  w:"27px",
-                  h: "27px",
-                  borderRightColor: "main",
-                  borderBottomColor: "main",
-                  borderRightWidth: "2px",
-                  borderBottomWidth: "2px",
-                  borderRightStyle: "solid",
-                  borderBottomStyle: "solid",
-                }}
-              >
-                <Text m={0} p={0} lineHeight="1.8">
+                <Box
+                  as="p"
+                  position="relative"
+                  pl={{ base: "8px", lg: "20px" }}
+                  pt={{ base: "4px", lg: "20px" }}
+                  pr={{ base: "8px", lg: "16px" }}
+                  pb={{ base: 0, lg: "12px" }}
+                  fontSize={{
+                    base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+                    lg: 16,
+                  }}
+                  lineHeight="1.8"
+                  _before={{
+                    content: `''`,
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    w: "18px",
+                    h: "18px",
+                    borderLeftColor: "main",
+                    borderTopColor: "main",
+                    borderLeftWidth: "2px",
+                    borderTopWidth: "2px",
+                    borderLeftStyle: "solid",
+                    borderTopStyle: "solid",
+                  }}
+                  _after={{
+                    content: `''`,
+                    position: "absolute",
+                    bottom: 0,
+                    right: 0,
+                    w: "27px",
+                    h: "27px",
+                    borderRightColor: {
+                      base: "white",
+                      lg: "main",
+                    },
+                    borderBottomColor: {
+                      base: "white",
+                      lg: "main",
+                    },
+                    borderRightWidth: "2px",
+                    borderBottomWidth: "2px",
+                    borderRightStyle: "solid",
+                    borderBottomStyle: "solid",
+                  }}
+                >
                   専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事．
                   近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．
-                </Text>
-              </Box>
-            </VStack>
+                </Box>
+              </VStack>
 
-            <VStack h="100%" alignItems="flex-start" spacing="32px">
-              <Heading as="h3" fontWeight={600} fontSize={24}>
-                略歴
-              </Heading>
+              <VStack h="100%" alignItems="flex-start" spacing="32px">
+                <Show above="md">
+                  <Heading as="h3" fontWeight={600} fontSize={24}>
+                    略歴
+                  </Heading>
+                </Show>
 
-              <List
-                flexGrow={1}
-                display="flex"
-                flexFlow="column nowrap"
-                justifyContent="space-between"
-              >
-                {careerList.map(
-                  ({ startedAt, endedAt, careerDetail: careerName }, index) => (
-                    <Fragment
-                      key={`${startedAt}${endedAt}${careerName}${index}`}
-                    >
-                      <ListItem>
-                        <CareerSummaryCard
-                          startedAt={startedAt}
-                          endedAt={endedAt}
-                          careerDetail={careerName}
-                        />
-                      </ListItem>
-                    </Fragment>
-                  )
-                )}
-              </List>
-            </VStack>
-          </HStack>
-        </VStack>
-      </Container>
-    </motion.div>
+                <List
+                  h="100%"
+                  display="flex"
+                  flexFlow="column nowrap"
+                  justifyContent="space-between"
+                  rowGap="16px"
+                >
+                  {careerList.map(
+                    (
+                      { startedAt, endedAt, careerDetail: careerName },
+                      index
+                    ) => (
+                      <Fragment
+                        key={`${startedAt}${endedAt}${careerName}${index}`}
+                      >
+                        <ListItem>
+                          <CareerSummaryCard
+                            startedAt={startedAt}
+                            endedAt={endedAt}
+                            careerDetail={careerName}
+                          />
+                        </ListItem>
+                      </Fragment>
+                    )
+                  )}
+                </List>
+              </VStack>
+            </SimpleGrid>
+          </VStack>
+        </Container>
+      </motion.div>
+    </>
   );
 };
 
