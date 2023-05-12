@@ -398,6 +398,9 @@ export const PublicationsPage: NextPageWithLayout = () => {
                               <Link
                                 href={downloadURL}
                                 isExternal
+                                display="inline-flex"
+                                justifyContent="center"
+                                alignItems="center"
                                 boxSize="44px"
                                 p="12px"
                                 borderRadius="100%"
