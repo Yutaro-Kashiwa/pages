@@ -4,11 +4,12 @@ import {
   Box,
   Center,
   Container,
+  Grid,
+  GridItem,
   HStack,
   Heading,
   Image,
-  LinkBox,
-  LinkOverlay,
+  Link,
   Show,
   Text,
   VStack,
@@ -34,64 +35,122 @@ const interFont = Inter({
   subsets: ["latin"],
 });
 
-const ProjectSummaryCard = memo<Project & { shouldReverseImagePlacement: boolean }>(({ title, name, summary, pictureURL, shouldReverseImagePlacement }) => (
-  <HStack alignItems="center" flexFlow={shouldReverseImagePlacement ? "row-reverse" : "row"} gap="24px">
-    <VStack alignItems="flex-start" spacing="40px">
-      <VStack alignItems="inherit" spacing="24px">
-        <Heading
-          as="h3"
-          fontFamily={interFont.style.fontFamily}
-          fontWeight={400}
-          fontSize={24}
+const ProjectSummaryCard = memo<
+  Project & { shouldReverseImagePlacement: boolean }
+>(({ title, name, summary, pictureURL, shouldReverseImagePlacement }) => (
+  <Grid
+    h={{ base: "100%", lg: "unset" }}
+    templateRows="auto"
+    templateColumns="auto"
+    templateAreas={{
+      base: `
+        "projectTitle"
+        "picture"
+        "projectSummary"
+        "detailLink"
+      `,
+      lg: shouldReverseImagePlacement
+        ? `
+        "picture projectTitle projectTitle"
+        "picture projectSummary projectSummary"
+        "picture detailLink detailLink"
+      `
+        : `
+        "projectTitle projectTitle picture"
+        "projectSummary projectSummary picture"
+        "detailLink detailLink detailLink"
+      `,
+    }}
+    justifyItems={{ base: "center", lg: "unset" }}
+    rowGap={{ base: "20px", lg: "unset" }}
+    columnGap={{ lg: "60px" }}
+  >
+    <GridItem area="projectTitle">
+      <Heading
+        as="h3"
+        fontFamily={interFont.style.fontFamily}
+        fontWeight={400}
+        fontSize={{
+          base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
+          lg: 24,
+        }}
+      >
+        {title}
+      </Heading>
+    </GridItem>
+
+    <GridItem area="projectSummary">
+      <Text
+        fontSize={{
+          base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+          lg: 16,
+        }}
+      >
+        {summary}
+      </Text>
+    </GridItem>
+
+    <GridItem area="detailLink" position="relative" justifySelf="start">
+      <Link
+        as={NextLink}
+        href={`/projects/${name}`}
+        position="absolute"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        borderWidth="1px"
+        borderStyle="solid"
+        borderColor="main"
+        h="fit-content"
+        w="fit-content"
+        pl={{ base: "12px", lg: "20px" }}
+        pr={{ base: "24px", lg: "28px" }}
+        py={{ base: "4px", lg: "8px" }}
+        _hover={{
+          textDecoration: "none",
+          backgroundColor: "#F2F947",
+          pl: "28px",
+          pr: "40px",
+          py: "12px",
+        }}
+        transition="ease-out 0.3s"
+      >
+        <Text
+          as="p"
+          fontWeight="400"
+          fontSize={{
+            base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+            lg: "16px",
+          }}
+          color="main"
+          whiteSpace="nowrap"
         >
-          {title}
-        </Heading>
-
-        <Text>
-          {summary}
+          詳しくはこちら
         </Text>
-      </VStack>
 
-      <LinkBox p={0} color="main">
-        <LinkOverlay as={NextLink} href={`/projects/${name}`}>
+        <Box position="absolute" w="fit-content" h="80%" top="50%" right="8px">
+          <ArrowDown h="100%" color="main" />
+        </Box>
+      </Link>
+    </GridItem>
+
+    <GridItem area="picture">
+      <Image
+        as={NextImage}
+        src={pictureURL}
+        alt=""
+        fallback={
           <Box
-            display="inline-flex"
-            alignItems="center"
-            pl="18px"
-            pr="28px"
-            py="8px"
-            borderWidth="1px"
-            borderStyle="solid"
-            borderColor="main"
-          >
-            <Text fontWeight="400" fontSize="16px" color="main">
-              詳しくはこちら
-            </Text>
-
-            <Box position="relative" h="0px">
-              <ArrowDown position="absolute" h="31px" left="8px" />
-            </Box>
-          </Box>
-        </LinkOverlay>
-      </LinkBox>
-    </VStack>
-
-    <Image
-      as={NextImage}
-      src={pictureURL}
-      alt=""
-      fallback={
-        <Box
-          as="img"
-          float="right"
-          ml="60px"
-          minW="320px"
-          minH="180px"
-          backgroundColor="#d9d9d9"
-        />
-      }
-    />
-  </HStack>
+            as="img"
+            float="right"
+            minW="320px"
+            minH="180px"
+            backgroundColor="#d9d9d9"
+          />
+        }
+      />
+    </GridItem>
+  </Grid>
 ));
 
 ProjectSummaryCard.displayName = "ProjectCard";
@@ -106,59 +165,70 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
   const { asPath } = useRouter()
 
   return (
-    <motion.div
-      initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
-      animate={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
-      exit={!!asPath.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
-      transition={{
-        duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
-      }}
-      style={{
-        height: "100%",
-      }}
-    >
-      <Container maxW="1280px" h="100%" overflow="auto">
-        <VStack
-          h="100%"
-          justifyContent="space-between"
-          alignItems="flex-start"
-        >
-          <Show above="lg">
-            <HStack position="relative" w="fit-content">
-              <Box
-                position="absolute"
-                right="-20px"
-                bottom="-16px"
-                w="199px"
-                zIndex={-1}
-              >
-                <AspectRatio w="100%" ratio={199 / 44}>
-                  <TitleBackgroundRect />
-                </AspectRatio>
-              </Box>
+    <>
+      <style jsx global>
+        {`
+          #__next {
+            overflow-x: hidden;
+            overflow-y: scroll;
+          }
+        `}
+      </style>
 
-              <Heading
-                as="h2"
-                fontFamily={ubuntuFont.style.fontFamily}
-                fontWeight={400}
-                color="main"
-                textTransform="uppercase"
-              >
-                projects
-              </Heading>
-            </HStack>
-          </Show>
+      <motion.div
+        initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
+        animate={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
+        exit={!!asPath.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
+        transition={{
+          duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
+        }}
+        style={{
+          height: "100%",
+        }}
+      >
+        <Container maxW="1280px" h="100%" pt="5vh" overflowX="visible" overflowY="visible">
+          <VStack
+            h="100%"
+            justifyContent="space-around"
+            alignItems="flex-start"
+          >
+            <Show above="lg">
+              <HStack position="relative" w="fit-content">
+                <Box
+                  position="absolute"
+                  right="-20px"
+                  bottom="-16px"
+                  w="199px"
+                  zIndex={-1}
+                >
+                  <AspectRatio w="100%" ratio={199 / 44}>
+                    <TitleBackgroundRect />
+                  </AspectRatio>
+                </Box>
 
-          <VStack justifyContent="space-evenly" flexBasis="90%">
-            {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
-              <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
-                <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
-              </Fragment>
-            ))}
+                <Heading
+                  as="h2"
+                  fontFamily={ubuntuFont.style.fontFamily}
+                  fontWeight={400}
+                  color="main"
+                  textTransform="uppercase"
+                >
+                  projects
+                </Heading>
+              </HStack>
+            </Show>
+
+            <VStack justifyContent="space-evenly" flexBasis={{ lg: "90%" }}>
+              {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
+                <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
+                  <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
+                </Fragment>
+              ))}
+            </VStack>
           </VStack>
-        </VStack>
-      </Container>
-    </motion.div>
+        </Container>
+      </motion.div>
+    </>
   );
 };
 
