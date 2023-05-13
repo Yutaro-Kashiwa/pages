@@ -12,6 +12,9 @@ import {
   Text,
   IconButton,
   Container,
+  Stack,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
@@ -142,6 +145,14 @@ export const AwardsPage: NextPageWithLayout = () => {
 
   return (
     <>
+      <style jsx global>
+        {`
+          #__next {
+            overflow: hidden;
+          }
+        `}
+      </style>
+
       {/* global を付けないと splide に認識されない */}
       <style jsx global>
         {`
@@ -183,6 +194,14 @@ export const AwardsPage: NextPageWithLayout = () => {
             border-radius: 100%;
           }
 
+          @media screen and (max-width: 991px) {
+            .news-pagination-page {
+              width: 24px;
+              height: 24px;
+              font-size: 12px;
+            }
+          }
+
           /* 現在表示されているページネーションのスタイル */
           .news-pagination-page.is-active {
             background-color: #f2f947;
@@ -206,6 +225,14 @@ export const AwardsPage: NextPageWithLayout = () => {
         `}
       </style>
 
+      <style jsx global>
+        {`
+          .splide__track {
+            width: 100%;
+          }
+        `}
+      </style>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -214,7 +241,7 @@ export const AwardsPage: NextPageWithLayout = () => {
           duration: 1,
         }}
         style={{
-          height: "100%"
+          height: "100%",
         }}
       >
         <Container
@@ -222,7 +249,8 @@ export const AwardsPage: NextPageWithLayout = () => {
           maxW="1280px"
           h="100%"
           mt="5vh"
-          overflow="auto"
+          overflowX="auto"
+          overflowY="hidden"
         >
           <Splide
             onPaginationMounted={updateInitialNumberOfPages}
@@ -233,21 +261,34 @@ export const AwardsPage: NextPageWithLayout = () => {
               wheel: true,
               waitForTransition: true,
               height: "70vh",
-              fixedWidth: !!contentContainerSize
-                ? contentContainerSize.width - 184
-                : "80vw",
+              width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
                 page: "splide__pagination__page news-pagination-page",
               },
-              perPage: 5,
+              perPage: 4,
+              mediaQuery: "min",
+              breakpoints: {
+                992: {
+                  height: "75vh",
+                  perPage: 5,
+                  padding: {
+                    top: "5vh",
+                  },
+                },
+              },
             }}
           >
             <VStack align="center" w="100%" h="100%">
-              <HStack alignItems="flex-start" h="100%" spacing="84px">
+              <HStack
+                alignItems="flex-start"
+                w="100%"
+                h="100%"
+                spacing={{ base: "12px", lg: "84px" }}
+              >
                 <SplideTrack>
-                  <SplideSlide>
-                    <Show above="lg">
+                  <Show above="lg">
+                    <SplideSlide>
                       <HStack position="relative" w="fit-content">
                         <Box
                           position="absolute"
@@ -271,8 +312,8 @@ export const AwardsPage: NextPageWithLayout = () => {
                           awards
                         </Heading>
                       </HStack>
-                    </Show>
-                  </SplideSlide>
+                    </SplideSlide>
+                  </Show>
 
                   {awardedHistoriesList.map(
                     ({
@@ -283,40 +324,87 @@ export const AwardsPage: NextPageWithLayout = () => {
                       awarderOrganization,
                     }) => (
                       <SplideSlide key={id}>
-                        <HStack
-                          justifyContent="space-between"
-                          alignItems="flex-start"
+                        <Grid
+                          templateRows="repeat(auto-fit, 1fr)"
+                          templateColumns={{ base: " 1fr 3fr", lg: "auto" }}
+                          templateAreas={{
+                            base: `
+                              "awardedDate awardeeName"
+                              "awardDetail awardDetail"
+                            `,
+                            lg: `
+                              "awardedDate awardeeName awardDetail"
+                              "awardedDate awardeeName awardDetail"
+                            `,
+                          }}
+                          alignItems="baseline"
+                          rowGap={{
+
+                          }}
+                          columnGap={{
+                            base: "16px",
+                            lg: "unset"
+                          }}
                         >
-                          <Text
-                            minW="140px"
-                            fontFamily={ubuntuFont.style.fontFamily}
-                            fontWeight={700}
-                            fontSize={32}
-                            lineHeight="0.84em"
-                            color="main"
-                            opacity="0.6"
-                          >
-                            {awardedDate}
-                          </Text>
-
-                          <Text fontWeight={500} fontSize={20}>
-                            {awardeeName}
-                          </Text>
-
-                          <VStack
-                            alignSelf="flex-start"
-                            alignItems="flex-start"
-                            spacing="2px"
-                          >
-                            <Text fontWeight={500} fontSize={20}>
-                              {awardName}
+                          <GridItem area="awardedDate">
+                            <Text
+                              minW={{ lg: "140px" }}
+                              fontFamily={ubuntuFont.style.fontFamily}
+                              fontWeight={700}
+                              fontSize={{
+                                base: "calc(1.125rem + ((1vw - 3.75px) * 1.3146))",
+                                lg: 32,
+                              }}
+                              lineHeight="0.84em"
+                              color="main"
+                              opacity="0.6"
+                            >
+                              {awardedDate}
                             </Text>
+                          </GridItem>
 
-                            <Text fontWeight={500} fontSize={18}>
-                              {awarderOrganization}
+                          <GridItem area="awardeeName">
+                            <Text
+                              fontWeight={500}
+                              fontSize={{
+                                base: "calc(0.8125rem + ((1vw - 3.75px) * 0.6573))",
+                                lg: 20,
+                              }}
+                              lineHeight="1.5"
+                            >
+                              {awardeeName}
                             </Text>
-                          </VStack>
-                        </HStack>
+                          </GridItem>
+
+                          <GridItem area="awardDetail">
+                            <VStack
+                              alignSelf="flex-start"
+                              alignItems="flex-start"
+                              spacing="2px"
+                            >
+                              <Text
+                                fontWeight={500}
+                                fontSize={{
+                                  base: "calc(0.9375rem + ((1vw - 3.75px) * 0.4695))",
+                                  lg: 20,
+                                }}
+                              >
+                                {awardName}
+                              </Text>
+
+                              <Text
+                                fontWeight={500}
+                                fontSize={{
+                                  base: "calc(0.75rem + ((1vw - 3.75px) * 0.5634))",
+                                  lg: 18,
+                                }}
+                                color="#484848"
+                              >
+                                {awarderOrganization}
+                              </Text>
+                            </VStack>
+                          </GridItem>
+                        </Grid>
                       </SplideSlide>
                     )
                   )}
@@ -347,7 +435,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                     <Text
                       fontFamily={ubuntuFont.style.fontFamily}
                       fontWeight={400}
-                      fontSize={20}
+                      fontSize={{ base: 12, lg: 20 }}
                       sx={{ writingMode: "vertical-lr" }}
                       color="main"
                       userSelect="none"
@@ -358,7 +446,10 @@ export const AwardsPage: NextPageWithLayout = () => {
                 </VStack>
               </HStack>
 
-              <HStack className="splide__arrows" spacing="44px">
+              <HStack
+                className="splide__arrows"
+                spacing={{ base: "8px", lg: "44px" }}
+              >
                 {/* onClick は Splide が勝手に注入するので不要 */}
                 <IconButton
                   className="splide__arrow splide__arrow--next"
@@ -368,15 +459,16 @@ export const AwardsPage: NextPageWithLayout = () => {
                   color="#adadad"
                   _hover={{
                     bg: "unset",
-                  }}
-                  sx={{
                     ":not(:disabled)": {
-                      ":hover": {
-                        color: "#cecece",
-                      },
+                      color: "#cecece",
                     },
                   }}
-                  icon={<ChevronDown w="32px" h="auto" />}
+                  _disabled={{
+                    opacity: 0.3,
+                  }}
+                  icon={
+                    <ChevronDown w={{ base: "20px", lg: "32px" }} h="auto" />
+                  }
                 />
 
                 <IconButton
@@ -385,20 +477,19 @@ export const AwardsPage: NextPageWithLayout = () => {
                   aria-label=""
                   variant="ghost"
                   color="#adadad"
-                  w="32px"
-                  h="32px"
+                  w={{ base: "20px", lg: "32px" }}
+                  h={{ base: "20px", lg: "32px" }}
                   p={0}
                   _hover={{
                     bg: "unset",
-                  }}
-                  sx={{
                     ":not(:disabled)": {
-                      ":hover": {
-                        color: "#cecece",
-                      },
+                      color: "#cecece",
                     },
                   }}
-                  icon={<ChevronUp w="32px" h="auto" />}
+                  _disabled={{
+                    opacity: 0.3,
+                  }}
+                  icon={<ChevronUp w={{ base: "20px", lg: "32px" }} h="auto" />}
                 />
               </HStack>
             </VStack>
