@@ -354,7 +354,7 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
                       alignItems="baseline"
                     >
                       <Text
-                        fontWeight={600}
+                        fontWeight={500}
                         fontSize={{
                           base: "calc(1.5rem + ((1vw - 3.75px) * 1.1268))",
                           lg: 36,
