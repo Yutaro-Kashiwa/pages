@@ -11,6 +11,7 @@ import {
   Link,
   List,
   Show,
+  Stack,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -170,6 +171,15 @@ export const PublicationsPage: NextPageWithLayout = () => {
 
   return (
     <>
+      <style jsx global>
+        {`
+          html {
+            overflow-x: hidden;
+            overflow-y: hidden;
+          }
+        `}
+      </style>
+
       {/* global を付けないと splide に認識されない */}
       <style jsx global>
         {`
@@ -211,6 +221,14 @@ export const PublicationsPage: NextPageWithLayout = () => {
             border-radius: 100%;
           }
 
+          @media screen and (max-width: 991px) {
+            .news-pagination-page {
+              width: 24px;
+              height: 24px;
+              font-size: 12px;
+            }
+          }
+
           /* 現在表示されているページネーションのスタイル */
           .news-pagination-page.is-active {
             background-color: #f2f947;
@@ -234,6 +252,14 @@ export const PublicationsPage: NextPageWithLayout = () => {
         `}
       </style>
 
+      <style jsx global>
+        {`
+          .splide__track {
+            width: 100%;
+          }
+        `}
+      </style>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -242,14 +268,13 @@ export const PublicationsPage: NextPageWithLayout = () => {
           duration: 1,
         }}
         style={{
-          height: "100%"
+          height: "100%",
         }}
       >
         <Container
           ref={contentContainerRef}
           maxW="1280px"
           h="100%" 
-          mt="5vh" 
           overflow="auto"
         >
           <Splide
@@ -258,16 +283,24 @@ export const PublicationsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: "70vh",
-              fixedWidth: !!contentContainerSize
-                ? contentContainerSize.width - 184
-                : "80vw",
+              height: "75vh",
+              width: "100vw",
+              perPage: 3,
+              gap: 16,
               classes: {
                 pagination: "splide__pagination news-pagination",
                 page: "splide__pagination__page news-pagination-page",
               },
-              perPage: 5,
-              gap: 40,
+              mediaQuery: "min",
+              padding: {
+                top: "5vh"
+              },
+              breakpoints: {
+                992: {
+                  perPage: 5,
+                  gap: 40,
+                },
+              },
             }}
           >
             <VStack align="center" w="100%" h="100%">
@@ -276,11 +309,11 @@ export const PublicationsPage: NextPageWithLayout = () => {
                 h="100%"
                 justify="space-between"
                 align="flex-start"
-                spacing="84px"
+                spacing={{ base: "12px", lg: "84px" }}
               >
                 <SplideTrack>
-                  <SplideSlide>
-                    <Show above="lg">
+                  <Show above="lg">
+                    <SplideSlide>
                       <HStack position="relative" w="fit-content">
                         <Box
                           position="absolute"
@@ -305,8 +338,8 @@ export const PublicationsPage: NextPageWithLayout = () => {
                           publications
                         </Heading>
                       </HStack>
-                    </Show>
-                  </SplideSlide>
+                    </SplideSlide>
+                  </Show>
 
                   {mockPublicationsList.map(
                     (
@@ -334,21 +367,27 @@ export const PublicationsPage: NextPageWithLayout = () => {
                         id === firstPublicationInCurrentYear?.id;
 
                       return (
-                        <SplideSlide key={id}>
-                          <HStack justify="space-between">
+                        <SplideSlide
+                          key={id}
+                          style={{ width: "100%", flexBasis: "80%" }}
+                        >
+                          <Stack
+                            flexDir={{ base: "column", lg: "row" }}
+                            justify={{ lg: "space-between" }}
+                          >
                             <Box
                               w="110px"
-                              minW="110px"
-                              aria-hidden={
-                                !isTheFirstPublicationInCurrentYear
-                              }
+                              aria-hidden={!isTheFirstPublicationInCurrentYear}
                             >
                               {isTheFirstPublicationInCurrentYear && (
                                 <Heading
                                   as="h3"
                                   fontFamily={ubuntuFont.style.fontFamily}
                                   fontWeight={700}
-                                  fontSize={48}
+                                  fontSize={{
+                                    base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
+                                    lg: 48,
+                                  }}
                                   color="main"
                                   opacity="0.6"
                                 >
@@ -362,21 +401,31 @@ export const PublicationsPage: NextPageWithLayout = () => {
                               justify="space-between"
                               align="flex-start"
                             >
-                              <VStack align="flex-start">
+                              <VStack
+                                align="flex-start"
+                                rowGap={{ base: "4px", lg: "8px" }}
+                                spacing={0}
+                              >
                                 <Heading
                                   as="h4"
                                   fontFamily={ubuntuFont.style.fontFamily}
                                   fontWeight={700}
-                                  fontSize={16}
+                                  fontSize={{
+                                    base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                                    lg: 16,
+                                  }}
                                 >
                                   {title}
                                 </Heading>
 
-                                <VStack align="inherit" spacing="1px">
+                                <VStack align="inherit" spacing={{ lg: "1px" }}>
                                   <Text
                                     fontFamily={ubuntuFont.style.fontFamily}
                                     fontWeight={400}
-                                    fontSize={14}
+                                    fontSize={{
+                                      base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                                      lg: 14,
+                                    }}
                                     whiteSpace="pre-line"
                                     textAlign="left"
                                   >
@@ -386,7 +435,10 @@ export const PublicationsPage: NextPageWithLayout = () => {
                                   <Text
                                     fontFamily={ubuntuFont.style.fontFamily}
                                     fontWeight={400}
-                                    fontSize={14}
+                                    fontSize={{
+                                      base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                                      lg: 14,
+                                    }}
                                     whiteSpace="pre-line"
                                     textAlign="left"
                                   >
@@ -401,10 +453,10 @@ export const PublicationsPage: NextPageWithLayout = () => {
                                 display="inline-flex"
                                 justifyContent="center"
                                 alignItems="center"
-                                boxSize="44px"
-                                p="12px"
+                                boxSize={{ base: "22px", lg: "44px" }}
+                                p={{ lg: "12px" }}
                                 borderRadius="100%"
-                                _hover={{ bgColor: "white" }}
+                                _hover={{ lg: { bgColor: "white" } }}
                               >
                                 <SquareAndArrowDown
                                   w="100%"
@@ -413,7 +465,7 @@ export const PublicationsPage: NextPageWithLayout = () => {
                                 />
                               </Link>
                             </HStack>
-                          </HStack>
+                          </Stack>
                         </SplideSlide>
                       );
                     }
@@ -421,10 +473,11 @@ export const PublicationsPage: NextPageWithLayout = () => {
                 </SplideTrack>
 
                 <VStack
-                  h="60vh"
-                  justifyContent="space-between"
+                  h="100%"
+                  justifyContent="space-around"
                   alignItems="center"
-                  pt="10vh"
+                  wrap="nowrap"
+                  pt="10%"
                 >
                   <List
                     className="splide__pagination news-pagination"
@@ -444,7 +497,7 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     <Text
                       fontFamily={ubuntuFont.style.fontFamily}
                       fontWeight={400}
-                      fontSize={20}
+                      fontSize={{ base: "12px", lg: 20 }}
                       sx={{ writingMode: "vertical-lr" }}
                       color="main"
                       userSelect="none"
@@ -455,7 +508,10 @@ export const PublicationsPage: NextPageWithLayout = () => {
                 </VStack>
               </HStack>
 
-              <HStack className="splide__arrows" spacing="44px">
+              <HStack
+                className="splide__arrows"
+                spacing={{ base: "8px", lg: "44px" }}
+              >
                 {/* onClick は Splide が勝手に注入するので不要 */}
                 <IconButton
                   className="splide__arrow splide__arrow--next"
@@ -470,9 +526,11 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     },
                   }}
                   _disabled={{
-                    opacity: 0.3
+                    opacity: 0.3,
                   }}
-                  icon={<ChevronDown w="32px" h="auto" />}
+                  icon={
+                    <ChevronDown w={{ base: "20px", lg: "32px" }} h="auto" />
+                  }
                 />
 
                 <IconButton
@@ -481,8 +539,8 @@ export const PublicationsPage: NextPageWithLayout = () => {
                   aria-label=""
                   variant="ghost"
                   color="#adadad"
-                  w="32px"
-                  h="32px"
+                  w={{ base: "20px", lg: "32px" }}
+                  h={{ base: "20px", lg: "32px" }}
                   p={0}
                   _hover={{
                     bg: "unset",
@@ -491,9 +549,9 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     },
                   }}
                   _disabled={{
-                    opacity: 0.3
+                    opacity: 0.3,
                   }}
-                  icon={<ChevronUp w="32px" h="auto" />}
+                  icon={<ChevronUp w={{ base: "20px", lg: "32px" }} h="auto" />}
                 />
               </HStack>
             </VStack>
