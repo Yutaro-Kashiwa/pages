@@ -323,6 +323,7 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
                       "picture positions"
                     `,
                   }}
+                  rowGap={{ base: "8px", lg: "unset" }}
                   columnGap={{ base: "24px", lg: "32px" }}
                 >
                   <GridItem area="picture" maxW="200px">
