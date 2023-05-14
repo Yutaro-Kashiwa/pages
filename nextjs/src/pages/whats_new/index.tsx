@@ -317,6 +317,14 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
         `}
       </style>
 
+      <style jsx global>
+        {`
+          .splide__slide {
+            list-style-type: none !important;
+          }
+        `}
+      </style>
+
       {/* TODO: Splide が重すぎてスライディングアニメーションが効かない問題を修正する */}
       <motion.div
         initial={!!refererPath?.match(/\/whats_new\/[^\s].*/) ? { y: "-100%" } : { opacity: 0 }}
