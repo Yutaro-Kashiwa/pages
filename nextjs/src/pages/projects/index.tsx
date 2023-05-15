@@ -90,10 +90,11 @@ const ProjectSummaryCard = memo<
       </Text>
     </GridItem>
 
-    <GridItem area="detailLink" position="relative" justifySelf="start">
+    <GridItem area="detailLink" position="relative" justifySelf="start" minH="64px">
       <Link
         as={NextLink}
         href={`/projects/${name}`}
+        // absolute にしないと、パディングのアニメーションの際、画面全体がピョコピョコ動いてしまう
         position="absolute"
         display="flex"
         justifyContent="center"
@@ -186,7 +187,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h="100%" pt="5vh" overflowX="visible" overflowY="visible">
+        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} pt={{ lg: "5vh" }} overflowX="visible" overflowY="visible">
           <VStack
             h="100%"
             justifyContent="space-around"
@@ -218,7 +219,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
               </HStack>
             </Show>
 
-            <VStack justifyContent="space-evenly" flexBasis={{ lg: "90%" }}>
+            <VStack h="100%" justifyContent="space-evenly" flexBasis={{ lg: "90%" }} rowGap={{ base: "64px", lg: "unset" }}>
               {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
                 <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
                   <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
