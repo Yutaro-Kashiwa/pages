@@ -257,7 +257,8 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
           display="block"
           position="relative"
           maxW="1280px"
-          h="100%"
+          h={{ base: "fit-content", lg: "100%" }}
+          pb={{ base: "84px", lg: "unset" }}
           overflowX="visible"
           overflowY="visible"
         >
@@ -295,10 +296,12 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
 
             <SimpleGrid
               w="100%"
-              h="70%"
+              h={{ base: "100%", lg: "70%" }}
               templateRows="auto"
               minChildWidth="min(50vw, 300px)"
               justifyContent="space-between"
+              // TODO: スライドアニメーションを追加したら不要になる
+              rowGap={{ base: "24px", lg: "unset" }}
               columnGap="72px"
             >
               <VStack
