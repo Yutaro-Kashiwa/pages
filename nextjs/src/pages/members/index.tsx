@@ -129,10 +129,10 @@ export const MembersPage: NextPageWithLayout = () => {
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h="100%" mt="5%" overflow="auto">
+        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} overflowY="visible">
           <VStack
             h="100%"
-            justifyContent="space-between"
+            justifyContent="space-around"
             alignItems="flex-start"
           >
             <Show above="lg">
@@ -164,7 +164,7 @@ export const MembersPage: NextPageWithLayout = () => {
             <SimpleGrid
               alignSelf="center"
               w="100%"
-              h="100%"
+              h={{ base: "80vh", lg: "unset" }}
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
               alignItems="center"
