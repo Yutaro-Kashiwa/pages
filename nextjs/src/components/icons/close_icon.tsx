@@ -1,0 +1,7 @@
+import { createIcon } from "@chakra-ui/react";
+
+export const CloseIcon = createIcon({
+  displayName: "CloseIcon",
+  viewBox: "0 0 17 16",
+  d: "M14.4341 15.8499L16.0671 14.1939L10.1561 8.28294L16.0671 2.34894L14.4341 0.715942L8.50011 6.62694L2.58911 0.715942L0.933105 2.37194L6.84411 8.28294L0.933105 14.1939L2.58911 15.8499L8.50011 9.93894L14.4341 15.8499Z"
+})
