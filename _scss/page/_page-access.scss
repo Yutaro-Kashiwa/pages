@@ -1,7 +1,0 @@
-.page-access {
-  @include mq-up() {
-    &::after {
-      content: "\0041\0063\0063\0065\0073\0073";
-    }
-  }
-}
