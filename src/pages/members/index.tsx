@@ -168,6 +168,10 @@ export const MembersPage: NextPageWithLayout = () => {
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
               alignItems="center"
+              alignContent={{
+                base: "space-evenly",
+                lg: "unset"
+              }}
               columnGap={{ base: "48px" }}
             >
               {membersList.map(({ uid, name, grade, pictureURL }) => (
