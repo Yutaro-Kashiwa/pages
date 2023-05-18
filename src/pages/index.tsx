@@ -20,7 +20,7 @@ export default function TopPage() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{
-        duration: 1,
+        duration: 0.3,
       }}
       style={{
         height: "100%"
