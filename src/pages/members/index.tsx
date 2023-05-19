@@ -19,6 +19,7 @@ import { Ubuntu } from "next/font/google";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { AvatarIcon } from "@/components/icons/avatar_icon";
 import { motion } from "framer-motion";
+import { GetServerSideProps } from "next";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -107,7 +108,11 @@ const MemberSummaryCard = memo<MemberSummaryCardProps>(
 
 MemberSummaryCard.displayName = "MemberSummaryCard";
 
-export const MembersPage: NextPageWithLayout = () => {
+type PageProps = {
+  members: Member[]
+}
+
+export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
   return (
     <>
       <style jsx global>
@@ -174,7 +179,7 @@ export const MembersPage: NextPageWithLayout = () => {
               }}
               columnGap={{ base: "48px" }}
             >
-              {membersList.map(({ uid, name, grade, pictureURL }) => (
+              {members.map(({ uid, name, grade, pictureURL }) => (
                 <Fragment key={uid}>
                   <Box maxH="260px" w="20vw" minW="64px" maxW="136px">
                     <MemberSummaryCard
@@ -196,5 +201,16 @@ export const MembersPage: NextPageWithLayout = () => {
 MembersPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="members">{page}</CommonPageLayout>
 );
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+  // API取得処理の代わり
+  const members = membersList
+
+  return {
+    props: {
+      members
+    }
+  }
+}
 
 export default MembersPage;
