@@ -1,6 +1,6 @@
 import NextLink from "next/link";
 import { Box, Container, HStack, List, ListItem, Link } from "@chakra-ui/react";
-import { Fragment, memo } from "react";
+import { Fragment, memo, useEffect, useRef } from "react";
 
 type Props = {
   currentPathname: string;
@@ -49,92 +49,125 @@ const routes: (NavigationRoute & { id: string; })[] = [
   },
 ]
 
-export const NavigationLinks = memo<Props>(({ currentPathname }) => (
-  <Box as="nav" mx="auto">
-    <List
-      display="flex"
-      flexFlow="row nowrap"
-      justifyContent="space-between"
-      alignItems="baseline"
-      pb="24px"
-      gap="44px"
-    >
-      <ListItem
-        transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
-        _hover={{
-          transform: currentPathname !== "/" ? "translateY(-4px)" : "none",
-        }}
+export const NavigationLinks = memo<Props>(({ currentPathname }) => {
+  const listContainerRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    if (!listContainerRef || !listContainerRef.current) return;
+
+    const linkItems: HTMLCollectionOf<HTMLLIElement> = listContainerRef.current
+      .children as HTMLCollectionOf<HTMLLIElement>;
+
+    if (!linkItems) return;
+
+    const currentDisplayedLinkItem: HTMLLIElement | null =
+      linkItems.namedItem(currentPathname);
+
+    currentDisplayedLinkItem?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+    });
+  }, [currentPathname]);
+
+  return (
+    <Box as="nav" mx="auto">
+      <List
+        ref={listContainerRef}
+        display="flex"
+        flexFlow="row nowrap"
+        justifyContent="space-between"
+        alignItems="baseline"
+        pb="24px"
+        gap="44px"
       >
-        <Link
-          as={NextLink}
-          href="/"
-          fontSize={{
-            base: currentPathname === "/" ? "calc(1.875rem + ((1vw - 3.75px) * 0.939))" : 18,
-            lg: currentPathname === "/" ? 40 : 18
-          }}
-          fontWeight="700"
-          textTransform="uppercase"
-          color={currentPathname === "/" ? "white" : "rgba(1, 104, 183, 0.7)"}
+        <ListItem
+          // @ts-ignore
+          name="/"
+          transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
           _hover={{
-            textDecoration: "none",
-            color: currentPathname !== "/" ? "main" : undefined
+            transform: currentPathname !== "/" ? "translateY(-4px)" : "none",
           }}
         >
-          Top
-        </Link>
-      </ListItem>
-
-      {routes.map(({ id, title, path }) => (
-        <Fragment key={id}>
-          <ListItem
-            transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+          <Link
+            as={NextLink}
+            href="/"
+            fontSize={{
+              base:
+                currentPathname === "/"
+                  ? "calc(1.875rem + ((1vw - 3.75px) * 0.939))"
+                  : 18,
+              lg: currentPathname === "/" ? 40 : 18,
+            }}
+            fontWeight="700"
+            textTransform="uppercase"
+            color={currentPathname === "/" ? "white" : "rgba(1, 104, 183, 0.7)"}
             _hover={{
-              transform: currentPathname !== path ? "translateY(-4px)" : "none",
+              textDecoration: "none",
+              color: currentPathname !== "/" ? "main" : undefined,
             }}
           >
-            {currentPathname === "/" ? (
-              <Link
-                as={NextLink}
-                href={path}
-                fontSize={18}
-                fontWeight="700"
-                textTransform="uppercase"
-                color={"rgba(255, 255, 255, 0.7)"}
-                _hover={{
-                  textDecoration: "none",
-                  color: "white"
-                }}
-              >
-                {title}
-              </Link>
-            ) : (
-              <Link
-                as={NextLink}
-                href={path}
-                fontSize={{
-                  base: currentPathname === path ? "calc(1.875rem + ((1vw - 3.75px) * 0.939))" : 18,
-                  lg: currentPathname === path ? 40 : 18
-                }}
-                fontWeight="700"
-                textTransform="uppercase"
-                color={
-                  currentPathname === path
-                    ? "#0168B7"
-                    : "rgba(1, 104, 183, 0.7)"
-                }
-                _hover={{
-                  textDecoration: "none",
-                  color: "main"
-                }}
-              >
-                {title}
-              </Link>
-            )}
-          </ListItem>
-        </Fragment>
-      ))}
-    </List>
-  </Box>
-));
+            Top
+          </Link>
+        </ListItem>
+
+        {routes.map(({ id, title, path }) => (
+          <Fragment key={id}>
+            <ListItem
+              // @ts-ignore
+              name={path}
+              transition="transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)"
+              _hover={{
+                transform:
+                  currentPathname !== path ? "translateY(-4px)" : "none",
+              }}
+            >
+              {currentPathname === "/" ? (
+                <Link
+                  as={NextLink}
+                  href={path}
+                  fontSize={18}
+                  fontWeight="700"
+                  textTransform="uppercase"
+                  color={"rgba(255, 255, 255, 0.7)"}
+                  _hover={{
+                    textDecoration: "none",
+                    color: "white",
+                  }}
+                >
+                  {title}
+                </Link>
+              ) : (
+                <Link
+                  as={NextLink}
+                  href={path}
+                  fontSize={{
+                    base:
+                      currentPathname === path
+                        ? "calc(1.875rem + ((1vw - 3.75px) * 0.939))"
+                        : 18,
+                    lg: currentPathname === path ? 40 : 18,
+                  }}
+                  fontWeight="700"
+                  textTransform="uppercase"
+                  color={
+                    currentPathname === path
+                      ? "#0168B7"
+                      : "rgba(1, 104, 183, 0.7)"
+                  }
+                  _hover={{
+                    textDecoration: "none",
+                    color: "main",
+                  }}
+                >
+                  {title}
+                </Link>
+              )}
+            </ListItem>
+          </Fragment>
+        ))}
+      </List>
+    </Box>
+  );
+});
 
 NavigationLinks.displayName = "NavigationLinks";
