@@ -288,10 +288,9 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: "75vh",
+              height: !!contentContainerSize ? contentContainerSize.height * (90 / 100) : "75vh",
               width: "100vw",
-              perPage: 3,
-              gap: 16,
+              perPage: 4,
               classes: {
                 pagination: "splide__pagination news-pagination",
                 page: "splide__pagination__page news-pagination-page",
