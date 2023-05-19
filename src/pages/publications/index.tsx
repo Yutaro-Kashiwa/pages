@@ -26,6 +26,7 @@ import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { ChevronDown } from "@/components/icons/chevron_down";
 import { ChevronUp } from "@/components/icons/chevron_up";
 import { SquareAndArrowDown } from "@/components/icons/square_and_arrow_down";
+import { GetServerSideProps } from "next";
 
 const ubuntuFont = Ubuntu({
   weight: ["400", "700"],
@@ -164,7 +165,11 @@ const mockPublicationsList: Publication[] = [
   },
 ];
 
-export const PublicationsPage: NextPageWithLayout = () => {
+type PageProps = {
+  publications?: Publication[];
+}
+
+export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
@@ -341,7 +346,7 @@ export const PublicationsPage: NextPageWithLayout = () => {
                     </SplideSlide>
                   </Show>
 
-                  {mockPublicationsList.map(
+                  {!!publications && publications.map(
                     (
                       {
                         id,
@@ -565,5 +570,16 @@ export const PublicationsPage: NextPageWithLayout = () => {
 PublicationsPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="publications">{page}</CommonPageLayout>
 );
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
+  // API通信の代わり
+  const publications: Publication[] = mockPublicationsList
+
+  return {
+    props: {
+      publications
+    }
+  }
+}
 
 export default PublicationsPage;
