@@ -260,18 +260,17 @@ export const AwardsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: "70vh",
+              height: !!contentContainerSize ? contentContainerSize.height * (80 / 100) : "75vh",
               width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
                 page: "splide__pagination__page news-pagination-page",
               },
-              perPage: 4,
+              perPage: 5,
               mediaQuery: "min",
               breakpoints: {
                 992: {
                   height: "75vh",
-                  perPage: 5,
                   padding: {
                     top: "5vh",
                   },
