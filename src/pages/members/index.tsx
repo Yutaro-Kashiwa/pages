@@ -136,7 +136,7 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
       >
         <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} overflowY="visible">
           <VStack
-            h="100%"
+            h="80%"
             justifyContent="space-around"
             alignItems="flex-start"
           >
