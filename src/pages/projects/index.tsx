@@ -157,10 +157,12 @@ ProjectSummaryCard.displayName = "ProjectCard";
 
 type PageProps = {
   refererPath: string | null;
+  projects?: Project[];
 };
 
 export const ProjectsPage: NextPageWithLayout<PageProps> = ({
-  refererPath
+  refererPath,
+  projects
 }) => {
   const { asPath } = useRouter()
 
@@ -219,7 +221,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
             </Show>
 
             <VStack h="100%" justifyContent="space-evenly" flexBasis={{ lg: "90%" }}>
-              {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
+              {!!projects && projects.map(({ title, name, body, summary, pictureURL }, index) => (
                 <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
                   <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
                 </Fragment>
@@ -239,10 +241,14 @@ ProjectsPage.getLayout = (page: ReactElement) => (
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
   const referer = context.req.headers.referer;
 
+  // API取得の代わり
+  const projects: Project[] = [...mockProjectsList, ...mockProjectsList]
+
   if (!referer) {
     return { 
       props: {
-        refererPath: null
+        refererPath: null,
+        projects
       }
     }
   }
@@ -253,6 +259,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
   return {
     props: {
       refererPath,
+      projects,
     },
   };
 };
