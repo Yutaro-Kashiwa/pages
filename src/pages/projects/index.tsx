@@ -186,7 +186,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} pt={{ lg: "5vh" }} overflowX="visible" overflowY="visible">
+        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} pt="5vh" pb={{ base: "5vh", lg: "unset" }} overflowX="visible" overflowY="visible">
           <VStack
             h="100%"
             justifyContent="space-around"
