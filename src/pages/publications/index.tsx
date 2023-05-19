@@ -406,6 +406,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                               align="flex-start"
                             >
                               <VStack
+                                w="90%"
                                 align="flex-start"
                                 rowGap={{ base: "4px", lg: "8px" }}
                                 spacing={0}
@@ -422,7 +423,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                   {title}
                                 </Heading>
 
-                                <VStack align="inherit" spacing={{ lg: "1px" }}>
+                                <VStack w="100%" align="inherit" spacing={{ lg: "1px" }}>
                                   <Text
                                     fontFamily={ubuntuFont.style.fontFamily}
                                     fontWeight={400}
@@ -430,7 +431,16 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                       base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
                                       lg: 14,
                                     }}
-                                    whiteSpace="pre-line"
+                                    w="100%"
+                                    textOverflow={{
+                                      base: "ellipsis",
+                                      lg: "unset"
+                                    }}
+                                    overflow={{
+                                      base: "hidden",
+                                      lg: "unset"
+                                    }}
+                                    whiteSpace={{ base: "nowrap", lg: "pre-line" }}
                                     textAlign="left"
                                   >
                                     {authors}
@@ -443,7 +453,16 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                       base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
                                       lg: 14,
                                     }}
-                                    whiteSpace="pre-line"
+                                    w="100%"
+                                    textOverflow={{
+                                      base: "ellipsis",
+                                      lg: "unset"
+                                    }}
+                                    overflow={{
+                                      base: "hidden",
+                                      lg: "unset"
+                                    }}
+                                    whiteSpace={{ base: "nowrap", lg: "pre-line" }}
                                     textAlign="left"
                                   >
                                     {appearedJournal}
