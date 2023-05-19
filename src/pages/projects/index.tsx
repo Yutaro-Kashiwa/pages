@@ -39,7 +39,7 @@ const ProjectSummaryCard = memo<
   Project & { shouldReverseImagePlacement: boolean }
 >(({ title, name, summary, pictureURL, shouldReverseImagePlacement }) => (
   <Grid
-    h={{ base: "100%", lg: "unset" }}
+    h={{ base: "fit-content", lg: "unset" }}
     templateRows="auto"
     templateColumns="auto"
     templateAreas={{
@@ -62,7 +62,7 @@ const ProjectSummaryCard = memo<
       `,
     }}
     justifyItems={{ base: "center", lg: "unset" }}
-    rowGap={{ base: "20px", lg: "unset" }}
+    rowGap="20px"
     columnGap={{ lg: "60px" }}
   >
     <GridItem area="projectTitle">
@@ -94,8 +94,7 @@ const ProjectSummaryCard = memo<
       <Link
         as={NextLink}
         href={`/projects/${name}`}
-        // absolute にしないと、パディングのアニメーションの際、画面全体がピョコピョコ動いてしまう
-        position="absolute"
+        position="relative"
         display="flex"
         justifyContent="center"
         alignItems="center"
@@ -129,7 +128,7 @@ const ProjectSummaryCard = memo<
           詳しくはこちら
         </Text>
 
-        <Box position="absolute" w="fit-content" h="80%" top="50%" right="8px">
+        <Box position="absolute" w="fit-content" h="100%" top="40%" right="8px">
           <ArrowDown h="100%" color="main" />
         </Box>
       </Link>
@@ -219,7 +218,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
               </HStack>
             </Show>
 
-            <VStack h="100%" justifyContent="space-evenly" flexBasis={{ lg: "90%" }} rowGap={{ base: "64px", lg: "unset" }}>
+            <VStack h="100%" justifyContent="space-evenly" flexBasis={{ lg: "90%" }}>
               {[...mockProjectsList, ...mockProjectsList].map(({ title, name, body, summary, pictureURL }, index) => (
                 <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
                   <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
