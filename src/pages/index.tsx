@@ -4,12 +4,11 @@ import {
   Heading,
   VStack,
   Text,
-  LinkBox,
-  LinkOverlay,
+  Link,
   Spacer,
   Container,
 } from "@chakra-ui/react";
-import NextImage from "next/image";
+import NextLink from "next/link";
 import { ArrowRight } from "@/components/icons/arrow_right";
 import { motion } from "framer-motion";
 
@@ -73,40 +72,52 @@ export default function TopPage() {
     右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。`}
             </Text>
 
-            <LinkBox p={0}>
-              <LinkOverlay href="">
-                <Box
-                  display="inline-flex"
-                  alignItems="center"
-                  pl="20px"
-                  pr="28px"
-                  py="8px"
-                  borderWidth="1px"
-                  borderStyle="solid"
-                  borderColor="#ffffff"
+            <Box position="relative" h="40px">
+              <Link
+                as={NextLink}
+                href="/projects"
+                position="relative"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                borderWidth="1px"
+                borderStyle="solid"
+                borderColor="white"
+                h="fit-content"
+                w="fit-content"
+                pl={{ base: "12px", lg: "20px" }}
+                pr={{ base: "24px", lg: "28px" }}
+                py={{ base: "4px", lg: "8px" }}
+                transform="scale(1)"
+                transformOrigin="left top"
+                _hover={{
+                  textDecoration: "none",
+                  backgroundColor: "#F2F947",
+                  pl: "28px",
+                  pr: "40px",
+                  py: "12px",
+                  transfrom: "scale(1.001)",
+                }}
+                transition="ease-out 0.3s"
+              >
+                <Text
+                  as="p"
+                  fontWeight="400"
+                  fontSize={{
+                    base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                    lg: "16px",
+                  }}
+                  color="white"
+                  whiteSpace="nowrap"
                 >
-                  <Text
-                    fontWeight="400"
-                    fontSize={{
-                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                      lg: "16px",
-                    }}
-                    color="#ffffff"
-                  >
-                    詳しくはこちら
-                  </Text>
+                  詳しくはこちら
+                </Text>
 
-                  <Box position="relative" h="16px">
-                    <ArrowRight
-                      position="absolute"
-                      w="38px"
-                      left="10px"
-                      color="#ffffff"
-                    />
-                  </Box>
+                <Box position="absolute" w="32px" right="-16px">
+                  <ArrowRight w="100%" h="100%" color="white" />
                 </Box>
-              </LinkOverlay>
-            </LinkBox>
+              </Link>
+            </Box>
           </VStack>
         </VStack>
       </Container>
