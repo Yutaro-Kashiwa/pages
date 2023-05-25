@@ -1,16 +1,14 @@
+import { ArrowRight } from "@/components/icons/arrow_right";
 import {
   Box,
-  Center,
-  Heading,
-  VStack,
-  Text,
-  Link,
-  Spacer,
   Container,
+  Heading,
+  Link,
+  Text,
+  VStack
 } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { ArrowRight } from "@/components/icons/arrow_right";
 import { motion } from "framer-motion";
+import NextLink from "next/link";
 
 export default function TopPage() {
   return (
@@ -22,7 +20,7 @@ export default function TopPage() {
         duration: 0.3,
       }}
       style={{
-        height: "100%"
+        height: "100%",
       }}
     >
       <Container maxW="1280px" h="100%">
@@ -48,8 +46,13 @@ export default function TopPage() {
             overflowWrap="break-word"
             color="#ffffff"
           >
-            <Text as="span" minW={0} color="inherit">ソフトウェアの動きから</Text>
-            <Text as="span" minW={0} color="inherit">異常を自動検知</Text>
+            <Text as="span" minW={0} color="inherit">
+              ソフトウェアの動きから
+            </Text>
+
+            <Text as="span" minW={0} color="inherit">
+              異常を自動検知
+            </Text>
           </Heading>
 
           <VStack alignItems="inherit" spacing="28px">
