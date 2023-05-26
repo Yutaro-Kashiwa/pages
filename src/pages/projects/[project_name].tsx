@@ -42,6 +42,7 @@ export type Project = {
 
 type Props = {
   refererPath: string | null;
+  displayingProject?: Project;
 };
 
 export const mockProjectsList: Project[] = [
@@ -60,30 +61,20 @@ export const mockProjectsList: Project[] = [
 
 export const ProjectDetailPage: NextPageWithLayout<Props> = ({
   refererPath,
+  displayingProject,
 }) => {
   const {
     query: { project_name },
     asPath
   } = useRouter();
 
-  const [projectTitle, setProjectTitle] = useState<string>("");
-  const [projectBody, setProjectBody] = useState<string>("");
-  const [imageURL, setImageURL] = useState<string | undefined>("");
-
   const shouldShowSlidingExitAnimation = asPath === "/projects"
 
-  useEffect(() => {
-    // API取得の代わり
-    const fetchedProjectDetail: Project | undefined = mockProjectsList.find(
-      ({ name }) => name === project_name
-    );
+  if (!displayingProject) {
+    return null
+  }
 
-    if (!fetchedProjectDetail) return;
-
-    setProjectTitle(fetchedProjectDetail.title);
-    setProjectBody(fetchedProjectDetail.body);
-    setImageURL(fetchedProjectDetail.pictureURL);
-  }, [project_name]);
+  const { title, body, pictureURL } = displayingProject
 
   return (
     <>
@@ -156,15 +147,15 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                   lg: 24,
                 }}
               >
-                {projectTitle}
+                {title}
               </Heading>
 
               <VStack alignItems="inherit">
                 <Show below="lg">
                   <Image
                     as={NextImage}
-                    src={imageURL}
-                    alt={projectTitle}
+                    src={pictureURL}
+                    alt={title}
                     float="right"
                     w="100%"
                     maxH="100px"
@@ -190,8 +181,8 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                   <Show above="lg">
                     <Image
                       as={NextImage}
-                      src={imageURL}
-                      alt={projectTitle}
+                      src={pictureURL}
+                      alt={title}
                       float="right"
                       ml="60px"
                       fallback={
@@ -207,7 +198,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                     />
                   </Show>
 
-                  {projectBody}
+                  {body}
                 </Text>
 
                 <VStack w="100%" alignItems="inherit" spacing="2px">
@@ -275,13 +266,21 @@ ProjectDetailPage.getLayout = (page) => (
   <CommonPageLayout title="Projects">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props, { "project_name": string }> = async (context) => {
   const referer = context.req.headers.referer;
+
+  const query = context.query;
+  
+  // API取得の代わり
+  const fetchedProjectDetail: Project | undefined = mockProjectsList.find(
+    ({ name }) => name === query.project_name
+  );
 
   if (!referer) {
     return {
       props: {
         refererPath: null,
+        displayingProject: fetchedProjectDetail,
       }
     }
   }
@@ -292,6 +291,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   return {
     props: {
       refererPath,
+      displayingProject: fetchedProjectDetail,
     },
   };
 };
