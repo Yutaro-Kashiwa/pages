@@ -27,7 +27,8 @@ export default function TopPage() {
         <VStack
           position="relative"
           w="100%"
-          h="100%"
+          h={{ base: "fit-content", lg: "100%" }}
+          mt={{ base: "10vh", lg: "unset" }}
           justifyContent="flex-end"
           alignItems="flex-start"
           spacing="36px"
