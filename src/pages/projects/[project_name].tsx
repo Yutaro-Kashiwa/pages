@@ -107,7 +107,14 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
           height: "100%",
         }}
       >
-        <Container as="article" maxW="1280px" h="100%" overflow="visible">
+        <Container
+          as="article"
+          maxW="1280px"
+          h={{ base: "fit-content", lg: "100%" }}
+          pt={{ base: "32px", lg: "unset" }}
+          pb={{ base: "84px", lg: "unset" }}
+          overflow="visible"
+        >
           <VStack
             h="100%"
             justifyContent="space-around"
@@ -162,7 +169,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                     w="100%"
                     maxH="100px"
                     fallback={
-                      <AspectRatio w="100%" maxH="100px" ratio={2 / 1}>
+                      <AspectRatio w="100%" ratio={2 / 1}>
                         <Box as="img" backgroundColor="#d9d9d9" />
                       </AspectRatio>
                     }
@@ -241,7 +248,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                     alignSelf={{ base: "flex-start", lg: "flex-end" }}
                     color={{ base: "#999999", lg: "rgba(1, 104, 183, 1)" }}
                     opacity={1}
-                    fontWeight={{ base: 700, lg: 400}}
+                    fontWeight={{ base: 700, lg: 400 }}
                     fontSize={{
                       base: "calc(0.75rem + ((1vw - 3.75px) * 0.3756))",
                       lg: 16,
