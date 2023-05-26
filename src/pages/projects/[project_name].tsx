@@ -21,7 +21,7 @@ import { Inter, Ubuntu } from "next/font/google";
 import { GetServerSideProps } from "next";
 import NextLink from "next/link";
 import NextImage from "next/image";
-import { useEffect, useState } from "react";
+import { ParsedUrlQuery } from "querystring";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -64,7 +64,6 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
   displayingProject,
 }) => {
   const {
-    query: { project_name },
     asPath
   } = useRouter();
 
