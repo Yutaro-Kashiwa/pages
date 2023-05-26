@@ -41,7 +41,7 @@ export type Project = {
 };
 
 type Props = {
-  refererPath?: string;
+  refererPath: string | null;
 };
 
 export const mockProjectsList: Project[] = [
@@ -275,11 +275,19 @@ ProjectDetailPage.getLayout = (page) => (
   <CommonPageLayout title="Projects">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   const referer = context.req.headers.referer;
 
-  const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
-  const refererPath: string | undefined = refererURL?.pathname;
+  if (!referer) {
+    return {
+      props: {
+        refererPath: null,
+      }
+    }
+  }
+
+  const refererURL: URL = new URL(referer);
+  const refererPath: string = refererURL.pathname;
 
   return {
     props: {
