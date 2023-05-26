@@ -32,7 +32,7 @@ import { Grid as SplideGridExtension } from "@splidejs/splide-extension-grid";
 import "@splidejs/react-splide/css/core";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import type { NextPageWithLayout } from "@/types/next_page_with_layout";
-import { format, formatISO } from "date-fns";
+import { format, formatISO, parseISO } from "date-fns";
 import { motion } from "framer-motion";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { GetServerSideProps } from "next";
@@ -46,7 +46,7 @@ const ubuntuFont = Ubuntu({
 export type NewsSummary = {
   id: string;
   title: string;
-  createdAt: Date;
+  createdAt: string;
 };
 
 const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
@@ -57,12 +57,12 @@ const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
       <VStack alignItems="inherit" spacing="8px">
         <Text
           as="time"
-          dateTime={formatISO(createdAt)}
+          dateTime={formatISO(parseISO(createdAt))}
           fontFamily={ubuntuFont.style.fontFamily}
           fontWeight={400}
           fontSize="16px"
         >
-          {format(createdAt, "yyyy . MM . dd")}
+          {format(parseISO(createdAt), "yyyy . MM . dd")}
         </Text>
 
         <Text fontSize="18px">{title}</Text>
@@ -78,12 +78,12 @@ const WhatsNewListCard = memo<Omit<NewsSummary, "id">>(
     <HStack flexWrap="nowrap" align="baseline" h="fit-content" spacing="20px">
       <Text
         as="time"
-        dateTime={formatISO(createdAt)}
+        dateTime={formatISO(parseISO(createdAt))}
         fontFamily={ubuntuFont.style.fontFamily}
         fontWeight={400}
         fontSize="14px"
       >
-        {format(createdAt, "yyyy . MM . dd")}
+        {format(parseISO(createdAt), "yyyy . MM . dd")}
       </Text>
 
       <Text fontSize="16px">{title}</Text>
@@ -97,150 +97,151 @@ const mockNewsList: NewsSummary[] = [
   {
     id: "7bfd6b77-ac8b-4db3-8f50-b679524f6ef8",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 9),
+    createdAt: new Date(2022, 11, 9).toISOString(),
   },
   {
     id: "81112c35-ab4b-4686-8be9-876529c71eb0",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "a8878558-eabd-48eb-91c3-5d3c8bd392fe",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "85c915e6-3f4d-4d15-9725-638e0b40f0fa",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "95263426-ddfc-4334-b6cd-e5ce2b606171",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "f656dc36-5471-4421-b36f-40d6154219cc",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "5f1d75d6-5691-42b3-8528-78359b531c71",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "a13c3090-836e-41c8-a49b-79e8ded0cf62",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "dfe74649-0c54-4d99-816c-ab76ff5aa6e6",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "e50180a4-53f2-4b45-8bdb-09a5e324a09c",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "9798ed98-6daa-47ed-90dd-b89f83b03478",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "d9967c15-ccc1-4680-97b3-d43b0847de95",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "f43dc583-eece-4ae8-9567-7f218774fb1b",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "a46ea082-55d4-43ae-b336-86a2ef617116",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "42f2c586-a776-4976-bf7e-8be4c6e39d84",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "e1bd1b9c-36e1-48be-941d-81735d8356e0",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "fb91e009-932c-4bea-8fc7-2f0873e32c4e",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "77abf765-d030-46b6-85be-d235feaf391b",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "3aabb695-0cb8-44b2-adc9-ecdc0c194471",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "11a75f45-dd8b-446a-8fe5-983be6e1cdb3",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "b5c045db-08a9-419b-b1e8-8e688cfe256a",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "fdaf8a5c-9f8d-4bc5-81e6-ced362e1b3e6",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "4d37082e-444c-4290-b0e4-b283da0929e8",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "7bfd6b77-ac8b-4db3-8f50-b679524f6ef8",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 9),
+    createdAt: new Date(2022, 11, 9).toISOString(),
   },
   {
     id: "81112c35-ab4b-4686-8be9-876529c71eb0",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "a8878558-eabd-48eb-91c3-5d3c8bd392fe",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "85c915e6-3f4d-4d15-9725-638e0b40f0fa",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
   {
     id: "95263426-ddfc-4334-b6cd-e5ce2b606171",
     title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10),
+    createdAt: new Date(2022, 11, 10).toISOString(),
   },
 ];
 
 type PageProps = {
   refererPath: string | null;
+  newsList?: NewsSummary[];
 };
 
-export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => {
+export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsList }) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
@@ -398,7 +399,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
               >
                 <HStack justify="space-between" alignItems="flex-start" w="90vw" h="100%" columnGap="2%">
                   <SplideTrack>
-                    {mockNewsList.map(({ id, title, createdAt }) => (
+                    {!!newsList && newsList.map(({ id, title, createdAt }) => (
                       <SplideSlide key={id}>
                         <VStack align="flex-start" maxW="70vw">
                           <LinkBox as="article">
@@ -478,7 +479,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath }) => 
               >
                 <HStack alignItems="flex-start" h="100%" spacing="0">
                   <SplideTrack>
-                    {mockNewsList.map(({ id, title, createdAt }) => (
+                    {!!newsList && newsList.map(({ id, title, createdAt }) => (
                       <SplideSlide key={id}>
                         <LinkBox as="article">
                           <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
@@ -544,9 +545,12 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
   const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
   const refererPath: string | undefined = refererURL?.pathname;
 
+  const newsList: NewsSummary[] = mockNewsList;
+
   return {
     props: {
       refererPath: refererPath ?? null,
+      newsList
     },
   };
 };
