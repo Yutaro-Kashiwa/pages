@@ -21,12 +21,15 @@ import {
   LinkBox,
   LinkOverlay,
   Divider,
+  useMediaQuery,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
   Splide,
   SplideSlide,
   SplideTrack,
+  Options as SplideOptions,
 } from "@splidejs/react-splide";
 import { Grid as SplideGridExtension } from "@splidejs/splide-extension-grid";
 import "@splidejs/react-splide/css/core";
@@ -248,6 +251,49 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
 
   const { asPath } = useRouter()
 
+  const largeLayoutSplideOptions: SplideOptions | undefined =
+    useBreakpointValue<SplideOptions>(
+      {
+        lg: {
+          direction: "ttb",
+          wheel: true,
+          waitForTransition: true,
+          grid: {
+            rows: 2,
+            cols: 3,
+          },
+          height: (contentContainerSize?.height ?? 1) * (80 / 100),
+          fixedWidth: !!contentContainerSize
+            ? contentContainerSize.width - 92
+            : "80vw",
+          arrows: false,
+          classes: {
+            pagination: "splide__pagination news-pagination",
+            page: "splide__pagination__page news-pagination-page",
+          },
+        },
+        xl: {
+          direction: "ttb",
+          wheel: true,
+          waitForTransition: true,
+          grid: {
+            rows: 2,
+            cols: 4,
+          },
+          height: (contentContainerSize?.height ?? 1) * (80 / 100),
+          fixedWidth: !!contentContainerSize
+            ? contentContainerSize.width - 92
+            : "80vw",
+          arrows: false,
+          classes: {
+            pagination: "splide__pagination news-pagination",
+            page: "splide__pagination__page news-pagination-page",
+          },
+        },
+      },
+      { ssr: true, fallback: "md" }
+    );
+
   return (
     <>
       <style jsx global>
@@ -377,7 +423,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
             </Show>
 
             {/* スマホレイアウト */}
-            <Show below="md">
+            <Show below="lg">
               <Splide
                 hasTrack={false}
                 options={{
@@ -454,28 +500,11 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
             </Show>
 
             {/* PCレイアウト */}
-            <Show above="md">
+            <Show above="lg">
               <Splide
                 hasTrack={false}
                 extensions={{ SplideGridExtension }}
-                options={{
-                  direction: "ttb",
-                  wheel: true,
-                  waitForTransition: true,
-                  grid: {
-                    rows: 2,
-                    cols: 4,
-                  },
-                  height: (contentContainerSize?.height ?? 1) * (80 / 100),
-                  fixedWidth: !!contentContainerSize
-                    ? contentContainerSize.width - 92
-                    : "80vw",
-                  arrows: false,
-                  classes: {
-                    pagination: "splide__pagination news-pagination",
-                    page: "splide__pagination__page news-pagination-page",
-                  },
-                }}
+                options={largeLayoutSplideOptions}
               >
                 <HStack alignItems="flex-start" h="100%" spacing="0">
                   <SplideTrack>
