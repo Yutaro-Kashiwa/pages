@@ -13,9 +13,10 @@ import {
   Show,
   Stack,
   Text,
+  useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { Options as SplideOptions, Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { motion } from "framer-motion";
 import { first } from "lodash";
 import "@splidejs/react-splide/css/core";
@@ -174,6 +175,64 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
 
   const contentContainerSize = useSize(contentContainerRef);
 
+  const responsiveSplideOptions: SplideOptions | undefined =
+    useBreakpointValue<SplideOptions>(
+      {
+        base: {
+          direction: "ttb",
+          wheel: true,
+          waitForTransition: true,
+          height: !!contentContainerSize
+            ? contentContainerSize.height * (90 / 100)
+            : "75vh",
+          width: "100vw",
+          perPage: 5,
+          classes: {
+            pagination: "splide__pagination news-pagination",
+            page: "splide__pagination__page news-pagination-page",
+          },
+          padding: {
+            top: "5vh",
+          },
+        },
+        lg: {
+          direction: "ttb",
+          wheel: true,
+          waitForTransition: true,
+          height: !!contentContainerSize
+            ? contentContainerSize.height * (92 / 100)
+            : "75vh",
+          width: "100vw",
+          perPage: 6,
+          classes: {
+            pagination: "splide__pagination news-pagination",
+            page: "splide__pagination__page news-pagination-page",
+          },
+          padding: {
+            top: "5vh",
+          },
+        },
+        "2xl": {
+          direction: "ttb",
+          wheel: true,
+          waitForTransition: true,
+          height: !!contentContainerSize
+            ? contentContainerSize.height * (92 / 100)
+            : "75vh",
+          width: "100vw",
+          perPage: 10,
+          classes: {
+            pagination: "splide__pagination news-pagination",
+            page: "splide__pagination__page news-pagination-page",
+          },
+          padding: {
+            top: "5vh",
+          },
+        },
+      },
+      { ssr: true, fallback: "md" }
+    );
+
   return (
     <>
       <style jsx global>
@@ -284,28 +343,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
         >
           <Splide
             hasTrack={false}
-            options={{
-              direction: "ttb",
-              wheel: true,
-              waitForTransition: true,
-              height: !!contentContainerSize ? contentContainerSize.height * (90 / 100) : "75vh",
-              width: "100vw",
-              perPage: 4,
-              classes: {
-                pagination: "splide__pagination news-pagination",
-                page: "splide__pagination__page news-pagination-page",
-              },
-              mediaQuery: "min",
-              padding: {
-                top: "5vh"
-              },
-              breakpoints: {
-                992: {
-                  perPage: 5,
-                  gap: 40,
-                },
-              },
-            }}
+            options={responsiveSplideOptions}
           >
             <VStack align="center" w="100%" h="100%">
               <HStack
