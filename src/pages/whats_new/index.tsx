@@ -40,6 +40,7 @@ import { motion } from "framer-motion";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { ChakraNextImage } from "@/components/chakra_next_image";
 
 const ubuntuFont = Ubuntu({
   weight: ["400"],
@@ -50,12 +51,23 @@ export type NewsSummary = {
   id: string;
   title: string;
   createdAt: string;
+  imageURL?: string;
 };
 
 const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
-  ({ title, createdAt }) => (
+  ({ title, createdAt, imageURL }) => (
     <VStack maxW="240px" alignItems="flex-start" spacing="16px">
-      <Box w="240px" h="135px" backgroundColor="gray"></Box>
+      {!!imageURL ? (
+        <ChakraNextImage
+          src={imageURL}
+          alt={title}
+          width={240}
+          height={135}
+          objectFit="cover"
+        />
+      ) : (
+        <Box w="240px" h="135px" backgroundColor="gray" />
+      )}
 
       <VStack alignItems="inherit" spacing="8px">
         <Text
@@ -518,13 +530,14 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
               >
                 <HStack alignItems="flex-start" h="100%" spacing="0">
                   <SplideTrack>
-                    {!!newsList && newsList.map(({ id, title, createdAt }) => (
+                    {!!newsList && newsList.map(({ id, title, createdAt, imageURL }) => (
                       <SplideSlide key={id}>
                         <LinkBox as="article">
                           <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
                             <WhatsNewGridCard
                               title={title}
                               createdAt={createdAt}
+                              imageURL={imageURL}
                             />
                           </LinkOverlay>
                         </LinkBox>
