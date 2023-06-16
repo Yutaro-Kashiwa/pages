@@ -86,8 +86,8 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h="100%" overflow="visible">
-          <VStack h="100%" justify="space-around" alignItems="flex-start">
+        <Container maxW="1280px" pt="32px" pb="84px" overflow="visible">
+          <VStack justify="space-around" alignItems="flex-start" rowGap="10vh">
             <Show above="lg">
               <HStack position="relative" w="fit-content">
                 <Box
