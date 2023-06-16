@@ -74,9 +74,11 @@ const MemberSummaryCard = memo<MemberSummaryCardProps>(
       <Avatar
         src={pictureURL}
         size="100%"
+        aspectRatio={135 / 180}
         bg="base.2"
         icon={<AvatarIcon w="100%" h="100%" fill="base.1" />}
         borderRadius={0}
+        objectFit="cover"
       />
 
       <VStack spacing="4px">
