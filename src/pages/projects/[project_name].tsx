@@ -100,15 +100,15 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
         <Container
           as="article"
           maxW="1280px"
-          h={{ base: "fit-content", lg: "100%" }}
-          pt={{ base: "32px", lg: "unset" }}
-          pb={{ base: "84px", lg: "unset" }}
-          overflow="visible"
+          pt="32px"
+          pb="84px"
+          overflowY="visible"
         >
           <VStack
             h="100%"
             justifyContent="space-around"
             alignItems="flex-start"
+            rowGap="5vh"
           >
             <Show above="lg">
               <HStack position="relative" w="fit-content">
