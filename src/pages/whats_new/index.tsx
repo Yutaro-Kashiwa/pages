@@ -581,14 +581,23 @@ WhatsNewPage.getLayout = (page: ReactElement) => (
 export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
   const referer = context.req.headers.referer;
 
-  const refererURL: URL | undefined = !!referer ? new URL(referer) : undefined;
-  const refererPath: string | undefined = refererURL?.pathname;
-
   const newsList: NewsSummary[] = mockNewsList;
+
+  if (!referer) {
+    return {
+      props: {
+        refererPath: null,
+        newsList
+      }
+    }
+  }
+
+  const refererURL: URL = new URL(referer);
+  const refererPath: string = refererURL.pathname;
 
   return {
     props: {
-      refererPath: refererPath ?? null,
+      refererPath: refererPath,
       newsList
     },
   };
