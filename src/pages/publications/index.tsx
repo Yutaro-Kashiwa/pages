@@ -457,6 +457,12 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                     base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
                                     lg: 16,
                                   }}
+                                  sx={{
+                                    display: "-webkit-box",
+                                    "-webkit-line-clamp": "2",
+                                    "-webkit-box-orient": "vertical",
+                                    overflow: "hidden",
+                                  }}
                                 >
                                   {title}
                                 </Heading>
@@ -480,6 +486,12 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                     }}
                                     whiteSpace={{ base: "nowrap", lg: "pre-line" }}
                                     textAlign="left"
+                                    sx={{
+                                      display: "-webkit-box",
+                                      "-webkit-line-clamp": "1",
+                                      "-webkit-box-orient": "vertical",
+                                      overflow: "hidden",
+                                    }}
                                   >
                                     {authors}
                                   </Text>
@@ -502,6 +514,12 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                                     }}
                                     whiteSpace={{ base: "nowrap", lg: "pre-line" }}
                                     textAlign="left"
+                                    sx={{
+                                      display: "-webkit-box",
+                                      "-webkit-line-clamp": "1",
+                                      "-webkit-box-orient": "vertical",
+                                      overflow: "hidden",
+                                    }}
                                   >
                                     {appearedJournal}
                                   </Text>
