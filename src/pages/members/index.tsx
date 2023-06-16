@@ -172,7 +172,7 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
               h={{ base: "80vh", lg: "unset" }}
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
-              alignItems="center"
+              alignItems="start"
               alignContent={{
                 base: "space-evenly",
                 lg: "unset"
