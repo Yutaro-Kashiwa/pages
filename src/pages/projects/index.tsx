@@ -91,6 +91,12 @@ const ProjectSummaryCard = memo<
           base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
           lg: 16,
         }}
+        sx={{
+          display: "-webkit-box",
+          "-webkit-line-clamp": "3",
+          "-webkit-box-orient": "vertical",
+          overflow: "hidden",
+        }}
       >
         {summary}
       </Text>
