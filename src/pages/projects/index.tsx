@@ -74,6 +74,12 @@ const ProjectSummaryCard = memo<
           base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
           lg: 24,
         }}
+        sx={{
+          display: "-webkit-box",
+          "-webkit-line-clamp": "2",
+          "-webkit-box-orient": "vertical",
+          overflow: "hidden",
+        }}
       >
         {title}
       </Heading>
