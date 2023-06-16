@@ -68,7 +68,17 @@ const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
           {format(parseISO(createdAt), "yyyy . MM . dd")}
         </Text>
 
-        <Text fontSize="18px">{title}</Text>
+        <Text
+          fontSize="18px"
+          sx={{
+            display: "-webkit-box",
+            "-webkit-line-clamp": "2",
+            "-webkit-box-orient": "vertical",
+            overflow: "hidden"
+          }}
+        >
+          {title}
+        </Text>
       </VStack>
     </VStack>
   )
