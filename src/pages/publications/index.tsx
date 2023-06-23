@@ -170,10 +170,14 @@ type PageProps = {
   publications?: Publication[];
 }
 
+const LIST_CARD_HEIGHT = 120
+
 export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
+
+  const numberOfSlidesPerPage = !!contentContainerSize ? Math.floor(contentContainerSize.height / LIST_CARD_HEIGHT) : 5
 
   const commonSplideOptions: SplideOptions = useMemo<SplideOptions>(() => ({
     direction: "ttb",
@@ -185,33 +189,27 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
       page: "splide__pagination__page news-pagination-page",
     },
   }), [])
-  
+
   const responsiveSplideOptions: SplideOptions | undefined =
     useBreakpointValue<SplideOptions>(
       {
         base: {
           ...commonSplideOptions,
-          height: !!contentContainerSize
-            ? contentContainerSize.height * (90 / 100)
-            : "75vh",
-          perPage: 5,
+          heightRatio: !!contentContainerSize ? contentContainerSize.height / contentContainerSize.width : 0.3,
+          perPage: numberOfSlidesPerPage - 1,
         },
         lg: {
           ...commonSplideOptions,
-          height: !!contentContainerSize
-            ? contentContainerSize.height * (92 / 100)
-            : "75vh",
-          perPage: 6,
+          heightRatio: !!contentContainerSize ? (contentContainerSize.height + 64) / contentContainerSize.width : 0.3,
+          perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
           },
         },
         "2xl": {
           ...commonSplideOptions,
-          height: !!contentContainerSize
-            ? contentContainerSize.height * (92 / 100)
-            : "75vh",
-          perPage: 10,
+          heightRatio: !!contentContainerSize ? (contentContainerSize.height + 64) / contentContainerSize.width : 0.3,
+          perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
           },
@@ -406,23 +404,27 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                           >
                             <Box
                               w="110px"
-                              aria-hidden={!isTheFirstPublicationInCurrentYear}
+                              aria-hidden={
+                                !isTheFirstPublicationInCurrentYear
+                              }
                             >
-                              {isTheFirstPublicationInCurrentYear && (
-                                <Heading
-                                  as="h3"
-                                  fontFamily={ubuntuFont.style.fontFamily}
-                                  fontWeight={700}
-                                  fontSize={{
-                                    base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
-                                    lg: 48,
-                                  }}
-                                  color="main"
-                                  opacity="0.6"
-                                >
-                                  {publishedYear}
-                                </Heading>
-                              )}
+                              <Heading
+                                as="h3"
+                                fontFamily={ubuntuFont.style.fontFamily}
+                                fontWeight={700}
+                                fontSize={{
+                                  base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
+                                  lg: 48,
+                                }}
+                                color="main"
+                                opacity={isTheFirstPublicationInCurrentYear ? 0.6 : 0}
+                                aria-hidden={
+                                  !isTheFirstPublicationInCurrentYear
+                                }
+                                tabIndex={-1}
+                              >
+                                {publishedYear}
+                              </Heading>
                             </Box>
 
                             <HStack
