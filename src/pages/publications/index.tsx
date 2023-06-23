@@ -1,4 +1,4 @@
-import { ReactElement, useMemo, useRef } from "react";
+import { ReactElement, useCallback, useMemo, useRef } from "react";
 import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
@@ -22,6 +22,7 @@ import {
   SplideSlide,
   SplideTrack,
 } from "@splidejs/react-splide";
+import { Splide as SplideInstance } from "@splidejs/splide";
 import { motion } from "framer-motion";
 import { first } from "lodash";
 import "@splidejs/react-splide/css/core";
@@ -236,6 +237,11 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
       { ssr: true, fallback: "md" }
     );
 
+  const refreshSplide = useCallback(
+    (splide: SplideInstance) => splide.refresh(),
+    []
+  );
+
   return (
     <>
       <style jsx global>
@@ -344,7 +350,11 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
           h="100%"
           overflow="auto"
         >
-          <Splide hasTrack={false} options={responsiveSplideOptions}>
+          <Splide
+            onResize={refreshSplide}
+            hasTrack={false}
+            options={responsiveSplideOptions}
+          >
             <VStack align="center" w="100%" h="100%">
               <HStack
                 w="100%"
