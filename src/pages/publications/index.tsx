@@ -260,7 +260,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
           }
 
           .news-pagination {
-            display: flex;
+            display: flex !important;
             flex-flow: column nowrap;
             justify-content: space-between;
             gap: 20px;
