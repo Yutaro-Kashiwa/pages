@@ -16,7 +16,12 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
-import { Options as SplideOptions, Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import {
+  Options as SplideOptions,
+  Splide,
+  SplideSlide,
+  SplideTrack,
+} from "@splidejs/react-splide";
 import { motion } from "framer-motion";
 import { first } from "lodash";
 import "@splidejs/react-splide/css/core";
@@ -168,39 +173,50 @@ const mockPublicationsList: Publication[] = [
 
 type PageProps = {
   publications?: Publication[];
-}
+};
 
-const LIST_CARD_HEIGHT = 120
+const LIST_CARD_HEIGHT = 120;
 
-export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }) => {
+export const PublicationsPage: NextPageWithLayout<PageProps> = ({
+  publications,
+}) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
 
-  const numberOfSlidesPerPage = !!contentContainerSize ? Math.floor(contentContainerSize.height / LIST_CARD_HEIGHT) : 5
+  const numberOfSlidesPerPage = !!contentContainerSize
+    ? Math.floor(contentContainerSize.height / LIST_CARD_HEIGHT)
+    : 5;
 
-  const commonSplideOptions: SplideOptions = useMemo<SplideOptions>(() => ({
-    direction: "ttb",
-    wheel: true,
-    waitForTransition: true,
-    width: "100vw",
-    classes: {
-      pagination: "splide__pagination news-pagination",
-      page: "splide__pagination__page news-pagination-page",
-    },
-  }), [])
+  const commonSplideOptions: SplideOptions = useMemo<SplideOptions>(
+    () => ({
+      direction: "ttb",
+      wheel: true,
+      waitForTransition: true,
+      width: "100vw",
+      classes: {
+        pagination: "splide__pagination news-pagination",
+        page: "splide__pagination__page news-pagination-page",
+      },
+    }),
+    []
+  );
 
   const responsiveSplideOptions: SplideOptions | undefined =
     useBreakpointValue<SplideOptions>(
       {
         base: {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize ? contentContainerSize.height / contentContainerSize.width : 0.3,
+          heightRatio: !!contentContainerSize
+            ? contentContainerSize.height / contentContainerSize.width
+            : 0.3,
           perPage: numberOfSlidesPerPage - 1,
         },
         lg: {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize ? (contentContainerSize.height + 64) / contentContainerSize.width : 0.3,
+          heightRatio: !!contentContainerSize
+            ? (contentContainerSize.height + 64) / contentContainerSize.width
+            : 0.3,
           perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
@@ -208,7 +224,9 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
         },
         "2xl": {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize ? (contentContainerSize.height + 64) / contentContainerSize.width : 0.3,
+          heightRatio: !!contentContainerSize
+            ? (contentContainerSize.height + 64) / contentContainerSize.width
+            : 0.3,
           perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
@@ -323,13 +341,10 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
         <Container
           ref={contentContainerRef}
           maxW="1280px"
-          h="100%" 
+          h="100%"
           overflow="auto"
         >
-          <Splide
-            hasTrack={false}
-            options={responsiveSplideOptions}
-          >
+          <Splide hasTrack={false} options={responsiveSplideOptions}>
             <VStack align="center" w="100%" h="100%">
               <HStack
                 w="100%"
@@ -368,176 +383,189 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
                     </SplideSlide>
                   </Show>
 
-                  {!!publications && publications.map(
-                    (
-                      {
-                        id,
-                        title,
-                        authors,
-                        appearedJournal,
-                        downloadURL,
-                        publishedYear,
-                      },
-                      _,
-                      sourceArray
-                    ) => {
-                      const publicationsInCurrentYear: Publication[] =
-                        sourceArray.filter(
-                          ({ publishedYear: year }) => year === publishedYear
+                  {!!publications &&
+                    publications.map(
+                      (
+                        {
+                          id,
+                          title,
+                          authors,
+                          appearedJournal,
+                          downloadURL,
+                          publishedYear,
+                        },
+                        _,
+                        sourceArray
+                      ) => {
+                        const publicationsInCurrentYear: Publication[] =
+                          sourceArray.filter(
+                            ({ publishedYear: year }) => year === publishedYear
+                          );
+
+                        const firstPublicationInCurrentYear = first(
+                          publicationsInCurrentYear
                         );
 
-                      const firstPublicationInCurrentYear = first(
-                        publicationsInCurrentYear
-                      );
+                        const isTheFirstPublicationInCurrentYear =
+                          id === firstPublicationInCurrentYear?.id;
 
-                      const isTheFirstPublicationInCurrentYear =
-                        id === firstPublicationInCurrentYear?.id;
-
-                      return (
-                        <SplideSlide
-                          key={id}
-                          style={{ width: "100%", flexBasis: "80%" }}
-                        >
-                          <Stack
-                            flexDir={{ base: "column", lg: "row" }}
-                            justify={{ lg: "space-between" }}
+                        return (
+                          <SplideSlide
+                            key={id}
+                            style={{ width: "100%", flexBasis: "80%" }}
                           >
-                            <Box
-                              w="110px"
-                              aria-hidden={
-                                !isTheFirstPublicationInCurrentYear
-                              }
+                            <Stack
+                              flexDir={{ base: "column", lg: "row" }}
+                              justify={{ lg: "space-between" }}
                             >
-                              <Heading
-                                as="h3"
-                                fontFamily={ubuntuFont.style.fontFamily}
-                                fontWeight={700}
-                                fontSize={{
-                                  base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
-                                  lg: 48,
-                                }}
-                                color="main"
-                                opacity={isTheFirstPublicationInCurrentYear ? 0.6 : 0}
+                              <Box
+                                w="110px"
                                 aria-hidden={
                                   !isTheFirstPublicationInCurrentYear
                                 }
-                                tabIndex={-1}
-                              >
-                                {publishedYear}
-                              </Heading>
-                            </Box>
-
-                            <HStack
-                              flexBasis="80%"
-                              justify="space-between"
-                              align="flex-start"
-                            >
-                              <VStack
-                                w="90%"
-                                align="flex-start"
-                                rowGap={{ base: "4px", lg: "8px" }}
-                                spacing={0}
                               >
                                 <Heading
-                                  as="h4"
+                                  as="h3"
                                   fontFamily={ubuntuFont.style.fontFamily}
                                   fontWeight={700}
                                   fontSize={{
-                                    base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                                    lg: 16,
+                                    base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
+                                    lg: 48,
                                   }}
-                                  sx={{
-                                    display: "-webkit-box",
-                                    "-webkit-line-clamp": "2",
-                                    "-webkit-box-orient": "vertical",
-                                    overflow: "hidden",
-                                  }}
+                                  color="main"
+                                  opacity={
+                                    isTheFirstPublicationInCurrentYear ? 0.6 : 0
+                                  }
+                                  aria-hidden={
+                                    !isTheFirstPublicationInCurrentYear
+                                  }
+                                  tabIndex={-1}
                                 >
-                                  {title}
+                                  {publishedYear}
                                 </Heading>
+                              </Box>
 
-                                <VStack w="100%" align="inherit" spacing={{ lg: "1px" }}>
-                                  <Text
-                                    fontFamily={ubuntuFont.style.fontFamily}
-                                    fontWeight={400}
-                                    fontSize={{
-                                      base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
-                                      lg: 14,
-                                    }}
-                                    w="100%"
-                                    textOverflow={{
-                                      base: "ellipsis",
-                                      lg: "unset"
-                                    }}
-                                    overflow={{
-                                      base: "hidden",
-                                      lg: "unset"
-                                    }}
-                                    whiteSpace={{ base: "nowrap", lg: "pre-line" }}
-                                    textAlign="left"
-                                    sx={{
-                                      display: "-webkit-box",
-                                      "-webkit-line-clamp": "1",
-                                      "-webkit-box-orient": "vertical",
-                                      overflow: "hidden",
-                                    }}
-                                  >
-                                    {authors}
-                                  </Text>
-
-                                  <Text
-                                    fontFamily={ubuntuFont.style.fontFamily}
-                                    fontWeight={400}
-                                    fontSize={{
-                                      base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
-                                      lg: 14,
-                                    }}
-                                    w="100%"
-                                    textOverflow={{
-                                      base: "ellipsis",
-                                      lg: "unset"
-                                    }}
-                                    overflow={{
-                                      base: "hidden",
-                                      lg: "unset"
-                                    }}
-                                    whiteSpace={{ base: "nowrap", lg: "pre-line" }}
-                                    textAlign="left"
-                                    sx={{
-                                      display: "-webkit-box",
-                                      "-webkit-line-clamp": "1",
-                                      "-webkit-box-orient": "vertical",
-                                      overflow: "hidden",
-                                    }}
-                                  >
-                                    {appearedJournal}
-                                  </Text>
-                                </VStack>
-                              </VStack>
-
-                              <Link
-                                href={downloadURL}
-                                isExternal
-                                display="inline-flex"
-                                justifyContent="center"
-                                alignItems="center"
-                                boxSize={{ base: "22px", lg: "44px" }}
-                                p={{ lg: "12px" }}
-                                borderRadius="100%"
-                                _hover={{ lg: { bgColor: "white" } }}
+                              <HStack
+                                flexBasis="80%"
+                                justify="space-between"
+                                align="flex-start"
                               >
-                                <SquareAndArrowDown
-                                  w="100%"
-                                  h="100%"
-                                  fill="main"
-                                />
-                              </Link>
-                            </HStack>
-                          </Stack>
-                        </SplideSlide>
-                      );
-                    }
-                  )}
+                                <VStack
+                                  w="90%"
+                                  align="flex-start"
+                                  rowGap={{ base: "4px", lg: "8px" }}
+                                  spacing={0}
+                                >
+                                  <Heading
+                                    as="h4"
+                                    fontFamily={ubuntuFont.style.fontFamily}
+                                    fontWeight={700}
+                                    fontSize={{
+                                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                                      lg: 16,
+                                    }}
+                                    sx={{
+                                      display: "-webkit-box",
+                                      "-webkit-line-clamp": "2",
+                                      "-webkit-box-orient": "vertical",
+                                      overflow: "hidden",
+                                    }}
+                                  >
+                                    {title}
+                                  </Heading>
+
+                                  <VStack
+                                    w="100%"
+                                    align="inherit"
+                                    spacing={{ lg: "1px" }}
+                                  >
+                                    <Text
+                                      fontFamily={ubuntuFont.style.fontFamily}
+                                      fontWeight={400}
+                                      fontSize={{
+                                        base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                                        lg: 14,
+                                      }}
+                                      w="100%"
+                                      textOverflow={{
+                                        base: "ellipsis",
+                                        lg: "unset",
+                                      }}
+                                      overflow={{
+                                        base: "hidden",
+                                        lg: "unset",
+                                      }}
+                                      whiteSpace={{
+                                        base: "nowrap",
+                                        lg: "pre-line",
+                                      }}
+                                      textAlign="left"
+                                      sx={{
+                                        display: "-webkit-box",
+                                        "-webkit-line-clamp": "1",
+                                        "-webkit-box-orient": "vertical",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      {authors}
+                                    </Text>
+
+                                    <Text
+                                      fontFamily={ubuntuFont.style.fontFamily}
+                                      fontWeight={400}
+                                      fontSize={{
+                                        base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                                        lg: 14,
+                                      }}
+                                      w="100%"
+                                      textOverflow={{
+                                        base: "ellipsis",
+                                        lg: "unset",
+                                      }}
+                                      overflow={{
+                                        base: "hidden",
+                                        lg: "unset",
+                                      }}
+                                      whiteSpace={{
+                                        base: "nowrap",
+                                        lg: "pre-line",
+                                      }}
+                                      textAlign="left"
+                                      sx={{
+                                        display: "-webkit-box",
+                                        "-webkit-line-clamp": "1",
+                                        "-webkit-box-orient": "vertical",
+                                        overflow: "hidden",
+                                      }}
+                                    >
+                                      {appearedJournal}
+                                    </Text>
+                                  </VStack>
+                                </VStack>
+
+                                <Link
+                                  href={downloadURL}
+                                  isExternal
+                                  display="inline-flex"
+                                  justifyContent="center"
+                                  alignItems="center"
+                                  boxSize={{ base: "22px", lg: "44px" }}
+                                  p={{ lg: "12px" }}
+                                  borderRadius="100%"
+                                  _hover={{ lg: { bgColor: "white" } }}
+                                >
+                                  <SquareAndArrowDown
+                                    w="100%"
+                                    h="100%"
+                                    fill="main"
+                                  />
+                                </Link>
+                              </HStack>
+                            </Stack>
+                          </SplideSlide>
+                        );
+                      }
+                    )}
                 </SplideTrack>
 
                 <VStack
@@ -636,13 +664,13 @@ PublicationsPage.getLayout = (page: ReactElement) => (
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
   // API通信の代わり
-  const publications: Publication[] = mockPublicationsList
+  const publications: Publication[] = mockPublicationsList;
 
   return {
     props: {
-      publications
-    }
-  }
-}
+      publications,
+    },
+  };
+};
 
 export default PublicationsPage;
