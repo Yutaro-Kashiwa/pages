@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from "react";
+import { ReactElement, useMemo, useRef } from "react";
 import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
@@ -175,56 +175,43 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({ publications }
 
   const contentContainerSize = useSize(contentContainerRef);
 
+  const commonSplideOptions: SplideOptions = useMemo<SplideOptions>(() => ({
+    direction: "ttb",
+    wheel: true,
+    waitForTransition: true,
+    width: "100vw",
+    classes: {
+      pagination: "splide__pagination news-pagination",
+      page: "splide__pagination__page news-pagination-page",
+    },
+  }), [])
+  
   const responsiveSplideOptions: SplideOptions | undefined =
     useBreakpointValue<SplideOptions>(
       {
         base: {
-          direction: "ttb",
-          wheel: true,
-          waitForTransition: true,
+          ...commonSplideOptions,
           height: !!contentContainerSize
             ? contentContainerSize.height * (90 / 100)
             : "75vh",
-          width: "100vw",
           perPage: 5,
-          classes: {
-            pagination: "splide__pagination news-pagination",
-            page: "splide__pagination__page news-pagination-page",
-          },
-          padding: {
-            top: "5vh",
-          },
         },
         lg: {
-          direction: "ttb",
-          wheel: true,
-          waitForTransition: true,
+          ...commonSplideOptions,
           height: !!contentContainerSize
             ? contentContainerSize.height * (92 / 100)
             : "75vh",
-          width: "100vw",
           perPage: 6,
-          classes: {
-            pagination: "splide__pagination news-pagination",
-            page: "splide__pagination__page news-pagination-page",
-          },
           padding: {
             top: "5vh",
           },
         },
         "2xl": {
-          direction: "ttb",
-          wheel: true,
-          waitForTransition: true,
+          ...commonSplideOptions,
           height: !!contentContainerSize
             ? contentContainerSize.height * (92 / 100)
             : "75vh",
-          width: "100vw",
           perPage: 10,
-          classes: {
-            pagination: "splide__pagination news-pagination",
-            page: "splide__pagination__page news-pagination-page",
-          },
           padding: {
             top: "5vh",
           },
