@@ -1,5 +1,25 @@
 import { ReactElement, useEffect, useRef } from "react";
-import { Box, Center, Container, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, HStack, Hide, IconButton, Link, List, ListItem, Show, Spacer, Text, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Container,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerHeader,
+  DrawerOverlay,
+  HStack,
+  Hide,
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  Show,
+  Spacer,
+  Text,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { NavigationLinks } from "@/components/navigation_links";
 import { SiteTitle } from "@/components/site_title";
 import NextImage from "next/image";
@@ -23,10 +43,14 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
   const headerElementRef = useRef<HTMLDivElement>(null);
   const footerElementRef = useRef<HTMLDivElement>(null);
 
-  const headerElementSize = useSize(headerElementRef)
+  const headerElementSize = useSize(headerElementRef);
   const footerElementSize = useSize(footerElementRef);
 
-  const { isOpen, onOpen: openDrawerMenu, onClose: closeDrawerMenu } = useDisclosure()
+  const {
+    isOpen,
+    onOpen: openDrawerMenu,
+    onClose: closeDrawerMenu,
+  } = useDisclosure();
 
   return (
     <>
@@ -74,7 +98,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
         flexGrow={1}
         h={{
           base: "100%",
-          sm: `calc(100% - ${footerElementSize?.height ?? FOOTER_HEIGHT_PC}px)`
+          sm: `calc(100% - ${footerElementSize?.height ?? FOOTER_HEIGHT_PC}px)`,
         }}
         pb={`${footerElementSize?.height ?? FOOTER_HEIGHT_SP}px`}
       >
@@ -93,11 +117,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
         overflowY="hidden"
         whiteSpace="nowrap"
         maxW="1280px"
-        h={{
-          base: `${FOOTER_HEIGHT_SP}px`,
-          md: `${FOOTER_HEIGHT_PC}px`
-        }}
-        maxH="max-content"
+        h="fit-content"
         centerContent
         zIndex={100}
         css={{
@@ -310,12 +330,12 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
               bottom={0}
               background={{
                 base: "linear-gradient(180deg, rgba(0, 52, 91, 0.05) 0%, #00345B 100%)",
-                md: "linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #0168B7 100%)"
+                md: "linear-gradient(180deg, rgba(217, 217, 217, 0) 0%, #0168B7 100%)",
               }}
               zIndex={1}
               h={{
                 base: "100%",
-                md: "50%"
+                md: "50%",
               }}
             />
           </Box>
