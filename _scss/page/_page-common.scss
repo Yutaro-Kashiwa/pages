@@ -16,7 +16,7 @@
   @include mq-up() {
     &:not(.page-top) {
       &::after {
-        position: fixed;
+        position: absolute;
         display: block;
         top: 530px;
         right: 0;
@@ -25,6 +25,7 @@
         font-size: 180px;
         text-align: right;
         color: $gray3;
+        white-space: nowrap;
         opacity: 0.25;
         z-index: -1;
       }
