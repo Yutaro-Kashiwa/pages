@@ -50,7 +50,8 @@ const mockNewsData: NewsData = {
 
 テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。`,
   createdAt: "2022-11-09T00:00:00+09:00",
-  imageURL: "https://1.bp.blogspot.com/-dXIT6B4KA-Y/X5OcMsqpZyI/AAAAAAABb6g/0_AtsYXLRNwGOXmbyTB_d7OqL7IWya88gCNcBGAsYHQ/s846/computer_laptop_angle1.png",
+  imageURL:
+    "https://1.bp.blogspot.com/-dXIT6B4KA-Y/X5OcMsqpZyI/AAAAAAABb6g/0_AtsYXLRNwGOXmbyTB_d7OqL7IWya88gCNcBGAsYHQ/s846/computer_laptop_angle1.png",
 };
 
 export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
@@ -60,9 +61,9 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
   createdAt,
   imageURL,
 }) => {
-  const { asPath } = useRouter()
+  const { asPath } = useRouter();
 
-  const shouldShowSlidingExitAnimation = asPath === "/whats_new"
+  const shouldShowSlidingExitAnimation = asPath === "/whats_new";
 
   return (
     <>
@@ -122,10 +123,11 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                 spacing="48px"
               >
                 {!!createdAt && !!title && (
-                  <SimpleGrid
-                    alignItems="baseline"
-                    templateColumns="repeat(auto-fit, minmax(140px, 1fr))"
-                    templateRows="auto"
+                  <HStack
+                    align="baseline"
+                    wrap="wrap"
+                    rowGap="8px"
+                    columnGap="40px"
                   >
                     {!!createdAt && (
                       <Text
@@ -137,6 +139,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                           base: "calc(0.875rem + ((1vw - 3.75px) * 0.3756))",
                           lg: 18,
                         }}
+                        whiteSpace="nowrap"
                       >
                         {format(parseISO(createdAt), "yyyy . MM . dd")}
                       </Text>
@@ -150,12 +153,11 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                           base: "calc(1.25rem + ((1vw - 3.75px) * 1.1268))",
                           lg: 32,
                         }}
-                        whiteSpace="nowrap"
                       >
                         {title}
                       </Heading>
                     )}
-                  </SimpleGrid>
+                  </HStack>
                 )}
 
                 <Show below="lg">
@@ -236,9 +238,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
     return {
       props: {
         refererPath: null,
-        ...mockNewsData
-      }
-    }
+        ...mockNewsData,
+      },
+    };
   }
 
   const refererURL: URL = new URL(referer);
