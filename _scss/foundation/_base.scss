@@ -36,6 +36,45 @@ body {
     background-repeat: no-repeat;
     @include mq-up() {
       background: linear-gradient(180deg, rgba(217, 217, 217, 0) 60%, #0168B7 100%),url("/images/bg-fv.jpg");
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+    }
+    & .footer {
+      & li {
+        & a {
+          color: rgba($white, 0.7);
+        }
+        &:hover {
+          & a {
+            color: $white;
+          }
+        }
+        &.here {
+          & a {
+            color: $white;
+          }
+        }
+      }
+    }
+    & .header {
+      &__title {
+        @include mq-up() {
+          column-gap: 25px;
+        }
+        & img {
+          @include mq-up() {
+            width: 149px;
+            height: 77px;
+          }
+        }
+        & p {
+          color: inherit;
+          @include mq-up() {
+            padding-top: 40px;
+          }
+        }
+      }
     }
   }
 }

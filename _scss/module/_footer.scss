@@ -28,7 +28,7 @@
         font-weight: 700;
         line-height: 1;
         word-break: keep-all;
-        color: rgba($white, 0.7);
+        color: rgba($blue, 0.7);
         transition: ease-out 0.3s;
       }
       &:hover {
@@ -36,35 +36,18 @@
           transform: translateY(-5px);
         }
         & a {
-          color: $white;
+          color: $blue;
         }
       }
       &.here {
         & a {
           padding: 0 9px;
           font-size: 30px;
-          color: $white;
+          color: $blue;
           pointer-events: none;
           @include mq-up() {
             padding: 0;
             font-size: 40px;
-          }
-        }
-      }
-    }
-    &--page {
-      & li {
-        & a {
-          color: rgba($blue, 0.7);
-        }
-        &:hover {
-          & a {
-            color: $blue;
-          }
-        }
-        &.here {
-          & a {
-            color: $blue;
           }
         }
       }

@@ -15,7 +15,7 @@
     display: flex;
     column-gap: 10.5px;
     @include mq-up() {
-      column-gap: 25px;
+      column-gap: 18px;
     }
     & img {
       width: 81px;
@@ -23,34 +23,18 @@
       border-bottom-left-radius: 10px;
       border-bottom-right-radius: 10px;
       @include mq-up() {
-        width: 149px;
-        height: 77px;
+        width: 123px;
+        height: 63.5px;
       }
     }
     & p {
       padding-top: 8px;
       font-size: 12px;
       line-height: 1.45;
+      color: $blue;
       @include mq-up() {
-        padding-top: 40px;
+        padding-top: 20px;
         font-size: 20px;
-      }
-    }
-    &--page {
-      @include mq-up() {
-        column-gap: 18px;
-      }
-      @include mq-up() {
-        & img {
-          width: 123px;
-          height: 63.5px;
-        }
-      }
-      & p {
-        color: $blue;
-        @include mq-up() {
-          padding-top: 20px;
-        }
       }
     }
   }
