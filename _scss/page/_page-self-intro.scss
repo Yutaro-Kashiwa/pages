@@ -8,6 +8,7 @@
     &__container {
       display: flex;
       gap: 70px;
+      flex-wrap: wrap;
     }
   }
   &__person {

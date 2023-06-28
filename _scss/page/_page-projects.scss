@@ -10,26 +10,45 @@
     }
   }
   &__body {
+    display: flex;
+    gap: 17px;
+    flex-direction: column;
+    margin-top: 18px;
     @include mq-up() {
-      display: flex;
       gap: 48px;
+      flex-direction: row;
       &--1 {
         flex-direction: row-reverse;
       }
     }
   }
   &__heading {
+    font-size: 20px;
+    line-height: 1.2;
     @include mq-up() {
       font-size: 24px;
-      & + p {
+    }
+    & + p {
+      text-align: justify;
+      @include mq-up() {
         margin-top: 10px;
+      }
+      & + .fh--details-link {
+        margin-top: 18px;
+        @include mq-up() {
+          margin-top: 40px;
+        }
       }
     }
   }
   &__image {
+    max-height: 40vw;
     @include mq-up() {
       width: 320px;
       height: 180px;
     }
+  }
+  &__back {
+    margin-top: 12px;
   }
 }

@@ -7,7 +7,7 @@
   &__header {
     @include mq-up() {
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
       column-gap: 40px;
     }
   }
@@ -15,8 +15,7 @@
     font-family: $ubuntu;
     font-size: 14px;
     @include mq-up() {
-      position: relative;
-      bottom: 6px;
+      flex-shrink: 0;
       font-size: 18px;
     }
   }
@@ -35,8 +34,11 @@
   &__thumbnail {
     @include mq-up() {
       float: right;
-      width: 582px;
-      height: 328px;
+      max-width: 582px;
+      width: 50%;
+      height: auto;
+      object-fit: contain;
+      -o-object-fit: contain;
       margin-left: 35px;
     }
   }
@@ -44,6 +46,7 @@
     margin-top: 24px;
     font-size: 16px;
     line-height: 1.45;
+    text-align: justify;
     @include mq-up() {
       margin-top: initial;
     }

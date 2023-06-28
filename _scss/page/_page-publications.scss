@@ -40,12 +40,13 @@
         & + li {
           margin-top: 17px;
           @include mq-up() {
-            margin-top: 39px;
+            margin-top: 24px;
           }
         }
         & h3 {
           display: flex;
           column-gap: 30px;
+          align-items: flex-end;
           font-size: 14px;
           font-weight: 700;
           line-height: 16px;
@@ -58,10 +59,9 @@
             &::after {
               content: "";
               display: block;
-              width: 35px;
-              height: 35px;
+              width: 21px;
+              height: 19px;
               background-image: url("/images/icon-arrow-download.svg");
-              background-size: contain;
               background-position: center;
               background-repeat: no-repeat;
               @include mq-up() {}
@@ -77,9 +77,6 @@
           }
           &:first-of-type {
             margin-top: 2px;
-            @include mq-up() {
-              margin-top: -10px;
-            }
           }
         }
       }

@@ -17,6 +17,10 @@
     @include mq-up() {
       justify-content: center;
     }
+    @include mq-down(lg) {
+      justify-content: center;
+      width: calc(100% + 730px);
+    }
     & li {
       transition: ease-out 0.3s;
       & a {

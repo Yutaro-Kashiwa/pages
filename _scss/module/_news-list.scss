@@ -1,12 +1,13 @@
 .news-list {
+  width: 80%;
   @include mq-up() {
     display: flex;
     flex-wrap: wrap;
     gap: 63px 90px;
+    width: auto;
     padding-right: 43px;
   }
   &__item {
-    width: 80%;
     padding: 12px 0;
     border-bottom: 0.5px solid $black;
     @include mq-up() {
@@ -30,11 +31,19 @@
   }
   &__date {
     font-size: 14px;
+    flex-shrink: 0;
     @include mq-up() {
       margin-top: 10px;
     }
   }
   &__title {
     font-size: 16px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    @include mq-up() {
+      -webkit-line-clamp: 2;
+    }
   }
 }
