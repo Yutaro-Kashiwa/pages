@@ -260,7 +260,9 @@ export const AwardsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: !!contentContainerSize ? contentContainerSize.height * (80 / 100) : "75vh",
+              height: !!contentContainerSize
+                ? contentContainerSize.height * (80 / 100)
+                : "75vh",
               width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
@@ -337,12 +339,10 @@ export const AwardsPage: NextPageWithLayout = () => {
                             `,
                           }}
                           alignItems="baseline"
-                          rowGap={{
-
-                          }}
+                          rowGap={{}}
                           columnGap={{
                             base: "16px",
-                            lg: "unset"
+                            lg: "unset",
                           }}
                         >
                           <GridItem area="awardedDate">
@@ -364,7 +364,7 @@ export const AwardsPage: NextPageWithLayout = () => {
 
                           <GridItem area="awardeeName">
                             <Text
-                              fontWeight={500}
+                              fontWeight={400}
                               fontSize={{
                                 base: "calc(0.8125rem + ((1vw - 3.75px) * 0.6573))",
                                 lg: 20,
@@ -382,7 +382,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                               spacing="2px"
                             >
                               <Text
-                                fontWeight={500}
+                                fontWeight={400}
                                 fontSize={{
                                   base: "calc(0.9375rem + ((1vw - 3.75px) * 0.4695))",
                                   lg: 20,
@@ -392,7 +392,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                               </Text>
 
                               <Text
-                                fontWeight={500}
+                                fontWeight={400}
                                 fontSize={{
                                   base: "calc(0.75rem + ((1vw - 3.75px) * 0.5634))",
                                   lg: 18,
