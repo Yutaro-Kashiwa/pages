@@ -1,4 +1,11 @@
-import { ReactElement, memo, useCallback, useRef, useState } from "react";
+import {
+  ReactElement,
+  memo,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
@@ -44,18 +51,24 @@ type Award = {
   awarderOrganization: string;
 };
 
+const LIST_ITEM_GAP = 72;
+
+const LIST_CARD_HEIGHT = 64;
+
 const awardedHistoriesList: Award[] = [
   {
     id: "0e611141-f93b-4967-8a14-0ae52e35644a",
     awardedDate: "2022.9",
-    awardeeName: "受賞者名",
-    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
-    awarderOrganization: "賞を与えた機関名が入ります",
+    awardeeName: "藤本 太郎喜左衛門将時能",
+    awardName:
+      "受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization:
+      "賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります",
   },
   {
     id: "8d463553-b4da-46bf-b8e4-69870d19a0bd",
     awardedDate: "2022.7",
-    awardeeName: "受賞者名",
+    awardeeName: "Rhoshandiatellyneshiaunneveshenk Koyaanisquatsiuth Williams",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
     awarderOrganization: "賞を与えた機関名が入ります",
   },
@@ -130,6 +143,12 @@ export const AwardsPage: NextPageWithLayout = () => {
   const [numberOfPages, setNumberOfPages] = useState<number>(0);
 
   const contentContainerSize = useSize(contentContainerRef);
+
+  const numberOfSlidesPerPage = !!contentContainerSize
+    ? Math.floor(
+        contentContainerSize.height / (LIST_CARD_HEIGHT + LIST_ITEM_GAP)
+      )
+    : 5;
 
   const updateInitialNumberOfPages = useCallback<
     Exclude<SplideProps["onPaginationMounted"], undefined>
@@ -260,15 +279,16 @@ export const AwardsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: !!contentContainerSize
-                ? contentContainerSize.height * (80 / 100)
-                : "75vh",
+              heightRatio: !!contentContainerSize
+                ? (contentContainerSize.height * (80 / 100)) /
+                  contentContainerSize.width
+                : 0.3,
               width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
                 page: "splide__pagination__page news-pagination-page",
               },
-              perPage: 5,
+              perPage: numberOfSlidesPerPage,
               mediaQuery: "min",
               breakpoints: {
                 992: {
@@ -327,7 +347,10 @@ export const AwardsPage: NextPageWithLayout = () => {
                       <SplideSlide key={id}>
                         <Grid
                           templateRows="repeat(auto-fit, 1fr)"
-                          templateColumns={{ base: " 1fr 3fr", lg: "auto" }}
+                          templateColumns={{
+                            base: " 120px 3fr",
+                            lg: "120px 360px 2fr",
+                          }}
                           templateAreas={{
                             base: `
                               "awardedDate awardeeName"
@@ -339,6 +362,10 @@ export const AwardsPage: NextPageWithLayout = () => {
                             `,
                           }}
                           alignItems="baseline"
+                          justifyItems={{
+                            base: "start",
+                            lg: "unset",
+                          }}
                           rowGap={{}}
                           columnGap={{
                             base: "16px",
@@ -370,6 +397,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                                 lg: 20,
                               }}
                               lineHeight="1.5"
+                              textAlign="center"
                             >
                               {awardeeName}
                             </Text>
@@ -387,6 +415,12 @@ export const AwardsPage: NextPageWithLayout = () => {
                                   base: "calc(0.9375rem + ((1vw - 3.75px) * 0.4695))",
                                   lg: 20,
                                 }}
+                                sx={{
+                                  display: "-webkit-box",
+                                  "-webkit-line-clamp": "2",
+                                  "-webkit-box-orient": "vertical",
+                                  overflow: "hidden",
+                                }}
                               >
                                 {awardName}
                               </Text>
@@ -398,6 +432,12 @@ export const AwardsPage: NextPageWithLayout = () => {
                                   lg: 18,
                                 }}
                                 color="#484848"
+                                sx={{
+                                  display: "-webkit-box",
+                                  "-webkit-line-clamp": "3",
+                                  "-webkit-box-orient": "vertical",
+                                  overflow: "hidden",
+                                }}
                               >
                                 {awarderOrganization}
                               </Text>
