@@ -1,12 +1,5 @@
 import { ArrowRight } from "@/components/icons/arrow_right";
-import {
-  Box,
-  Container,
-  Heading,
-  Link,
-  Text,
-  VStack
-} from "@chakra-ui/react";
+import { Box, Container, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
 
@@ -19,19 +12,14 @@ export default function TopPage() {
       transition={{
         duration: 0.3,
       }}
-      style={{
-        height: "100%",
-      }}
     >
-      <Container maxW="1280px" h="100%">
+      <Container maxW="1280px" mt="10%">
         <VStack
           position="relative"
           w="100%"
-          h={{ base: "fit-content", lg: "100%" }}
-          mt={{ base: "10vh", lg: "unset" }}
           justifyContent="flex-end"
           alignItems="flex-start"
-          spacing="36px"
+          rowGap="36px"
         >
           <Heading
             as="h1"
