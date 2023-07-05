@@ -33,7 +33,6 @@ export default function App({
 
           #__next {
             position: relative;
-            height: 100%;
           }
         `}
       </style>

@@ -96,10 +96,6 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
       <Box
         as="main"
         flexGrow={1}
-        h={{
-          base: "100%",
-          sm: `calc(100% - ${footerElementSize?.height ?? FOOTER_HEIGHT_PC}px)`,
-        }}
         pb={`${footerElementSize?.height ?? FOOTER_HEIGHT_SP}px`}
       >
         {children}
