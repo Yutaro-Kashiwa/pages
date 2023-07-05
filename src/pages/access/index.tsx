@@ -48,21 +48,14 @@ export const AccessPage: NextPageWithLayout = () => {
         transition={{
           duration: 0.3,
         }}
-        style={{
-          height: "100%",
-        }}
       >
         <Container
           maxW="1280px"
-          h="100%"
+          mt="5vh"
           overflowX="visible"
           overflowY="visible"
         >
-          <VStack
-            h="100%"
-            justifyContent="space-around"
-            alignItems="flex-start"
-          >
+          <VStack alignItems="flex-start" rowGap="72px">
             <Show above="lg">
               <HStack position="relative" w="fit-content">
                 <Box
@@ -89,7 +82,7 @@ export const AccessPage: NextPageWithLayout = () => {
               </HStack>
             </Show>
 
-            <VStack w="100%" align="inherit" spacing="24px">
+            <VStack w="100%" align="inherit" rowGap="24px">
               <Heading
                 as="h3"
                 fontWeight={600}
@@ -104,15 +97,12 @@ export const AccessPage: NextPageWithLayout = () => {
 
               <Grid
                 w="100%"
-                h="100%"
                 templateRows="auto"
                 templateColumns="repeat(auto-fit, minmax(min(50vw, 480px), 1fr))"
                 justifyContent="space-around"
+                alignContent="start"
                 columnGap="24px"
-                rowGap={{
-                  base: "36px",
-                  lg: "0px",
-                }}
+                rowGap="36px"
               >
                 <GridItem rowSpan={2} colSpan={1}>
                   <AspectRatio w="100%" minW="280px" maxW="572px" ratio={4 / 3}>
