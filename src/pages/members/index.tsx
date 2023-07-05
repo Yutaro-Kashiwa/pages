@@ -31,9 +31,9 @@ type Member = {
   name: string;
   grade: string;
   pictureURL?: string;
-}
+};
 
-type MemberSummaryCardProps = Omit<Member, "uid">
+type MemberSummaryCardProps = Omit<Member, "uid">;
 
 const membersList: Member[] = [
   {
@@ -63,6 +63,86 @@ const membersList: Member[] = [
   },
   {
     uid: "3686482f-86ac-4fac-9d19-22fc35ae1d86",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "fe6ad000-493c-47c6-839e-3e2b9e86868d",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "0362da62-9df7-4605-8aa0-d21e9d4d6a7e",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "d553af77-a461-4979-9d06-9593962ab3a5",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "a531b23f-c46b-45c7-82e9-e2f1b601f638",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "ab9ff006-a8a8-4261-80d5-2a24dff83e29",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "cc6c50e4-f27f-4ed6-a698-46899607501a",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "5320f716-335c-4425-9832-e2ff43cb637d",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "2bfe3a32-4901-4fe9-be2e-4aef17010a25",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "7db9c0ee-32b6-4fb3-bbce-bc2c7729b145",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "07ddbb6d-21b6-466b-978c-cc6a600306ab",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "b122532a-547c-4d8a-ac3b-6852b29126bc",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "ea89069b-5781-495e-bfeb-9e56b3aa3531",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "19ec7c31-d7b3-4c89-9281-92b7a3540398",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "ff0fe572-17cd-4e11-b91e-880881052e2e",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "f408d568-a4ce-4660-ad3d-666b7dd66a9e",
+    name: "生徒氏名",
+    grade: "学部4回",
+  },
+  {
+    uid: "f32f787b-6073-4b15-ab32-adaf48140465",
     name: "生徒氏名",
     grade: "学部4回",
   },
@@ -97,7 +177,7 @@ const MemberSummaryCard = memo<MemberSummaryCardProps>(
           fontWeight={500}
           fontSize={{
             base: "calc(0.75rem + ((1vw - 3.75px) * 0.3756))",
-            lg: "16px"
+            lg: "16px",
           }}
           textAlign="center"
         >
@@ -111,16 +191,22 @@ const MemberSummaryCard = memo<MemberSummaryCardProps>(
 MemberSummaryCard.displayName = "MemberSummaryCard";
 
 type PageProps = {
-  members: Member[]
-}
+  members: Member[];
+};
 
 export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
   return (
     <>
       <style jsx global>
         {`
+          html {
+            overflow-x: hidden;
+            overflow-y: scroll;
+          }
+
           #__next {
-            overflow: hidden;
+            overflow-x: visible;
+            overflow-y: visible;
           }
         `}
       </style>
@@ -136,11 +222,18 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} overflowY="visible">
+        <Container
+          maxW="1280px"
+          h="fit-content"
+          pt="8vh"
+          pb="12vh"
+          overflowY="visible"
+        >
           <VStack
-            h="80%"
+            // h="100%"
             justifyContent="space-around"
             alignItems="flex-start"
+            rowGap="4vh"
           >
             <Show above="lg">
               <HStack position="relative" w="fit-content">
@@ -171,15 +264,16 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
             <SimpleGrid
               alignSelf="center"
               w="100%"
-              h={{ base: "80vh", lg: "unset" }}
+              h="fit-content"
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
               alignItems="start"
               alignContent={{
                 base: "space-evenly",
-                lg: "unset"
+                lg: "unset",
               }}
               columnGap={{ base: "48px" }}
+              rowGap="56px"
             >
               {members.map(({ uid, name, grade, pictureURL }) => (
                 <Fragment key={uid}>
@@ -204,15 +298,17 @@ MembersPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="members">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  context
+) => {
   // API取得処理の代わり
-  const members = membersList
+  const members = membersList;
 
   return {
     props: {
-      members
-    }
-  }
-}
+      members,
+    },
+  };
+};
 
 export default MembersPage;
