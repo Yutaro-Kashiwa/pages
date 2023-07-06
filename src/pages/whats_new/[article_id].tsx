@@ -170,7 +170,9 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                     alt={title ?? ""}
                     // @ts-ignore
                     fill
-                    objectFit="contain"
+                    sx={{
+                      objectFit: "contain",
+                    }}
                   />
                 </Show>
 

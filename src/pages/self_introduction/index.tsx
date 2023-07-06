@@ -337,7 +337,9 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
                       alt="顔写真"
                       // @ts-ignore
                       fill
-                      objectFit="contain"
+                      sx={{
+                        objectFit: "contain",
+                      }}
                       fallback={
                         <AspectRatio
                           w="100%"
