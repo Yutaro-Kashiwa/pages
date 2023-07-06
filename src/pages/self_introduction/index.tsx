@@ -227,280 +227,249 @@ CareerSummaryCard.displayName = "CareerSummaryCard";
 
 export const SelfIntroductionPage: NextPageWithLayout = () => {
   return (
-    <>
-      <style jsx global>
-        {`
-          html {
-            overflow-x: hidden;
-            overflow-y: hidden;
-          }
-
-          #__next {
-            overflow-x: visible;
-            overflow-y: scroll;
-          }
-        `}
-      </style>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{
-          duration: 0.3,
-        }}
-        style={{
-          height: "100%",
-        }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.3,
+      }}
+    >
+      <Container
+        display="block"
+        position="relative"
+        maxW="1280px"
+        my="5vh"
+        overflowX="visible"
+        overflowY="visible"
       >
-        <Container
-          display="block"
-          position="relative"
-          maxW="1280px"
-          h={{ base: "fit-content", lg: "100%" }}
-          pb={{ base: "84px", lg: "unset" }}
-          overflowX="visible"
-          overflowY="visible"
+        <VStack
+          w="100%"
+          justifyContent="space-around"
+          alignItems="flex-start"
+          rowGap="72px"
         >
-          <VStack
-            h="100%"
-            w="100%"
-            justifyContent="space-around"
-            alignItems="flex-start"
-          >
-            <Show above="lg">
-              <HStack position="relative" w="fit-content">
-                <Box
-                  position="absolute"
-                  right="-20px"
-                  bottom="-16px"
-                  w="199px"
-                  zIndex={-1}
-                >
-                  <AspectRatio w="100%" ratio={199 / 44}>
-                    <TitleBackgroundRect />
-                  </AspectRatio>
-                </Box>
-
-                <Heading
-                  as="h2"
-                  fontFamily={ubuntuFont.style.fontFamily}
-                  fontWeight={400}
-                  color="main"
-                  textTransform="uppercase"
-                >
-                  self-introduction
-                </Heading>
-              </HStack>
-            </Show>
-
-            <SimpleGrid
-              w="100%"
-              h={{ base: "100%", lg: "70%" }}
-              templateRows="auto"
-              minChildWidth="min(50vw, 300px)"
-              justifyContent="space-between"
-              // TODO: スライドアニメーションを追加したら不要になる
-              rowGap={{ base: "24px", lg: "unset" }}
-              columnGap="72px"
-            >
-              <VStack
-                minW={0}
-                h="100%"
-                justify="space-between"
-                align="flex-start"
-                rowGap={{ base: "20px", lg: "unset" }}
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
               >
-                <Grid
-                  gridTemplateRows="auto 1fr"
-                  gridTemplateColumns="minmax(20px, 1fr) 1fr"
-                  templateAreas={{
-                    base: `
-                      "picture name"
-                      "picture name"
-                      "positions positions"
-                    `,
-                    lg: `
-                      "picture name"
-                      "picture name"
-                      "picture positions"
-                    `,
-                  }}
-                  rowGap={{ base: "8px", lg: "unset" }}
-                  columnGap={{ base: "24px", lg: "32px" }}
-                >
-                  <GridItem area="picture" maxW="200px">
-                    <ChakraNextImage
-                      // @ts-ignore
-                      position="relative !important"
-                      src="/image-YutaroKASHIWA-1.jpg"
-                      alt="顔写真"
-                      // @ts-ignore
-                      fill
-                      sx={{
-                        objectFit: "contain",
-                      }}
-                      fallback={
-                        <AspectRatio
-                          w="100%"
-                          minW={0}
-                          maxW="196px"
-                          ratio={4 / 5}
-                        >
-                          <Box as="img" backgroundColor="#d9d9d9" />
-                        </AspectRatio>
-                      }
-                    />
-                  </GridItem>
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
 
-                  <GridItem alignSelf="center" area="name">
-                    <HStack
-                      flexWrap={{ base: "wrap", xl: "nowrap" }}
-                      alignItems="baseline"
-                    >
-                      <Text
-                        fontWeight={500}
-                        fontSize={{
-                          base: "calc(1.5rem + ((1vw - 3.75px) * 1.1268))",
-                          lg: 36,
-                        }}
-                        color="#333333"
-                        whiteSpace="nowrap"
-                      >
-                        柏　祐太郎
-                      </Text>
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                self-introduction
+              </Heading>
+            </HStack>
+          </Show>
 
-                      <Text
-                        fontFamily={ubuntuFont.style.fontFamily}
-                        fontWeight={300}
-                        fontSize={{
-                          base: "calc(0.875rem + ((1vw - 3.75px) * 0.5634))",
-                          lg: 20,
-                        }}
-                        color="main"
-                        whiteSpace="nowrap"
-                      >
-                        － YUTARO KASHIWA
-                      </Text>
-                    </HStack>
-                  </GridItem>
+          <SimpleGrid
+            w="100%"
+            templateRows="auto"
+            minChildWidth="min(50vw, 300px)"
+            justifyContent="space-between"
+            // TODO: スライドアニメーションを追加したら不要になる
+            rowGap={{ base: "24px", lg: "unset" }}
+            columnGap="72px"
+          >
+            <VStack
+              minW={0}
+              // justify="space-evenly"
+              align="flex-start"
+              rowGap={{ base: "20px", lg: "40px" }}
+            >
+              <Grid
+                gridTemplateRows="auto 1fr"
+                gridTemplateColumns="minmax(20px, 1fr) 1fr"
+                templateAreas={{
+                  base: `
+                    "picture name"
+                    "picture name"
+                    "positions positions"
+                  `,
+                  lg: `
+                    "picture name"
+                    "picture name"
+                    "picture positions"
+                  `,
+                }}
+                rowGap={{ base: "8px", lg: "unset" }}
+                columnGap={{ base: "24px", lg: "32px" }}
+              >
+                <GridItem area="picture" maxW="200px">
+                  <ChakraNextImage
+                    // @ts-ignore
+                    position="relative !important"
+                    src="/image-YutaroKASHIWA-1.jpg"
+                    alt="顔写真"
+                    // @ts-ignore
+                    fill
+                    sx={{
+                      objectFit: "contain",
+                    }}
+                    fallback={
+                      <AspectRatio w="100%" minW={0} maxW="196px" ratio={4 / 5}>
+                        <Box as="img" backgroundColor="#d9d9d9" />
+                      </AspectRatio>
+                    }
+                  />
+                </GridItem>
 
-                  <GridItem area="positions">
-                    <VStack
+                <GridItem alignSelf="center" area="name">
+                  <HStack
+                    flexWrap={{ base: "wrap", xl: "nowrap" }}
+                    alignItems="baseline"
+                  >
+                    <Text
                       fontWeight={500}
                       fontSize={{
-                        base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                        lg: 16,
+                        base: "calc(1.5rem + ((1vw - 3.75px) * 1.1268))",
+                        lg: 36,
                       }}
-                      alignItems="inherit"
-                      spacing="2px"
+                      color="#333333"
+                      whiteSpace="nowrap"
                     >
-                      <Text whiteSpace="nowrap">
-                        奈良先端科学技術大学院大学（NAIST）
-                      </Text>
+                      柏　祐太郎
+                    </Text>
 
-                      <Text whiteSpace="nowrap">
-                        先端科学技術研究科 情報領域 助教
-                      </Text>
+                    <Text
+                      fontFamily={ubuntuFont.style.fontFamily}
+                      fontWeight={300}
+                      fontSize={{
+                        base: "calc(0.875rem + ((1vw - 3.75px) * 0.5634))",
+                        lg: 20,
+                      }}
+                      color="main"
+                      whiteSpace="nowrap"
+                    >
+                      － YUTARO KASHIWA
+                    </Text>
+                  </HStack>
+                </GridItem>
 
-                      <Text whiteSpace="nowrap">
-                        総合情報基盤センター（兼務）
-                      </Text>
-                    </VStack>
-                  </GridItem>
-                </Grid>
+                <GridItem area="positions">
+                  <VStack
+                    fontWeight={500}
+                    fontSize={{
+                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+                      lg: 16,
+                    }}
+                    alignItems="inherit"
+                    spacing="2px"
+                  >
+                    <Text whiteSpace="nowrap">
+                      奈良先端科学技術大学院大学（NAIST）
+                    </Text>
 
-                <Box
-                  as="p"
-                  position="relative"
-                  pl={{ base: "8px", lg: "20px" }}
-                  pt={{ base: "4px", lg: "20px" }}
-                  pr={{ base: "8px", lg: "16px" }}
-                  pb={{ base: 0, lg: "12px" }}
-                  fontSize={{
-                    base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
-                    lg: 16,
-                  }}
-                  lineHeight="1.8"
-                  _before={{
-                    content: `''`,
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    w: "18px",
-                    h: "18px",
-                    borderLeftColor: "main",
-                    borderTopColor: "main",
-                    borderLeftWidth: "2px",
-                    borderTopWidth: "2px",
-                    borderLeftStyle: "solid",
-                    borderTopStyle: "solid",
-                  }}
-                  _after={{
-                    content: `''`,
-                    position: "absolute",
-                    bottom: 0,
-                    right: 0,
-                    w: "27px",
-                    h: "27px",
-                    borderRightColor: {
-                      base: "white",
-                      lg: "main",
-                    },
-                    borderBottomColor: {
-                      base: "white",
-                      lg: "main",
-                    },
-                    borderRightWidth: "2px",
-                    borderBottomWidth: "2px",
-                    borderRightStyle: "solid",
-                    borderBottomStyle: "solid",
-                  }}
-                >
-                  専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事．
-                  近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．
-                </Box>
-              </VStack>
+                    <Text whiteSpace="nowrap">
+                      先端科学技術研究科 情報領域 助教
+                    </Text>
 
-              <VStack h="100%" alignItems="flex-start" spacing="32px">
-                <Show above="md">
-                  <Heading as="h3" fontWeight={600} fontSize={24}>
-                    略歴
-                  </Heading>
-                </Show>
+                    <Text whiteSpace="nowrap">
+                      総合情報基盤センター（兼務）
+                    </Text>
+                  </VStack>
+                </GridItem>
+              </Grid>
 
-                <List
-                  h="100%"
-                  display="flex"
-                  flexFlow="column nowrap"
-                  justifyContent="space-between"
-                  rowGap="16px"
-                >
-                  {careerList.map(
-                    (
-                      { startedAt, endedAt, careerDetail: careerName },
-                      index
-                    ) => (
-                      <Fragment
-                        key={`${startedAt}${endedAt}${careerName}${index}`}
-                      >
-                        <ListItem>
-                          <CareerSummaryCard
-                            startedAt={startedAt}
-                            endedAt={endedAt}
-                            careerDetail={careerName}
-                          />
-                        </ListItem>
-                      </Fragment>
-                    )
-                  )}
-                </List>
-              </VStack>
-            </SimpleGrid>
-          </VStack>
-        </Container>
-      </motion.div>
-    </>
+              <Box
+                as="p"
+                position="relative"
+                pl={{ base: "8px", lg: "20px" }}
+                pt={{ base: "4px", lg: "20px" }}
+                pr={{ base: "8px", lg: "16px" }}
+                pb={{ base: 0, lg: "12px" }}
+                fontSize={{
+                  base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+                  lg: 16,
+                }}
+                lineHeight="1.8"
+                _before={{
+                  content: `''`,
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  w: "18px",
+                  h: "18px",
+                  borderLeftColor: "main",
+                  borderTopColor: "main",
+                  borderLeftWidth: "2px",
+                  borderTopWidth: "2px",
+                  borderLeftStyle: "solid",
+                  borderTopStyle: "solid",
+                }}
+                _after={{
+                  content: `''`,
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  w: "27px",
+                  h: "27px",
+                  borderRightColor: {
+                    base: "white",
+                    lg: "main",
+                  },
+                  borderBottomColor: {
+                    base: "white",
+                    lg: "main",
+                  },
+                  borderRightWidth: "2px",
+                  borderBottomWidth: "2px",
+                  borderRightStyle: "solid",
+                  borderBottomStyle: "solid",
+                }}
+              >
+                専門はマイニングソフトウェアリポジトリ，特にソフトウェア品質の向上やソフトウェア保守の効率化に関する研究に従事．
+                近年は，テスト実行時に動的解析を実施することで得られるトレースログを活用し，Just-In-Time不具合予測や自動リファクタリング等に盛んに取り組んでいる．その他，多数のプロジェクトで国際共同研究に取り組み，カナダ・スイス・韓国の大学に所属する多くの研究者と協力して研究を進める．博士（工学）．
+              </Box>
+            </VStack>
+
+            <VStack alignItems="flex-start" spacing="32px">
+              <Show above="md">
+                <Heading as="h3" fontWeight={600} fontSize={24}>
+                  略歴
+                </Heading>
+              </Show>
+
+              <List
+                display="flex"
+                flexFlow="column nowrap"
+                justifyContent="space-between"
+                rowGap="clamp(16px, calc(1rem + ((1vh - 6.67px) * 6.867)), 32px)"
+              >
+                {careerList.map(
+                  ({ startedAt, endedAt, careerDetail: careerName }, index) => (
+                    <Fragment
+                      key={`${startedAt}${endedAt}${careerName}${index}`}
+                    >
+                      <ListItem>
+                        <CareerSummaryCard
+                          startedAt={startedAt}
+                          endedAt={endedAt}
+                          careerDetail={careerName}
+                        />
+                      </ListItem>
+                    </Fragment>
+                  )
+                )}
+              </List>
+            </VStack>
+          </SimpleGrid>
+        </VStack>
+      </Container>
+    </motion.div>
   );
 };
 
