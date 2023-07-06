@@ -13,7 +13,10 @@ export default function TopPage() {
         duration: 0.3,
       }}
     >
-      <Container maxW="1280px" mt="10%">
+      <Container
+        maxW="1280px"
+        mt="clamp(80px, calc(5rem + ((1vh - 6.67px) * 82.4034)), 272px)"
+      >
         <VStack
           position="relative"
           w="100%"
@@ -28,7 +31,7 @@ export default function TopPage() {
             fontWeight="500"
             fontSize={{
               base: "calc(1.875rem + ((1vw - 3.75px) * 3.1925))",
-              lg: "64px",
+              xl: "64px",
             }}
             lineHeight="1.5"
             textDecoration="underline"
@@ -50,7 +53,7 @@ export default function TopPage() {
               fontWeight="400"
               fontSize={{
                 base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                lg: "16px",
+                xl: "16px",
               }}
               whiteSpace="pre-wrap"
               color="#ffffff"
@@ -77,9 +80,9 @@ export default function TopPage() {
                 borderColor="white"
                 h="fit-content"
                 w="fit-content"
-                pl={{ base: "12px", lg: "20px" }}
-                pr={{ base: "24px", lg: "28px" }}
-                py={{ base: "4px", lg: "8px" }}
+                pl={{ base: "12px", xl: "20px" }}
+                pr={{ base: "24px", xl: "28px" }}
+                py={{ base: "4px", xl: "8px" }}
                 transform="scale(1)"
                 transformOrigin="left top"
                 _hover={{
@@ -97,7 +100,7 @@ export default function TopPage() {
                   fontWeight="400"
                   fontSize={{
                     base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                    lg: "16px",
+                    xl: "16px",
                   }}
                   color="white"
                   whiteSpace="nowrap"
