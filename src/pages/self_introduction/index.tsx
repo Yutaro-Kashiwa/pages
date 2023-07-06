@@ -20,15 +20,10 @@ import {
 import { Fragment, ReactElement, memo } from "react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
-import { Ubuntu } from "next/font/google";
 import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
 import { ChakraNextImage } from "@/components/chakra_next_image";
-
-const ubuntuFont = Ubuntu({
-  weight: ["300", "400", "500"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 type CareerSummaryCardProps = {
   startedAt: Date;

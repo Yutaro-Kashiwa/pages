@@ -1,9 +1,4 @@
-import {
-  ReactElement,
-  memo,
-  useRef,
-} from "react";
-import { Ubuntu } from "next/font/google";
+import { ReactElement, memo, useRef } from "react";
 import NextLink from "next/link";
 import {
   Center,
@@ -41,11 +36,7 @@ import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ChakraNextImage } from "@/components/chakra_next_image";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 export type NewsSummary = {
   id: string;
@@ -86,7 +77,7 @@ const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
             display: "-webkit-box",
             "-webkit-line-clamp": "2",
             "-webkit-box-orient": "vertical",
-            overflow: "hidden"
+            overflow: "hidden",
           }}
         >
           {title}
@@ -266,12 +257,15 @@ type PageProps = {
   newsList?: NewsSummary[];
 };
 
-export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsList }) => {
+export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
+  refererPath,
+  newsList,
+}) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
   const contentContainerSize = useSize(contentContainerRef);
 
-  const { asPath } = useRouter()
+  const { asPath } = useRouter();
 
   const largeLayoutSplideOptions: SplideOptions | undefined =
     useBreakpointValue<SplideOptions>(
@@ -396,9 +390,19 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
 
       {/* TODO: Splide が重すぎてスライディングアニメーションが効かない問題を修正する */}
       <motion.div
-        initial={!!refererPath?.match(/\/whats_new\/[^\s].*/) ? { y: "-100%" } : { opacity: 0 }}
-        animate={!!refererPath?.match(/\/whats_new\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
-        exit={!!asPath.match(/\/whats_new\/[^\s].*/) ? { y: 0 } : { opacity: 0 }}
+        initial={
+          !!refererPath?.match(/\/whats_new\/[^\s].*/)
+            ? { y: "-100%" }
+            : { opacity: 0 }
+        }
+        animate={
+          !!refererPath?.match(/\/whats_new\/[^\s].*/)
+            ? { y: 0 }
+            : { opacity: 1 }
+        }
+        exit={
+          !!asPath.match(/\/whats_new\/[^\s].*/) ? { y: 0 } : { opacity: 0 }
+        }
         transition={{
           duration: !!refererPath?.match(/\/whats_new\/[^\s].*/) ? 0.5 : 1,
         }}
@@ -465,24 +469,38 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
                   gap: 0,
                 }}
               >
-                <HStack justify="space-between" alignItems="flex-start" w="90vw" h="100%" columnGap="2%">
+                <HStack
+                  justify="space-between"
+                  alignItems="flex-start"
+                  w="90vw"
+                  h="100%"
+                  columnGap="2%"
+                >
                   <SplideTrack>
-                    {!!newsList && newsList.map(({ id, title, createdAt }) => (
-                      <SplideSlide key={id}>
-                        <VStack align="flex-start" maxW="70vw">
-                          <LinkBox as="article">
-                            <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
-                              <WhatsNewListCard
-                                title={title}
-                                createdAt={createdAt}
-                              />
-                            </LinkOverlay>
-                          </LinkBox>
+                    {!!newsList &&
+                      newsList.map(({ id, title, createdAt }) => (
+                        <SplideSlide key={id}>
+                          <VStack align="flex-start" maxW="70vw">
+                            <LinkBox as="article">
+                              <LinkOverlay
+                                as={NextLink}
+                                href={`/whats_new/${id}`}
+                              >
+                                <WhatsNewListCard
+                                  title={title}
+                                  createdAt={createdAt}
+                                />
+                              </LinkOverlay>
+                            </LinkBox>
 
-                          <Divider orientation="horizontal" borderColor="#333333" borderWidth="0.5" />
-                        </VStack>
-                      </SplideSlide>
-                    ))}
+                            <Divider
+                              orientation="horizontal"
+                              borderColor="#333333"
+                              borderWidth="0.5"
+                            />
+                          </VStack>
+                        </SplideSlide>
+                      ))}
                   </SplideTrack>
 
                   <VStack
@@ -530,19 +548,23 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({ refererPath, newsL
               >
                 <HStack alignItems="flex-start" h="100%" spacing="0">
                   <SplideTrack>
-                    {!!newsList && newsList.map(({ id, title, createdAt, imageURL }) => (
-                      <SplideSlide key={id}>
-                        <LinkBox as="article">
-                          <LinkOverlay as={NextLink} href={`/whats_new/${id}`}>
-                            <WhatsNewGridCard
-                              title={title}
-                              createdAt={createdAt}
-                              imageURL={imageURL}
-                            />
-                          </LinkOverlay>
-                        </LinkBox>
-                      </SplideSlide>
-                    ))}
+                    {!!newsList &&
+                      newsList.map(({ id, title, createdAt, imageURL }) => (
+                        <SplideSlide key={id}>
+                          <LinkBox as="article">
+                            <LinkOverlay
+                              as={NextLink}
+                              href={`/whats_new/${id}`}
+                            >
+                              <WhatsNewGridCard
+                                title={title}
+                                createdAt={createdAt}
+                                imageURL={imageURL}
+                              />
+                            </LinkOverlay>
+                          </LinkBox>
+                        </SplideSlide>
+                      ))}
                   </SplideTrack>
 
                   <VStack
@@ -591,7 +613,9 @@ WhatsNewPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="what's new">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  context
+) => {
   const referer = context.req.headers.referer;
 
   const newsList: NewsSummary[] = mockNewsList;
@@ -600,9 +624,9 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
     return {
       props: {
         refererPath: null,
-        newsList
-      }
-    }
+        newsList,
+      },
+    };
   }
 
   const refererURL: URL = new URL(referer);
@@ -611,7 +635,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (context)
   return {
     props: {
       refererPath: refererPath,
-      newsList
+      newsList,
     },
   };
 };

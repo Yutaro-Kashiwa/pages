@@ -1,16 +1,11 @@
 import { ReactElement } from "react";
-import { Ubuntu } from "next/font/google";
 import { Box, HStack, Container, Text, Hide } from "@chakra-ui/react";
+import { ubuntuFont } from "@/config/next_fonts";
 
 type CommonBackgroundLayoutProps = Required<{
   readonly children: ReactElement;
   readonly title: string;
 }>;
-
-const ubuntuFont = Ubuntu({
-  weight: ["700"],
-  subsets: ["latin"],
-});
 
 export const CommonPageLayout = ({
   children,

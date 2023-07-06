@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
   Box,
@@ -37,11 +36,7 @@ import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { ChevronDown } from "@/components/icons/chevron_down";
 import { ChevronUp } from "@/components/icons/chevron_up";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 type Award = {
   id: string;

@@ -1,5 +1,4 @@
 import { ReactElement, useCallback, useMemo, useRef } from "react";
-import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
   Box,
@@ -34,11 +33,7 @@ import { ChevronDown } from "@/components/icons/chevron_down";
 import { ChevronUp } from "@/components/icons/chevron_up";
 import { SquareAndArrowDown } from "@/components/icons/square_and_arrow_down";
 import { GetServerSideProps } from "next";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 type Publication = {
   id: string;

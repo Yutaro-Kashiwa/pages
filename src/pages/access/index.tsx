@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { Ubuntu } from "next/font/google";
 import {
   AspectRatio,
   Box,
@@ -24,11 +23,7 @@ import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import { ArrowRight } from "@/components/icons/arrow_right";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { motion } from "framer-motion";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 export const AccessPage: NextPageWithLayout = () => {
   return (

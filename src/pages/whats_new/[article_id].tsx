@@ -18,18 +18,13 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { Ubuntu } from "next/font/google";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { GetServerSideProps } from "next";
 import { format, formatISO, parseISO, startOfToday } from "date-fns";
 import { ChakraNextImage } from "@/components/chakra_next_image";
 import { useRouter } from "next/router";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 type NewsData = {
   title?: string;

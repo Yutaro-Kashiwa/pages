@@ -15,16 +15,11 @@ import {
 } from "@chakra-ui/react";
 import { Fragment, ReactElement, memo } from "react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
-import { Ubuntu } from "next/font/google";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { AvatarIcon } from "@/components/icons/avatar_icon";
 import { motion } from "framer-motion";
 import { GetServerSideProps } from "next";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 type Member = {
   uid: string;

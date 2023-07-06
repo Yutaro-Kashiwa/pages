@@ -1,6 +1,11 @@
-import { Noto_Sans_JP } from "next/font/google";
+import { Noto_Sans_JP, Ubuntu } from "next/font/google";
 
 export const variableNotoSansJPFont = Noto_Sans_JP({
   weight: "variable",
+  subsets: ["latin"],
+});
+
+export const ubuntuFont = Ubuntu({
+  weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
 });

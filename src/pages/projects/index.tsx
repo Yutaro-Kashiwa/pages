@@ -17,7 +17,7 @@ import {
 import { Fragment, ReactElement, memo, useEffect } from "react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import NextLink from "next/link";
-import { Inter, Ubuntu } from "next/font/google";
+import { Inter } from "next/font/google";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { ArrowDown } from "@/components/icons/arrow_down";
 import { GetServerSideProps } from "next";
@@ -25,11 +25,7 @@ import NextImage from "next/image";
 import { motion } from "framer-motion";
 import { Project, mockProjectsList } from "./[project_name]";
 import { useRouter } from "next/router";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -102,7 +98,12 @@ const ProjectSummaryCard = memo<
       </Text>
     </GridItem>
 
-    <GridItem area="detailLink" position="relative" justifySelf="start" minH="64px">
+    <GridItem
+      area="detailLink"
+      position="relative"
+      justifySelf="start"
+      minH="64px"
+    >
       <Link
         as={NextLink}
         href={`/projects/${name}`}
@@ -174,9 +175,9 @@ type PageProps = {
 
 export const ProjectsPage: NextPageWithLayout<PageProps> = ({
   refererPath,
-  projects
+  projects,
 }) => {
-  const { asPath } = useRouter()
+  const { asPath } = useRouter();
 
   return (
     <>
@@ -190,9 +191,21 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
       </style>
 
       <motion.div
-        initial={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
-        animate={!!refererPath?.match(/\/projects\/[^\s].*/) ? { y: 0 } : { opacity: 1 }}
-        exit={!!asPath.match(/\/projects\/[^\s].*/) ? { y: "-100vh" } : { opacity: 0 }}
+        initial={
+          !!refererPath?.match(/\/projects\/[^\s].*/)
+            ? { y: "-100vh" }
+            : { opacity: 0 }
+        }
+        animate={
+          !!refererPath?.match(/\/projects\/[^\s].*/)
+            ? { y: 0 }
+            : { opacity: 1 }
+        }
+        exit={
+          !!asPath.match(/\/projects\/[^\s].*/)
+            ? { y: "-100vh" }
+            : { opacity: 0 }
+        }
         transition={{
           duration: !!refererPath?.match(/\/projects\/[^\s].*/) ? 0.5 : 1,
         }}
@@ -200,7 +213,14 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
           height: "100%",
         }}
       >
-        <Container maxW="1280px" h={{ base: "fit-content", lg: "100%" }} pt="5vh" pb={{ base: "5vh", lg: "unset" }} overflowX="visible" overflowY="visible">
+        <Container
+          maxW="1280px"
+          h={{ base: "fit-content", lg: "100%" }}
+          pt="5vh"
+          pb={{ base: "5vh", lg: "unset" }}
+          overflowX="visible"
+          overflowY="visible"
+        >
           <VStack
             h="100%"
             justifyContent="space-around"
@@ -232,12 +252,27 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
               </HStack>
             </Show>
 
-            <VStack h="100%" justifyContent="space-evenly" flexBasis={{ lg: "90%" }}>
-              {!!projects && projects.map(({ title, name, body, summary, pictureURL }, index) => (
-                <Fragment key={`${title}${name}${summary}${pictureURL}${index}`}>
-                  <ProjectSummaryCard title={title} name={name} summary={summary} body={body} shouldReverseImagePlacement={index % 2 > 0} />
-                </Fragment>
-              ))}
+            <VStack
+              h="100%"
+              justifyContent="space-evenly"
+              flexBasis={{ lg: "90%" }}
+            >
+              {!!projects &&
+                projects.map(
+                  ({ title, name, body, summary, pictureURL }, index) => (
+                    <Fragment
+                      key={`${title}${name}${summary}${pictureURL}${index}`}
+                    >
+                      <ProjectSummaryCard
+                        title={title}
+                        name={name}
+                        summary={summary}
+                        body={body}
+                        shouldReverseImagePlacement={index % 2 > 0}
+                      />
+                    </Fragment>
+                  )
+                )}
             </VStack>
           </VStack>
         </Container>
@@ -250,19 +285,21 @@ ProjectsPage.getLayout = (page: ReactElement) => (
   <CommonPageLayout title="projects">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps<PageProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  context
+) => {
   const referer = context.req.headers.referer;
 
   // API取得の代わり
-  const projects: Project[] = [...mockProjectsList, ...mockProjectsList]
+  const projects: Project[] = [...mockProjectsList, ...mockProjectsList];
 
   if (!referer) {
-    return { 
+    return {
       props: {
         refererPath: null,
-        projects
-      }
-    }
+        projects,
+      },
+    };
   }
 
   const refererURL: URL = new URL(referer);

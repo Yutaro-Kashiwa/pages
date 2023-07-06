@@ -17,16 +17,12 @@ import {
 } from "@chakra-ui/react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
-import { Inter, Ubuntu } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GetServerSideProps } from "next";
 import NextLink from "next/link";
 import NextImage from "next/image";
 import { ParsedUrlQuery } from "querystring";
-
-const ubuntuFont = Ubuntu({
-  weight: ["400"],
-  subsets: ["latin"],
-});
+import { ubuntuFont } from "@/config/next_fonts";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -63,17 +59,15 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
   refererPath,
   displayingProject,
 }) => {
-  const {
-    asPath
-  } = useRouter();
+  const { asPath } = useRouter();
 
-  const shouldShowSlidingExitAnimation = asPath === "/projects"
+  const shouldShowSlidingExitAnimation = asPath === "/projects";
 
   if (!displayingProject) {
-    return null
+    return null;
   }
 
-  const { title, body, pictureURL } = displayingProject
+  const { title, body, pictureURL } = displayingProject;
 
   return (
     <>
@@ -265,11 +259,14 @@ ProjectDetailPage.getLayout = (page) => (
   <CommonPageLayout title="Projects">{page}</CommonPageLayout>
 );
 
-export const getServerSideProps: GetServerSideProps<Props, { "project_name": string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  Props,
+  { project_name: string }
+> = async (context) => {
   const referer = context.req.headers.referer;
 
   const query = context.query;
-  
+
   // API取得の代わり
   const fetchedProjectDetail: Project | undefined = mockProjectsList.find(
     ({ name }) => name === query.project_name
@@ -280,8 +277,8 @@ export const getServerSideProps: GetServerSideProps<Props, { "project_name": str
       props: {
         refererPath: null,
         displayingProject: fetchedProjectDetail,
-      }
-    }
+      },
+    };
   }
 
   const refererURL: URL = new URL(referer);
