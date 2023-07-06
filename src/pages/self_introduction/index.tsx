@@ -20,18 +20,13 @@ import {
 import { Fragment, ReactElement, memo } from "react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
-import { Noto_Sans_JP, Ubuntu } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
 import { ChakraNextImage } from "@/components/chakra_next_image";
 
 const ubuntuFont = Ubuntu({
   weight: ["300", "400", "500"],
-  subsets: ["latin"],
-});
-
-const notoSansJPFont = Noto_Sans_JP({
-  weight: ["400", "500"],
   subsets: ["latin"],
 });
 
@@ -113,7 +108,6 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           {format(startedAt, "yyyy")}
 
           <Text
-            fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
             fontSize={{
               base: "calc(0.75rem + ((1vw - 3.75px) * 0.1878))",
@@ -127,7 +121,6 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           {format(startedAt, "M")}
 
           <Text
-            fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
             fontSize={{
               base: "calc(0.75rem + ((1vw - 3.75px) * 0.1878))",
@@ -169,29 +162,18 @@ const CareerSummaryCard = memo<CareerSummaryCardProps>(
           >
             {format(endedAt, "yyyy")}
 
-            <Text
-              fontFamily={notoSansJPFont.style.fontFamily}
-              fontWeight={400}
-              fontSize={12}
-              color="inherit"
-            >
+            <Text fontWeight={400} fontSize={12} color="inherit">
               年
             </Text>
 
             {format(endedAt, "M")}
 
-            <Text
-              fontFamily={notoSansJPFont.style.fontFamily}
-              fontWeight={400}
-              fontSize={12}
-              color="inherit"
-            >
+            <Text fontWeight={400} fontSize={12} color="inherit">
               月
             </Text>
           </Text>
         ) : (
           <Text
-            fontFamily={notoSansJPFont.style.fontFamily}
             fontWeight={400}
             fontSize={{
               base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
