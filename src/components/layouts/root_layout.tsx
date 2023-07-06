@@ -40,12 +40,6 @@ const FOOTER_HEIGHT_PC = 120;
 export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
   const drawerButtonRef = useRef<HTMLButtonElement>(null);
 
-  const headerElementRef = useRef<HTMLDivElement>(null);
-  const footerElementRef = useRef<HTMLDivElement>(null);
-
-  const headerElementSize = useSize(headerElementRef);
-  const footerElementSize = useSize(footerElementRef);
-
   const {
     isOpen,
     onOpen: openDrawerMenu,
@@ -59,7 +53,6 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
       </Head>
 
       <HStack
-        ref={headerElementRef}
         as="header"
         position="sticky"
         top={0}
@@ -93,22 +86,18 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
         </Hide>
       </HStack>
 
-      <Box
-        as="main"
-        flexGrow={1}
-        pb={`${footerElementSize?.height ?? FOOTER_HEIGHT_SP}px`}
-      >
+      <Box as="main" flexGrow={1}>
         {children}
       </Box>
 
       <Container
         key={currentPathname}
-        ref={footerElementRef}
         as="footer"
-        position="fixed"
+        position="sticky"
         left={0}
         right={0}
         bottom={0}
+        mt="auto"
         overflowX="scroll"
         overflowY="hidden"
         whiteSpace="nowrap"

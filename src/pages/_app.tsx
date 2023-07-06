@@ -27,12 +27,23 @@ export default function App({
             height: 100%;
           }
 
-          body {
-            overflow: hidden;
+          html {
+            overflow-x: hidden;
+            overflow-y: scroll;
+          }
+
+          body,
+          #__next {
+            overflow-x: visible;
+            overflow-y: visible;
           }
 
           #__next {
             position: relative;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            min-height: 100vh;
           }
         `}
       </style>
