@@ -1,4 +1,4 @@
-import { ReactElement, memo, useRef } from "react";
+import { ReactElement, memo, useMemo, useRef } from "react";
 import NextLink from "next/link";
 import {
   Center,
@@ -267,6 +267,26 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
 
   const { asPath } = useRouter();
 
+  const listLayoutSplideOptions: SplideOptions = useMemo<SplideOptions>(
+    () => ({
+      direction: "ttb",
+      wheel: true,
+      waitForTransition: true,
+      height: "60vh",
+      fixedWidth: !!contentContainerSize
+        ? contentContainerSize.width - 80
+        : "80vw",
+      arrows: false,
+      classes: {
+        pagination: "splide__pagination news-pagination",
+        page: "splide__pagination__page news-pagination-page smartphone",
+      },
+      perPage: 9,
+      gap: 0,
+    }),
+    [contentContainerSize]
+  );
+
   const largeLayoutSplideOptions: SplideOptions | undefined =
     useBreakpointValue<SplideOptions>(
       {
@@ -448,25 +468,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
 
             {/* スマホレイアウト */}
             <Show below="lg">
-              <Splide
-                hasTrack={false}
-                options={{
-                  direction: "ttb",
-                  wheel: true,
-                  waitForTransition: true,
-                  height: "60vh",
-                  fixedWidth: !!contentContainerSize
-                    ? contentContainerSize.width - 80
-                    : "80vw",
-                  arrows: false,
-                  classes: {
-                    pagination: "splide__pagination news-pagination",
-                    page: "splide__pagination__page news-pagination-page smartphone",
-                  },
-                  perPage: 9,
-                  gap: 0,
-                }}
-              >
+              <Splide hasTrack={false} options={listLayoutSplideOptions}>
                 <HStack
                   justify="space-between"
                   alignItems="flex-start"
