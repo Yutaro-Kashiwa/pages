@@ -45,6 +45,15 @@ export type NewsSummary = {
   imageURL?: string;
 };
 
+const GRID_COLUMN_GAP: number = 72;
+const GRID_ROW_GAP: number = 64;
+
+const GRID_CARD_WIDTH: number = 240;
+const GRID_CARD_HEIGHT: number = 204;
+
+const GRID_MAX_COLUMNS: number = 4;
+const GRID_MAX_ROWS: number = 2;
+
 const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
   ({ title, createdAt, imageURL }) => (
     <VStack maxW="240px" alignItems="flex-start" spacing="16px">
@@ -287,48 +296,35 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
     [contentContainerSize]
   );
 
-  const largeLayoutSplideOptions: SplideOptions | undefined =
-    useBreakpointValue<SplideOptions>(
-      {
-        lg: {
-          direction: "ttb",
-          wheel: true,
-          waitForTransition: true,
-          grid: {
-            rows: 2,
-            cols: 3,
-          },
-          height: "60vh",
-          fixedWidth: !!contentContainerSize
-            ? contentContainerSize.width - 92
-            : "80vw",
-          arrows: false,
-          classes: {
-            pagination: "splide__pagination news-pagination",
-            page: "splide__pagination__page news-pagination-page",
-          },
-        },
-        xl: {
-          direction: "ttb",
-          wheel: true,
-          waitForTransition: true,
-          grid: {
-            rows: 2,
-            cols: 4,
-          },
-          height: "60vh",
-          fixedWidth: !!contentContainerSize
-            ? contentContainerSize.width - 92
-            : "80vw",
-          arrows: false,
-          classes: {
-            pagination: "splide__pagination news-pagination",
-            page: "splide__pagination__page news-pagination-page",
-          },
-        },
+  const dynamicNumberOfGridColumns: number = Math.floor(
+    (contentContainerSize?.width ?? 0) / (GRID_CARD_WIDTH + GRID_COLUMN_GAP)
+  );
+
+  const dynamicNumberOfGridRows: number = Math.floor(
+    (contentContainerSize?.height ?? 0) / (GRID_CARD_HEIGHT + GRID_ROW_GAP)
+  );
+
+  const gridLayoutSplideOptions: SplideOptions = useMemo<SplideOptions>(
+    () => ({
+      direction: "ttb",
+      wheel: true,
+      waitForTransition: true,
+      grid: {
+        cols: Math.min(dynamicNumberOfGridColumns, GRID_MAX_COLUMNS),
+        rows: Math.min(dynamicNumberOfGridRows, GRID_MAX_ROWS),
       },
-      { ssr: true, fallback: "md" }
-    );
+      height: "60vh",
+      fixedWidth: !!contentContainerSize
+        ? contentContainerSize.width - 92
+        : "80vw",
+      arrows: false,
+      classes: {
+        pagination: "splide__pagination news-pagination",
+        page: "splide__pagination__page news-pagination-page",
+      },
+    }),
+    [contentContainerSize, dynamicNumberOfGridColumns, dynamicNumberOfGridRows]
+  );
 
   return (
     <>
@@ -543,7 +539,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
               <Splide
                 hasTrack={false}
                 extensions={{ SplideGridExtension }}
-                options={largeLayoutSplideOptions}
+                options={gridLayoutSplideOptions}
               >
                 <HStack alignItems="flex-start" spacing="0">
                   <SplideTrack>
