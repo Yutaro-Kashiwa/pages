@@ -278,7 +278,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
             rows: 2,
             cols: 3,
           },
-          height: (contentContainerSize?.height ?? 1) * (80 / 100),
+          height: "60vh",
           fixedWidth: !!contentContainerSize
             ? contentContainerSize.width - 92
             : "80vw",
@@ -296,7 +296,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
             rows: 2,
             cols: 4,
           },
-          height: (contentContainerSize?.height ?? 1) * (80 / 100),
+          height: "60vh",
           fixedWidth: !!contentContainerSize
             ? contentContainerSize.width - 92
             : "80vw",
@@ -406,21 +406,19 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
         transition={{
           duration: !!refererPath?.match(/\/whats_new\/[^\s].*/) ? 0.5 : 1,
         }}
-        style={{
-          height: "100%",
-        }}
       >
         <Container
           ref={contentContainerRef}
           maxW="1280px"
-          h="100%"
           overflow="auto"
+          mt="5vh"
+          mb="auto"
         >
           <VStack
             w="100%"
-            h="100%"
             justifyContent="space-around"
             alignItems="flex-start"
+            rowGap="72px"
           >
             <Show above="lg">
               <HStack position="relative" w="fit-content">
@@ -473,7 +471,6 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
                   justify="space-between"
                   alignItems="flex-start"
                   w="90vw"
-                  h="100%"
                   columnGap="2%"
                 >
                   <SplideTrack>
@@ -546,7 +543,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
                 extensions={{ SplideGridExtension }}
                 options={largeLayoutSplideOptions}
               >
-                <HStack alignItems="flex-start" h="100%" spacing="0">
+                <HStack alignItems="flex-start" spacing="0">
                   <SplideTrack>
                     {!!newsList &&
                       newsList.map(({ id, title, createdAt, imageURL }) => (
