@@ -17,7 +17,6 @@ import {
   LinkOverlay,
   Divider,
   useMediaQuery,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size";
 import {
@@ -56,17 +55,21 @@ const GRID_MAX_ROWS: number = 2;
 
 const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
   ({ title, createdAt, imageURL }) => (
-    <VStack maxW="240px" alignItems="flex-start" spacing="16px">
+    <VStack
+      maxW={`${GRID_CARD_WIDTH}px`}
+      alignItems="flex-start"
+      spacing="16px"
+    >
       {!!imageURL ? (
         <ChakraNextImage
           src={imageURL}
           alt={title}
-          width={240}
+          width={`${GRID_CARD_WIDTH}px`}
           height={135}
           objectFit="cover"
         />
       ) : (
-        <Box w="240px" h="135px" backgroundColor="gray" />
+        <Box w={`${GRID_CARD_WIDTH}px`} h="135px" backgroundColor="gray" />
       )}
 
       <VStack alignItems="inherit" spacing="8px">
