@@ -270,7 +270,7 @@ export const AwardsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              height: "70vh",
+              height: "65vh",
               width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
@@ -281,9 +281,6 @@ export const AwardsPage: NextPageWithLayout = () => {
               breakpoints: {
                 992: {
                   height: "70vh",
-                  padding: {
-                    top: "5vh",
-                  },
                 },
               },
             }}
