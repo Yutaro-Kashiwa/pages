@@ -192,20 +192,6 @@ type PageProps = {
 export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
   return (
     <>
-      <style jsx global>
-        {`
-          html {
-            overflow-x: hidden;
-            overflow-y: scroll;
-          }
-
-          #__next {
-            overflow-x: visible;
-            overflow-y: visible;
-          }
-        `}
-      </style>
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -213,22 +199,12 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
         transition={{
           duration: 0.3,
         }}
-        style={{
-          height: "100%",
-        }}
       >
-        <Container
-          maxW="1280px"
-          h="fit-content"
-          pt="8vh"
-          pb="12vh"
-          overflowY="visible"
-        >
+        <Container maxW="1280px" my="5vh">
           <VStack
-            // h="100%"
             justifyContent="space-around"
             alignItems="flex-start"
-            rowGap="4vh"
+            rowGap="72px"
           >
             <Show above="lg">
               <HStack position="relative" w="fit-content">
@@ -259,7 +235,6 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
             <SimpleGrid
               alignSelf="center"
               w="100%"
-              h="fit-content"
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
               alignItems="start"
