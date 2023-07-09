@@ -132,6 +132,108 @@ const awardedHistoriesList: Award[] = [
   },
 ];
 
+const AwardsListCard = memo<Omit<Award, "id">>(
+  ({ awardedDate, awardeeName, awardName, awarderOrganization }) => (
+    <Grid
+      templateRows="repeat(auto-fit, 1fr)"
+      templateColumns={{
+        base: " 120px 3fr",
+        lg: "120px 360px 2fr",
+      }}
+      templateAreas={{
+        base: `
+                              "awardedDate awardeeName"
+                              "awardDetail awardDetail"
+                            `,
+        lg: `
+                              "awardedDate awardeeName awardDetail"
+                              "awardedDate awardeeName awardDetail"
+                            `,
+      }}
+      alignItems="baseline"
+      justifyItems={{
+        base: "start",
+        lg: "unset",
+      }}
+      rowGap={{}}
+      columnGap={{
+        base: "16px",
+        lg: "unset",
+      }}
+    >
+      <GridItem area="awardedDate">
+        <Text
+          minW={{ lg: "140px" }}
+          fontFamily={ubuntuFont.style.fontFamily}
+          fontWeight={700}
+          fontSize={{
+            base: "calc(1.125rem + ((1vw - 3.75px) * 1.3146))",
+            lg: 32,
+          }}
+          lineHeight="0.84em"
+          color="main"
+          opacity="0.6"
+        >
+          {awardedDate}
+        </Text>
+      </GridItem>
+
+      <GridItem area="awardeeName">
+        <Text
+          fontWeight={400}
+          fontSize={{
+            base: "calc(0.8125rem + ((1vw - 3.75px) * 0.6573))",
+            lg: 20,
+          }}
+          lineHeight="1.5"
+          textAlign="center"
+        >
+          {awardeeName}
+        </Text>
+      </GridItem>
+
+      <GridItem area="awardDetail">
+        <VStack alignSelf="flex-start" alignItems="flex-start" spacing="2px">
+          <Text
+            fontWeight={400}
+            fontSize={{
+              base: "calc(0.9375rem + ((1vw - 3.75px) * 0.4695))",
+              lg: 20,
+            }}
+            sx={{
+              display: "-webkit-box",
+              "-webkit-line-clamp": "2",
+              "-webkit-box-orient": "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {awardName}
+          </Text>
+
+          <Text
+            fontWeight={400}
+            fontSize={{
+              base: "calc(0.75rem + ((1vw - 3.75px) * 0.5634))",
+              lg: 18,
+            }}
+            color="#484848"
+            sx={{
+              display: "-webkit-box",
+              "-webkit-line-clamp": "2",
+              "-webkit-box-orient": "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {awarderOrganization}
+          </Text>
+        </VStack>
+      </GridItem>
+    </Grid>
+  )
+);
+
+AwardsListCard.displayName = "AwardsListCard";
+
 export const AwardsPage: NextPageWithLayout = () => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -329,105 +431,12 @@ export const AwardsPage: NextPageWithLayout = () => {
                       awarderOrganization,
                     }) => (
                       <SplideSlide key={id}>
-                        <Grid
-                          templateRows="repeat(auto-fit, 1fr)"
-                          templateColumns={{
-                            base: " 120px 3fr",
-                            lg: "120px 360px 2fr",
-                          }}
-                          templateAreas={{
-                            base: `
-                              "awardedDate awardeeName"
-                              "awardDetail awardDetail"
-                            `,
-                            lg: `
-                              "awardedDate awardeeName awardDetail"
-                              "awardedDate awardeeName awardDetail"
-                            `,
-                          }}
-                          alignItems="baseline"
-                          justifyItems={{
-                            base: "start",
-                            lg: "unset",
-                          }}
-                          rowGap={{}}
-                          columnGap={{
-                            base: "16px",
-                            lg: "unset",
-                          }}
-                        >
-                          <GridItem area="awardedDate">
-                            <Text
-                              minW={{ lg: "140px" }}
-                              fontFamily={ubuntuFont.style.fontFamily}
-                              fontWeight={700}
-                              fontSize={{
-                                base: "calc(1.125rem + ((1vw - 3.75px) * 1.3146))",
-                                lg: 32,
-                              }}
-                              lineHeight="0.84em"
-                              color="main"
-                              opacity="0.6"
-                            >
-                              {awardedDate}
-                            </Text>
-                          </GridItem>
-
-                          <GridItem area="awardeeName">
-                            <Text
-                              fontWeight={400}
-                              fontSize={{
-                                base: "calc(0.8125rem + ((1vw - 3.75px) * 0.6573))",
-                                lg: 20,
-                              }}
-                              lineHeight="1.5"
-                              textAlign="center"
-                            >
-                              {awardeeName}
-                            </Text>
-                          </GridItem>
-
-                          <GridItem area="awardDetail">
-                            <VStack
-                              alignSelf="flex-start"
-                              alignItems="flex-start"
-                              spacing="2px"
-                            >
-                              <Text
-                                fontWeight={400}
-                                fontSize={{
-                                  base: "calc(0.9375rem + ((1vw - 3.75px) * 0.4695))",
-                                  lg: 20,
-                                }}
-                                sx={{
-                                  display: "-webkit-box",
-                                  "-webkit-line-clamp": "2",
-                                  "-webkit-box-orient": "vertical",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                {awardName}
-                              </Text>
-
-                              <Text
-                                fontWeight={400}
-                                fontSize={{
-                                  base: "calc(0.75rem + ((1vw - 3.75px) * 0.5634))",
-                                  lg: 18,
-                                }}
-                                color="#484848"
-                                sx={{
-                                  display: "-webkit-box",
-                                  "-webkit-line-clamp": "2",
-                                  "-webkit-box-orient": "vertical",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                {awarderOrganization}
-                              </Text>
-                            </VStack>
-                          </GridItem>
-                        </Grid>
+                        <AwardsListCard
+                          awardedDate={awardedDate}
+                          awardeeName={awardeeName}
+                          awardName={awardName}
+                          awarderOrganization={awarderOrganization}
+                        />
                       </SplideSlide>
                     )
                   )}
