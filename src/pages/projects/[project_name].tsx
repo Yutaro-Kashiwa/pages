@@ -123,7 +123,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
               {title}
             </Heading>
 
-            <VStack alignItems="inherit">
+            <VStack alignItems="inherit" rowGap={{ base: "20px", lg: "unset" }}>
               <Show below="lg">
                 {!!pictureURL ? (
                   <ChakraNextImage
