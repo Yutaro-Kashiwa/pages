@@ -254,14 +254,10 @@ export const AwardsPage: NextPageWithLayout = () => {
         transition={{
           duration: 0.3,
         }}
-        style={{
-          height: "100%",
-        }}
       >
         <Container
           ref={contentContainerRef}
           maxW="1280px"
-          h="100%"
           mt="5vh"
           overflowX="auto"
           overflowY="hidden"
@@ -274,10 +270,7 @@ export const AwardsPage: NextPageWithLayout = () => {
               direction: "ttb",
               wheel: true,
               waitForTransition: true,
-              heightRatio: !!contentContainerSize
-                ? (contentContainerSize.height * (80 / 100)) /
-                  contentContainerSize.width
-                : 0.3,
+              height: "70vh",
               width: "100vw",
               classes: {
                 pagination: "splide__pagination news-pagination",
@@ -287,7 +280,7 @@ export const AwardsPage: NextPageWithLayout = () => {
               mediaQuery: "min",
               breakpoints: {
                 992: {
-                  height: "75vh",
+                  height: "70vh",
                   padding: {
                     top: "5vh",
                   },
@@ -295,11 +288,10 @@ export const AwardsPage: NextPageWithLayout = () => {
               },
             }}
           >
-            <VStack align="center" w="100%" h="100%">
+            <VStack align="center" w="100%">
               <HStack
                 alignItems="flex-start"
                 w="100%"
-                h="100%"
                 spacing={{ base: "12px", lg: "84px" }}
               >
                 <SplideTrack>
