@@ -125,24 +125,27 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 
             <VStack alignItems="inherit" rowGap={{ base: "20px", lg: "unset" }}>
               <Show below="lg">
-                {!!pictureURL ? (
-                  <ChakraNextImage
-                    src={pictureURL}
-                    alt={title}
-                    // @ts-ignore
-                    position="relative !important"
-                    maxH="100px"
-                    // @ts-ignore
-                    fill
-                    sx={{
-                      objectFit: "contain",
-                    }}
-                  />
-                ) : (
-                  <AspectRatio w="100%" ratio={2 / 1}>
-                    <Box as="img" backgroundColor="#d9d9d9" />
-                  </AspectRatio>
-                )}
+                <Box w="50%">
+                  {!!pictureURL ? (
+                    <ChakraNextImage
+                      src={pictureURL}
+                      alt={title}
+                      // @ts-ignore
+                      position="relative !important"
+                      maxH="100px"
+                      // @ts-ignore
+                      fill
+                      sx={{
+                        objectFit: "contain",
+                        width: "unset !important",
+                      }}
+                    />
+                  ) : (
+                    <AspectRatio ratio={2 / 1}>
+                      <Box as="img" backgroundColor="#d9d9d9" />
+                    </AspectRatio>
+                  )}
+                </Box>
               </Show>
 
               <Text
