@@ -235,6 +235,7 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
             <SimpleGrid
               alignSelf="center"
               w="100%"
+              h="fit-content"
               minChildWidth="min(20vw, 136px)"
               justifyContent="space-between"
               alignItems="start"
