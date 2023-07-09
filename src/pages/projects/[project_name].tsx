@@ -20,9 +20,9 @@ import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { Inter } from "next/font/google";
 import { GetServerSideProps } from "next";
 import NextLink from "next/link";
-import NextImage from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import { ubuntuFont } from "@/config/next_fonts";
+import { ChakraNextImage } from "@/components/chakra_next_image";
 
 const interFont = Inter({
   subsets: ["latin"],
@@ -125,19 +125,24 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 
             <VStack alignItems="inherit">
               <Show below="lg">
-                <Image
-                  as={NextImage}
-                  src={pictureURL}
-                  alt={title}
-                  float="right"
-                  w="100%"
-                  maxH="100px"
-                  fallback={
-                    <AspectRatio w="100%" ratio={2 / 1}>
-                      <Box as="img" backgroundColor="#d9d9d9" />
-                    </AspectRatio>
-                  }
-                />
+                {!!pictureURL ? (
+                  <ChakraNextImage
+                    src={pictureURL}
+                    alt={title}
+                    // @ts-ignore
+                    position="relative !important"
+                    maxH="100px"
+                    // @ts-ignore
+                    fill
+                    sx={{
+                      objectFit: "contain",
+                    }}
+                  />
+                ) : (
+                  <AspectRatio w="100%" ratio={2 / 1}>
+                    <Box as="img" backgroundColor="#d9d9d9" />
+                  </AspectRatio>
+                )}
               </Show>
 
               <Text
@@ -152,23 +157,31 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                 whiteSpace="pre-wrap"
               >
                 <Show above="lg">
-                  <Image
-                    as={NextImage}
-                    src={pictureURL}
-                    alt={title}
-                    float="right"
-                    ml="60px"
-                    fallback={
-                      <Box
-                        as="img"
-                        minW="320px"
-                        minH="180px"
-                        float="right"
-                        ml="60px"
-                        backgroundColor="#d9d9d9"
-                      />
-                    }
-                  />
+                  {!!pictureURL ? (
+                    <ChakraNextImage
+                      src={pictureURL}
+                      alt={title}
+                      // @ts-ignore
+                      position="relative !important"
+                      float="right"
+                      maxW="360px"
+                      ml="60px"
+                      // @ts-ignore
+                      fill
+                      sx={{
+                        objectFit: "contain",
+                      }}
+                    />
+                  ) : (
+                    <Box
+                      as="img"
+                      minW="320px"
+                      minH="180px"
+                      float="right"
+                      ml="60px"
+                      backgroundColor="#d9d9d9"
+                    />
+                  )}
                 </Show>
 
                 {body}
