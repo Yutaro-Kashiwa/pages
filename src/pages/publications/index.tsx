@@ -203,16 +203,12 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
       {
         base: {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize
-            ? contentContainerSize.height / contentContainerSize.width
-            : 0.3,
+          height: "65vh",
           perPage: numberOfSlidesPerPage - 1,
         },
         lg: {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize
-            ? (contentContainerSize.height + 64) / contentContainerSize.width
-            : 0.3,
+          height: "80vh",
           perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
@@ -220,9 +216,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
         },
         "2xl": {
           ...commonSplideOptions,
-          heightRatio: !!contentContainerSize
-            ? (contentContainerSize.height + 64) / contentContainerSize.width
-            : 0.3,
+          height: "80vh",
           perPage: numberOfSlidesPerPage,
           padding: {
             top: "5vh",
@@ -335,25 +329,16 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
         transition={{
           duration: 0.3,
         }}
-        style={{
-          height: "100%",
-        }}
       >
-        <Container
-          ref={contentContainerRef}
-          maxW="1280px"
-          h="100%"
-          overflow="auto"
-        >
+        <Container ref={contentContainerRef} maxW="1280px">
           <Splide
             onResize={refreshSplide}
             hasTrack={false}
             options={responsiveSplideOptions}
           >
-            <VStack align="center" w="100%" h="100%">
+            <VStack align="center" w="100%">
               <HStack
                 w="100%"
-                h="100%"
                 justify="space-between"
                 align="flex-start"
                 spacing={{ base: "12px", lg: "84px" }}
