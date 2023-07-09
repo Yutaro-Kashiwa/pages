@@ -56,7 +56,7 @@ const ProjectSummaryCard = memo<
         "detailLink detailLink detailLink"
       `,
     }}
-    justifyItems={{ base: "center", lg: "unset" }}
+    justifyItems={{ base: "start", lg: "unset" }}
     rowGap="20px"
     columnGap={{ lg: "60px" }}
   >
