@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useMemo, useRef } from "react";
+import { ReactElement, useCallback, useMemo, useRef, memo } from "react";
 import {
   AspectRatio,
   Box,
@@ -170,6 +170,149 @@ const mockPublicationsList: Publication[] = [
 type PageProps = {
   publications?: Publication[];
 };
+
+const PublicationsListCard = memo<
+  Omit<Publication, "id"> & { shouldShowPublishedYear: boolean }
+>(
+  ({
+    title,
+    authors,
+    appearedJournal,
+    downloadURL,
+    publishedYear,
+    shouldShowPublishedYear,
+  }) => (
+    <Stack
+      flexDir={{ base: "column", lg: "row" }}
+      justify={{ lg: "space-between" }}
+    >
+      <Box w="110px" aria-hidden={!shouldShowPublishedYear}>
+        <Heading
+          as="h3"
+          fontFamily={ubuntuFont.style.fontFamily}
+          fontWeight={700}
+          fontSize={{
+            base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
+            lg: 48,
+          }}
+          color="main"
+          opacity={shouldShowPublishedYear ? 0.6 : 0}
+          aria-hidden={!shouldShowPublishedYear}
+          tabIndex={-1}
+        >
+          {publishedYear}
+        </Heading>
+      </Box>
+
+      <HStack flexBasis="80%" justify="space-between" align="flex-start">
+        <VStack
+          w="90%"
+          align="flex-start"
+          rowGap={{ base: "4px", lg: "8px" }}
+          spacing={0}
+        >
+          <Heading
+            as="h4"
+            fontFamily={ubuntuFont.style.fontFamily}
+            fontWeight={700}
+            fontSize={{
+              base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
+              lg: 16,
+            }}
+            sx={{
+              display: "-webkit-box",
+              "-webkit-line-clamp": "1",
+              "-webkit-box-orient": "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {title}
+          </Heading>
+
+          <VStack w="100%" align="inherit" spacing={{ lg: "1px" }}>
+            <Text
+              fontFamily={ubuntuFont.style.fontFamily}
+              fontWeight={400}
+              fontSize={{
+                base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                lg: 14,
+              }}
+              w="100%"
+              textOverflow={{
+                base: "ellipsis",
+                lg: "unset",
+              }}
+              overflow={{
+                base: "hidden",
+                lg: "unset",
+              }}
+              whiteSpace={{
+                base: "nowrap",
+                lg: "pre-line",
+              }}
+              textAlign="left"
+              sx={{
+                display: "-webkit-box",
+                "-webkit-line-clamp": "1",
+                "-webkit-box-orient": "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {authors}
+            </Text>
+
+            <Text
+              fontFamily={ubuntuFont.style.fontFamily}
+              fontWeight={400}
+              fontSize={{
+                base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
+                lg: 14,
+              }}
+              w="100%"
+              textOverflow={{
+                base: "ellipsis",
+                lg: "unset",
+              }}
+              overflow={{
+                base: "hidden",
+                lg: "unset",
+              }}
+              whiteSpace={{
+                base: "nowrap",
+                lg: "pre-line",
+              }}
+              textAlign="left"
+              sx={{
+                display: "-webkit-box",
+                "-webkit-line-clamp": "1",
+                "-webkit-box-orient": "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {appearedJournal}
+            </Text>
+          </VStack>
+        </VStack>
+
+        <Link
+          href={downloadURL}
+          isExternal
+          display="inline-flex"
+          justifyContent="center"
+          alignItems="center"
+          boxSize={{ base: "22px", lg: "44px" }}
+          p={{ lg: "12px" }}
+          borderRadius="100%"
+          _hover={{ lg: { bgColor: "white" } }}
+        >
+          <SquareAndArrowDown w="100%" h="100%" fill="main" />
+        </Link>
+      </HStack>
+    </Stack>
+  )
+);
+
+PublicationsListCard.displayName = "PublicationsListCard";
 
 const LIST_CARD_HEIGHT = 120;
 
@@ -396,154 +539,16 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
                             key={id}
                             style={{ width: "100%", flexBasis: "80%" }}
                           >
-                            <Stack
-                              flexDir={{ base: "column", lg: "row" }}
-                              justify={{ lg: "space-between" }}
-                            >
-                              <Box
-                                w="110px"
-                                aria-hidden={
-                                  !isTheFirstPublicationInCurrentYear
-                                }
-                              >
-                                <Heading
-                                  as="h3"
-                                  fontFamily={ubuntuFont.style.fontFamily}
-                                  fontWeight={700}
-                                  fontSize={{
-                                    base: "calc(1.5rem + ((1vw - 3.75px) * 2.2535))",
-                                    lg: 48,
-                                  }}
-                                  color="main"
-                                  opacity={
-                                    isTheFirstPublicationInCurrentYear ? 0.6 : 0
-                                  }
-                                  aria-hidden={
-                                    !isTheFirstPublicationInCurrentYear
-                                  }
-                                  tabIndex={-1}
-                                >
-                                  {publishedYear}
-                                </Heading>
-                              </Box>
-
-                              <HStack
-                                flexBasis="80%"
-                                justify="space-between"
-                                align="flex-start"
-                              >
-                                <VStack
-                                  w="90%"
-                                  align="flex-start"
-                                  rowGap={{ base: "4px", lg: "8px" }}
-                                  spacing={0}
-                                >
-                                  <Heading
-                                    as="h4"
-                                    fontFamily={ubuntuFont.style.fontFamily}
-                                    fontWeight={700}
-                                    fontSize={{
-                                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.1878))",
-                                      lg: 16,
-                                    }}
-                                    sx={{
-                                      display: "-webkit-box",
-                                      "-webkit-line-clamp": "1",
-                                      "-webkit-box-orient": "vertical",
-                                      overflow: "hidden",
-                                    }}
-                                  >
-                                    {title}
-                                  </Heading>
-
-                                  <VStack
-                                    w="100%"
-                                    align="inherit"
-                                    spacing={{ lg: "1px" }}
-                                  >
-                                    <Text
-                                      fontFamily={ubuntuFont.style.fontFamily}
-                                      fontWeight={400}
-                                      fontSize={{
-                                        base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
-                                        lg: 14,
-                                      }}
-                                      w="100%"
-                                      textOverflow={{
-                                        base: "ellipsis",
-                                        lg: "unset",
-                                      }}
-                                      overflow={{
-                                        base: "hidden",
-                                        lg: "unset",
-                                      }}
-                                      whiteSpace={{
-                                        base: "nowrap",
-                                        lg: "pre-line",
-                                      }}
-                                      textAlign="left"
-                                      sx={{
-                                        display: "-webkit-box",
-                                        "-webkit-line-clamp": "1",
-                                        "-webkit-box-orient": "vertical",
-                                        overflow: "hidden",
-                                      }}
-                                    >
-                                      {authors}
-                                    </Text>
-
-                                    <Text
-                                      fontFamily={ubuntuFont.style.fontFamily}
-                                      fontWeight={400}
-                                      fontSize={{
-                                        base: "calc(0.625rem + ((1vw - 3.75px) * 0.3756))",
-                                        lg: 14,
-                                      }}
-                                      w="100%"
-                                      textOverflow={{
-                                        base: "ellipsis",
-                                        lg: "unset",
-                                      }}
-                                      overflow={{
-                                        base: "hidden",
-                                        lg: "unset",
-                                      }}
-                                      whiteSpace={{
-                                        base: "nowrap",
-                                        lg: "pre-line",
-                                      }}
-                                      textAlign="left"
-                                      sx={{
-                                        display: "-webkit-box",
-                                        "-webkit-line-clamp": "1",
-                                        "-webkit-box-orient": "vertical",
-                                        overflow: "hidden",
-                                      }}
-                                    >
-                                      {appearedJournal}
-                                    </Text>
-                                  </VStack>
-                                </VStack>
-
-                                <Link
-                                  href={downloadURL}
-                                  isExternal
-                                  display="inline-flex"
-                                  justifyContent="center"
-                                  alignItems="center"
-                                  boxSize={{ base: "22px", lg: "44px" }}
-                                  p={{ lg: "12px" }}
-                                  borderRadius="100%"
-                                  _hover={{ lg: { bgColor: "white" } }}
-                                >
-                                  <SquareAndArrowDown
-                                    w="100%"
-                                    h="100%"
-                                    fill="main"
-                                  />
-                                </Link>
-                              </HStack>
-                            </Stack>
+                            <PublicationsListCard
+                              shouldShowPublishedYear={
+                                isTheFirstPublicationInCurrentYear
+                              }
+                              title={title}
+                              authors={authors}
+                              appearedJournal={appearedJournal}
+                              downloadURL={downloadURL}
+                              publishedYear={publishedYear}
+                            />
                           </SplideSlide>
                         );
                       }
