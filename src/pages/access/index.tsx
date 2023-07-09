@@ -28,14 +28,6 @@ import { ubuntuFont } from "@/config/next_fonts";
 export const AccessPage: NextPageWithLayout = () => {
   return (
     <>
-      <style jsx global>
-        {`
-          #__next {
-            overflow: visible;
-          }
-        `}
-      </style>
-
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
