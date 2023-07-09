@@ -429,7 +429,7 @@ export const AwardsPage: NextPageWithLayout = () => {
                                 color="#484848"
                                 sx={{
                                   display: "-webkit-box",
-                                  "-webkit-line-clamp": "3",
+                                  "-webkit-line-clamp": "2",
                                   "-webkit-box-orient": "vertical",
                                   overflow: "hidden",
                                 }}
