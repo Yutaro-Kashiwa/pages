@@ -70,188 +70,167 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
   const { title, body, pictureURL } = displayingProject;
 
   return (
-    <>
-      <style jsx global>
-        {`
-          #__next {
-            overflow-x: auto;
-            overflow-y: scroll;
-          }
-        `}
-      </style>
-
-      <motion.div
-        initial={refererPath === "/projects" ? { y: "100vh" } : { opacity: 0 }}
-        animate={refererPath === "/projects" ? { y: 0 } : { opacity: 1 }}
-        exit={shouldShowSlidingExitAnimation ? { y: "100vh" } : { opacity: 0 }}
-        transition={{
-          duration: 0.5,
-        }}
-        style={{
-          height: "100%",
-        }}
-      >
-        <Container
-          as="article"
-          maxW="1280px"
-          pt="32px"
-          pb="84px"
-          overflowY="visible"
+    <motion.div
+      initial={refererPath === "/projects" ? { y: "100vh" } : { opacity: 0 }}
+      animate={refererPath === "/projects" ? { y: 0 } : { opacity: 1 }}
+      exit={shouldShowSlidingExitAnimation ? { y: "100vh" } : { opacity: 0 }}
+      transition={{
+        duration: 0.5,
+      }}
+    >
+      <Container as="article" maxW="1280px" my="5vh">
+        <VStack
+          justifyContent="space-around"
+          alignItems="flex-start"
+          rowGap="72px"
         >
-          <VStack
-            h="100%"
-            justifyContent="space-around"
-            alignItems="flex-start"
-            rowGap="5vh"
-          >
-            <Show above="lg">
-              <HStack position="relative" w="fit-content">
-                <Box
-                  position="absolute"
-                  right="-20px"
-                  bottom="-16px"
-                  w="199px"
-                  zIndex={-1}
-                >
-                  <AspectRatio w="100%" ratio={199 / 44}>
-                    <TitleBackgroundRect />
-                  </AspectRatio>
-                </Box>
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
 
-                <Heading
-                  as="h2"
-                  fontFamily={ubuntuFont.style.fontFamily}
-                  fontWeight={400}
-                  color="main"
-                  textTransform="uppercase"
-                >
-                  about study
-                </Heading>
-              </HStack>
-            </Show>
-
-            <VStack alignItems="flex-start">
               <Heading
-                as="h3"
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                about study
+              </Heading>
+            </HStack>
+          </Show>
+
+          <VStack alignItems="flex-start">
+            <Heading
+              as="h3"
+              fontFamily={interFont.style.fontFamily}
+              fontWeight={400}
+              fontSize={{
+                base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
+                lg: 24,
+              }}
+            >
+              {title}
+            </Heading>
+
+            <VStack alignItems="inherit">
+              <Show below="lg">
+                <Image
+                  as={NextImage}
+                  src={pictureURL}
+                  alt={title}
+                  float="right"
+                  w="100%"
+                  maxH="100px"
+                  fallback={
+                    <AspectRatio w="100%" ratio={2 / 1}>
+                      <Box as="img" backgroundColor="#d9d9d9" />
+                    </AspectRatio>
+                  }
+                />
+              </Show>
+
+              <Text
+                w="100%"
                 fontFamily={interFont.style.fontFamily}
                 fontWeight={400}
                 fontSize={{
-                  base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
-                  lg: 24,
+                  base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+                  lg: 16,
                 }}
+                lineHeight="1.8"
+                whiteSpace="pre-wrap"
               >
-                {title}
-              </Heading>
-
-              <VStack alignItems="inherit">
-                <Show below="lg">
+                <Show above="lg">
                   <Image
                     as={NextImage}
                     src={pictureURL}
                     alt={title}
                     float="right"
-                    w="100%"
-                    maxH="100px"
+                    ml="60px"
                     fallback={
-                      <AspectRatio w="100%" ratio={2 / 1}>
-                        <Box as="img" backgroundColor="#d9d9d9" />
-                      </AspectRatio>
+                      <Box
+                        as="img"
+                        minW="320px"
+                        minH="180px"
+                        float="right"
+                        ml="60px"
+                        backgroundColor="#d9d9d9"
+                      />
                     }
                   />
                 </Show>
 
-                <Text
-                  w="100%"
-                  fontFamily={interFont.style.fontFamily}
-                  fontWeight={400}
+                {body}
+              </Text>
+
+              <VStack w="100%" alignItems="inherit" spacing="2px">
+                <HStack alignItems="center">
+                  <Badge
+                    fontFamily={interFont.style.fontFamily}
+                    fontWeight={500}
+                    fontSize={{
+                      base: "calc(0.875rem + ((1vw - 3.75px) * 0.3756))",
+                      lg: "18px",
+                    }}
+                    bg="#f2f947"
+                    color="#333333"
+                    borderRadius="4px"
+                    px={{ base: "8px", lg: "16px" }}
+                    py={{ base: "4px", lg: "8px" }}
+                  >
+                    発表論文
+                  </Badge>
+
+                  <Text
+                    fontFamily={interFont.style.fontFamily}
+                    fontWeight={400}
+                    fontSize={{
+                      base: "calc(0.5rem + ((1vw - 3.75px) * 0.7512))",
+                      lg: "16px",
+                    }}
+                    color="#333333"
+                    textDecoration="underline"
+                  >
+                    論文のリストorリンクが入ります論文のリストorリンクが入ります論文のリストorリンクが入ります
+                  </Text>
+                </HStack>
+
+                <Link
+                  as={NextLink}
+                  href="/projects"
+                  alignSelf={{ base: "flex-start", lg: "flex-end" }}
+                  color={{ base: "#999999", lg: "rgba(1, 104, 183, 1)" }}
+                  opacity={1}
+                  fontWeight={{ base: 700, lg: 400 }}
                   fontSize={{
-                    base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
+                    base: "calc(0.75rem + ((1vw - 3.75px) * 0.3756))",
                     lg: 16,
                   }}
-                  lineHeight="1.8"
-                  whiteSpace="pre-wrap"
+                  _hover={{
+                    textDecoration: "none",
+                    color: "rgba(1, 104, 183, 0.5)",
+                  }}
+                  transition="ease-out 1s"
                 >
-                  <Show above="lg">
-                    <Image
-                      as={NextImage}
-                      src={pictureURL}
-                      alt={title}
-                      float="right"
-                      ml="60px"
-                      fallback={
-                        <Box
-                          as="img"
-                          minW="320px"
-                          minH="180px"
-                          float="right"
-                          ml="60px"
-                          backgroundColor="#d9d9d9"
-                        />
-                      }
-                    />
-                  </Show>
-
-                  {body}
-                </Text>
-
-                <VStack w="100%" alignItems="inherit" spacing="2px">
-                  <HStack alignItems="center">
-                    <Badge
-                      fontFamily={interFont.style.fontFamily}
-                      fontWeight={500}
-                      fontSize={{
-                        base: "calc(0.875rem + ((1vw - 3.75px) * 0.3756))",
-                        lg: "18px",
-                      }}
-                      bg="#f2f947"
-                      color="#333333"
-                      borderRadius="4px"
-                      px={{ base: "8px", lg: "16px" }}
-                      py={{ base: "4px", lg: "8px" }}
-                    >
-                      発表論文
-                    </Badge>
-
-                    <Text
-                      fontFamily={interFont.style.fontFamily}
-                      fontWeight={400}
-                      fontSize={{
-                        base: "calc(0.5rem + ((1vw - 3.75px) * 0.7512))",
-                        lg: "16px",
-                      }}
-                      color="#333333"
-                      textDecoration="underline"
-                    >
-                      論文のリストorリンクが入ります論文のリストorリンクが入ります論文のリストorリンクが入ります
-                    </Text>
-                  </HStack>
-
-                  <Link
-                    as={NextLink}
-                    href="/projects"
-                    alignSelf={{ base: "flex-start", lg: "flex-end" }}
-                    color={{ base: "#999999", lg: "rgba(1, 104, 183, 1)" }}
-                    opacity={1}
-                    fontWeight={{ base: 700, lg: 400 }}
-                    fontSize={{
-                      base: "calc(0.75rem + ((1vw - 3.75px) * 0.3756))",
-                      lg: 16,
-                    }}
-                    _hover={{
-                      textDecoration: "none",
-                      color: "rgba(1, 104, 183, 0.5)",
-                    }}
-                    transition="ease-out 1s"
-                  >
-                    一覧へ戻る ↑
-                  </Link>
-                </VStack>
+                  一覧へ戻る ↑
+                </Link>
               </VStack>
             </VStack>
           </VStack>
-        </Container>
-      </motion.div>
-    </>
+        </VStack>
+      </Container>
+    </motion.div>
   );
 };
 
