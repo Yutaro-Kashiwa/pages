@@ -38,7 +38,7 @@ export const AccessPage: NextPageWithLayout = () => {
       >
         <Container
           maxW="1280px"
-          mt="5vh"
+          my="5vh"
           overflowX="visible"
           overflowY="visible"
         >
