@@ -214,14 +214,6 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
             top: "5vh",
           },
         },
-        "2xl": {
-          ...commonSplideOptions,
-          height: "80vh",
-          perPage: numberOfSlidesPerPage,
-          padding: {
-            top: "5vh",
-          },
-        },
       },
       { ssr: true, fallback: "md" }
     );
