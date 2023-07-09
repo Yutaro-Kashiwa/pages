@@ -35,7 +35,6 @@ const ProjectSummaryCard = memo<
   Project & { shouldReverseImagePlacement: boolean }
 >(({ title, name, summary, pictureURL, shouldReverseImagePlacement }) => (
   <Grid
-    h={{ base: "fit-content", lg: "unset" }}
     templateRows="auto"
     templateColumns="auto"
     templateAreas={{
@@ -181,15 +180,6 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
 
   return (
     <>
-      <style jsx global>
-        {`
-          #__next {
-            overflow-x: hidden;
-            overflow-y: scroll;
-          }
-        `}
-      </style>
-
       <motion.div
         initial={
           !!refererPath?.match(/\/projects\/[^\s].*/)
@@ -215,16 +205,14 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
       >
         <Container
           maxW="1280px"
-          h={{ base: "fit-content", lg: "100%" }}
-          pt="5vh"
-          pb={{ base: "5vh", lg: "unset" }}
+          my="5vh"
           overflowX="visible"
           overflowY="visible"
         >
           <VStack
-            h="100%"
             justifyContent="space-around"
             alignItems="flex-start"
+            rowGap="72px"
           >
             <Show above="lg">
               <HStack position="relative" w="fit-content">
@@ -252,11 +240,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
               </HStack>
             </Show>
 
-            <VStack
-              h="100%"
-              justifyContent="space-evenly"
-              flexBasis={{ lg: "90%" }}
-            >
+            <VStack justifyContent="space-evenly" rowGap="44px">
               {!!projects &&
                 projects.map(
                   ({ title, name, body, summary, pictureURL }, index) => (
