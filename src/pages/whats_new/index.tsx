@@ -466,7 +466,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
             </Show>
 
             {/* スマホレイアウト */}
-            <Show below="lg">
+            <Show below="xl">
               <Splide hasTrack={false} options={listLayoutSplideOptions}>
                 <HStack
                   justify="space-between"
@@ -538,7 +538,7 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
             </Show>
 
             {/* PCレイアウト */}
-            <Show above="lg">
+            <Show above="xl">
               <Splide
                 hasTrack={false}
                 extensions={{ SplideGridExtension }}
