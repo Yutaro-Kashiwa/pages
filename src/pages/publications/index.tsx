@@ -465,7 +465,7 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
           duration: 0.3,
         }}
       >
-        <Container ref={contentContainerRef} maxW="1280px">
+        <Container ref={contentContainerRef} maxW="1280px" my="5vh">
           <Splide
             onResize={refreshSplide}
             hasTrack={false}
