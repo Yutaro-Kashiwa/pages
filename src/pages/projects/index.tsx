@@ -17,7 +17,6 @@ import {
 import { Fragment, ReactElement, memo, useEffect } from "react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import NextLink from "next/link";
-import { Inter } from "next/font/google";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { ArrowDown } from "@/components/icons/arrow_down";
 import { GetServerSideProps } from "next";
@@ -25,11 +24,7 @@ import NextImage from "next/image";
 import { motion } from "framer-motion";
 import { Project, mockProjectsList } from "./[project_name]";
 import { useRouter } from "next/router";
-import { ubuntuFont } from "@/config/next_fonts";
-
-const interFont = Inter({
-  subsets: ["latin"],
-});
+import { ubuntuFont, interFont } from "@/config/next_fonts";
 
 const ProjectSummaryCard = memo<
   Project & { shouldReverseImagePlacement: boolean }

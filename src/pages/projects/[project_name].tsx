@@ -17,16 +17,11 @@ import {
 } from "@chakra-ui/react";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
-import { Inter } from "next/font/google";
 import { GetServerSideProps } from "next";
 import NextLink from "next/link";
 import { ParsedUrlQuery } from "querystring";
-import { ubuntuFont } from "@/config/next_fonts";
+import { interFont, ubuntuFont } from "@/config/next_fonts";
 import { ChakraNextImage } from "@/components/chakra_next_image";
-
-const interFont = Inter({
-  subsets: ["latin"],
-});
 
 export type Project = {
   title: string;
