@@ -32,7 +32,7 @@
       width: calc(100% + 730px) !important;
     }
     & li {
-      transition: ease-out 0.3s;
+      transition: ease-out 0.3s color, ease-out 0.3s transform;
       //swiper-pagination対応
       display: block;
       width: auto;
@@ -41,32 +41,26 @@
       border-radius: initial;
       background: initial;
       opacity: initial;
-      & a {
-        font-size: 18px;
-        font-weight: 700;
-        line-height: 1;
-        word-break: keep-all;
-        color: rgba($blue, 0.7);
-        transition: ease-out 0.3s color;
-      }
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      word-break: keep-all;
+      color: rgba($blue, 0.7);
+      cursor: pointer;
       &:hover {
+        color: $blue;
         &:not(.here) {
           transform: translateY(-5px);
         }
-        & a {
-          color: $blue;
-        }
       }
       &.here {
-        & a {
-          padding: 0 9px;
-          font-size: 30px;
-          color: $blue;
-          pointer-events: none;
-          @include mq-up() {
-            padding: 0;
-            font-size: 40px;
-          }
+        padding: 0 9px;
+        font-size: 30px;
+        color: $blue;
+        pointer-events: none;
+        @include mq-up() {
+          padding: 0;
+          font-size: 40px;
         }
       }
     }

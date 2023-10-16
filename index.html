@@ -18,39 +18,37 @@
   <header class="header">
     <div class="header__title">
       <a href="https://www.jst.go.jp/kisoken/presto/about/index.html" target="_blank" rel="noopener noreferrer"><img src="/images/logo.jpg" alt="さきがけ PRESTO"></a>
-      <p>プログラム異常動作の<br class="sp" />自動検出技術の創出プロジェクト</p>
+      <p><a href="/#top">プログラム異常動作の<br class="sp" />自動検出技術の創出プロジェクト</a></p>
     </div>
     <button class="sp header__button"></button>
     <div class="header__menu">
       <button></button>
       <ul>
-        <li><a href="">TOP</a></li>
-        <li><a href="">NEWS</a></li>
-        <li><a href="">自己紹介</a></li>
-        <li><a href="">研究紹介</a></li>
-        <li><a href="">メンバー</a></li>
-        <li><a href="">論文</a></li>
-        <li><a href="">受賞履歴</a></li>
-        <li><a href="">アクセス</a></li>
+        <li><a href="/#top">TOP</a></li>
+        <li><a href="/#news">NEWS</a></li>
+        <li><a href="/#self_introduction">自己紹介</a></li>
+        <li><a href="/#projects">研究紹介</a></li>
+        <li><a href="/#members">メンバー</a></li>
+        <li><a href="/#publications">論文</a></li>
+        <li><a href="/#awards">受賞履歴</a></li>
+        <li><a href="/#access">アクセス</a></li>
       </ul>
     </div>
   </header>
 
   <!-- Swiper -->
-  <div class="swiper horizontalSwiper swiper-h">
+  <div class="swiper page-slider">
     <div class="swiper-wrapper">
-      <!-- TOP -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="top">
         <div class="page-top page-common">
           <h1>ソフトウェアの動きから<br class="sp" />異常を自動検知</h1>
           <p>本研究では、人手で作成した入出力テストに頼らず、機械が不具合（異常）を検出することを目指しています。<br>具体的には、変更前後のソフトウェアにおける動作の差異から異常か否かの判断を試みています。</p>
           <p>変更後の動作が変更前の動作と著しく異なる場合や、開発者の変更意図(コミットメッセージ等)から逸脱している場合を異常な変更として検出します。</p>
           <p>右図のように、動的解析により変更前後のトレースログを取得し、ソフトウェア動作を定量化することで実現を試みています。</p>
-          <p class="fh--details-link"><a class="details-link details-link--right details-link--white" href="">詳しくはこちら<span></span></a></p>
+          <p class="fh--details-link"><a class="details-link details-link--right details-link--white" href="/#projects">詳しくはこちら<span></span></a></p>
         </div>
       </div>
-      <!-- NEWS -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="news">
         <div class="page-news page-common">
           <h1 class="pc page-common__title">WHAT’S NEW</h1>
           <div class="swiper verticalSwiper swiper-v">
@@ -297,8 +295,7 @@
       </div>
       <!-- NEWS詳細 -->
       <!-- <div class="swiper-slide"></div> -->
-      <!-- 自己紹介 -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="self_introduction">
         <div class="page-self-intro page-common">
           <h1 class="pc page-common__title">SELF-INTRODUCTION</h1>
           <div class="page-self-intro__container">
@@ -339,8 +336,7 @@
           </div>
         </div>
       </div>
-      <!-- 研究紹介 -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="projects">
         <div class="page-projects page-common">
           <h1 class="pc page-common__title">PROJECTS</h1>
           <div>
@@ -371,8 +367,7 @@
       </div>
       <!-- 研究紹介詳細 -->
       <!-- <div class="swiper-slide"></div> -->
-      <!-- メンバー -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="members">
         <div class="page-members page-common">
           <h1 class="pc page-common__title">MEMBERS</h1>
           <ul class="page-members__list">
@@ -409,8 +404,7 @@
           </ul>
         </div>
       </div>
-      <!-- 論文 -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="publications">
         <div class="page-publications page-common">
           <h1 class="pc page-common__title">PUBLICATIONS</h1>
           <!-- <div class="swiper verticalSwiper swiper-v">
@@ -529,8 +523,7 @@
           <p class="list-pagination__scroll">scroll</p>
         </div>
       </div>
-      <!-- 受賞履歴 -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="awards">
         <div class="page-awards page-common">
           <h1 class="pc page-common__title">AWARDS</h1>
           <!-- <div class="swiper verticalSwiper swiper-v">
@@ -709,8 +702,7 @@
           <p class="list-pagination__scroll">scroll</p>
         </div>
       </div>
-      <!-- アクセス -->
-      <div class="swiper-slide">
+      <div class="swiper-slide" data-hash="access">
         <div class="page-access page-common">
           <h1 class="pc page-common__title">ACCESS</h1>
           <h2>奈良先端科学技術大学院大学</h2>
@@ -742,70 +734,56 @@
       </div>
     </div>
     <footer class="footer">
-      <ul class="swiper-pagination horizontal-pagination footer__menu"></ul>
+      <ul class="swiper-pagination global-menu footer__menu"></ul>
     </footer>
   </div>
 
-  <!-- jQuery JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-  <!-- Include plugin after Swiper -->
+
+  <!-- スライダーオプション -->
   <script>
-    function myPlugin({ swiper, extendParams, on }) {
-      extendParams({
-        debugger: false,
-      });
-      on('slideChange', () => {
-        if (!swiper.params.debugger) return;
-        console.log(
-          'slideChange',
-          swiper.previousIndex,
-          '->',
-          swiper.activeIndex
-        );
-        if(swiper.activeIndex == 0) {
-          $("body").addClass("fv");
-        }else{
-          $("body").removeClass("fv");
-        }
-      });
-    }
-  </script>
-  <!-- Initialize Swiper -->
-  <script>
+    // page-slider
     var gmenu = ["TOP", "NEWS", "自己紹介", "研究紹介", "メンバー", "論文", "受賞履歴", "アクセス"];
-    var swiper = new Swiper(".horizontalSwiper", {
-      modules: [myPlugin],
+    const swiper = new Swiper(".page-slider", {
+      // ■ページネーション設定
       pagination: {
-        el: '.horizontal-pagination',
-        // dynamicBullets: true,
+        clickable: true,
+        el: '.global-menu',
         type: 'bullets',
+        bulletClass: 'global-menu__item',
         bulletActiveClass: 'here',
         renderBullet: function (index, className) {
-          return '<li class="' + className + '"><a>' + gmenu[index] + '</a></li>';
+          return '<li class="' + className + '">' + gmenu[index] + '</li>';
         },
-        clickable: true,
       },
-      // Enable debugger
-      debugger: true,
-    });
-    var swiper2 = new Swiper(".verticalSwiper", {
-      direction: "vertical",
-      slidesPerView: 1,
-      slidesPerGroup: 1,
-      // slidesPerGroupSkip: 1,
+      // ■ キーボード操作↑↓有効化
+      keyboard: {
+        enabled: true,
+      },
+      // ■ マウスホイール操作
       mousewheel: {
-        invert: false
+        // ■ イベント受付コンテナのCSS,セレクタ,HTML要素をの指定文字列
+        eventsTarget: '.page-slider',
+        // ■ 水平方向のみ動作
+        forceToAxis: true,
       },
-      pagination: {
-        el: ".vertical-pagination",
-        type: 'bullets',
-        bulletActiveClass: 'here',
-        renderBullet: function (index, className) {
-          return '<li class="' + className + '"><a>' + index + '</a></li>';
-        },
-        clickable: true,
+      // ■ クリック＆ドラッグ操作でスライド変更有効
+      simulateTouch: true,
+      // ■ スライド毎URLに「#〜〜」追加、リンクで指定して画面遷移可能
+      hashNavigation: {
+        watchState: true,
+      },
+      on: {
+        // ■スライドが変わったとき
+        slideChange: function () {
+          // 0番目がアクティブなら
+          if (this.activeIndex == 0) {
+            $("body").addClass("fv");
+          } else {
+            $("body").removeClass("fv");
+          }
+        }
       },
     });
   </script>
