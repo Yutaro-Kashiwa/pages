@@ -51,7 +51,7 @@
       <div class="swiper-slide" data-hash="news">
         <div class="page-news page-common">
           <h1 class="pc page-common__title">WHAT’S NEW</h1>
-          <div class="swiper verticalSwiper swiper-v">
+          <div class="swiper list-slider">
             <div class="swiper-wrapper">
               <ul class="swiper-slide page-news__list news-list">
                 <li class="news-list__item">
@@ -286,9 +286,7 @@
                 </li>
               </ul>
             </div>
-            <div class="page-common__pagination list-pagination">
-              <ol class="swiper-pagination vertical-pagination"></ol>
-            </div>
+            <ol class="swiper-pagination page-common__pagination list-pagination"></ol>
           </div>
           <p class="list-pagination__scroll">scroll</p>
         </div>
@@ -407,7 +405,7 @@
       <div class="swiper-slide" data-hash="publications">
         <div class="page-publications page-common">
           <h1 class="pc page-common__title">PUBLICATIONS</h1>
-          <!-- <div class="swiper verticalSwiper swiper-v">
+          <!-- <div class="swiper list-slider">
             <div class="swiper-wrapper">
               <div class="swiper-slide page-publications__list">
                 <li>
@@ -526,7 +524,7 @@
       <div class="swiper-slide" data-hash="awards">
         <div class="page-awards page-common">
           <h1 class="pc page-common__title">AWARDS</h1>
-          <!-- <div class="swiper verticalSwiper swiper-v">
+          <!-- <div class="swiper list-slider">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <div>
@@ -784,6 +782,39 @@
             $("body").removeClass("fv");
           }
         }
+      },
+    });
+
+    // list-slider
+    const list_swiper = new Swiper(".list-slider", {
+      // ■垂直方向スライダー
+      direction: "vertical",
+      // ■ キーボード操作↑↓有効化
+      keyboard: {
+        enabled: true,
+      },
+      // ■ マウスホイール操作
+      mousewheel: {
+        // ■ イベント受付コンテナのCSS,セレクタ,HTML要素をの指定文字列
+        eventsTarget: '.list-slider',
+        // ■ 垂直方向のみ動作
+        forceToAxis: true,
+      },
+      // ■ クリック＆ドラッグ操作でスライド変更有効
+      simulateTouch: true,
+
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+      // slidesPerGroupSkip: 1,
+      pagination: {
+        clickable: true,
+        el: ".list-pagination",
+        type: 'bullets',
+        bulletActiveClass: 'here',
+        renderBullet: function (index, className) {
+          return '<li class="' + className + '">' + (index+1) + '</li>';
+        },
+
       },
     });
   </script>
