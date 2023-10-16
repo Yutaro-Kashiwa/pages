@@ -55,7 +55,7 @@
       & + div {
         @include mq-up() {
           display: flex;
-          gap: 120px;
+          gap: 30px;
           align-items: flex-end;
           margin-top: 10px;
         }
