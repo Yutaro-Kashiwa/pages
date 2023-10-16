@@ -3,7 +3,8 @@
   @include mq-up() {
     display: flex;
     flex-wrap: wrap;
-    gap: 63px 90px;
+    gap: 0 5.5%;
+    align-items: flex-start;
     width: auto;
     padding-right: 43px;
   }
@@ -11,7 +12,7 @@
     padding: 12px 0;
     border-bottom: 0.5px solid $black;
     @include mq-up() {
-      width: 240px;
+      width: 18%;
       padding: initial;
       border-bottom: initial;
     }
