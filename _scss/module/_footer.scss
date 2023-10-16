@@ -1,5 +1,5 @@
 .footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   height: 48px;
@@ -14,22 +14,40 @@
     display: flex;
     align-items: flex-end;
     column-gap: 41px;
+    // swiper-pagination対応
+    position: static;
+    text-align: initial;
+    transition: initial;
+    transform: initial;
+    z-index: initial;
+    bottom: initial;
+    top: initial;
+    left: initial;
+    width: auto;
     @include mq-up() {
       justify-content: center;
     }
     @include mq-down(lg) {
       justify-content: center;
-      width: calc(100% + 730px);
+      width: calc(100% + 730px) !important;
     }
     & li {
       transition: ease-out 0.3s;
+      //swiper-pagination対応
+      display: block;
+      width: auto;
+      height: auto;
+      margin: initial;
+      border-radius: initial;
+      background: initial;
+      opacity: initial;
       & a {
         font-size: 18px;
         font-weight: 700;
         line-height: 1;
         word-break: keep-all;
         color: rgba($blue, 0.7);
-        transition: ease-out 0.3s;
+        transition: ease-out 0.3s color;
       }
       &:hover {
         &:not(.here) {
