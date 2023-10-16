@@ -5,24 +5,27 @@
   padding-bottom: 48px;
   margin: 0 auto;
   z-index: 1;
+  overflow-y: scroll;
   @include mq-up() {
     width: 100%;
+    height: calc(100vh - 63.5px);
     max-width: 1440px;
     padding-top: 80px;
     padding-left: 60px;
     padding-right: 60px;
-    padding-bottom: 75px;
+    padding-bottom: 100px;
   }
   @include mq-up() {
     &:not(.page-top) {
       &::after {
         position: absolute;
         display: block;
-        top: 530px;
+        bottom: 0;
         right: 0;
         font-family: $ubuntu;
         font-weight: 700;
         font-size: 180px;
+        line-height: 1;
         text-align: right;
         color: $gray3;
         white-space: nowrap;
@@ -82,5 +85,8 @@
     @include mq-up() {
       margin-top: initial;
     }
+  }
+  & .swiper {
+    height: 100%;
   }
 }
