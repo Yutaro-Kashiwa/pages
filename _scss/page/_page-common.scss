@@ -18,9 +18,9 @@
   @include mq-up() {
     &:not(.page-top) {
       &::after {
-        position: absolute;
+        position: fixed;
         display: block;
-        bottom: 0;
+        bottom: 72px;
         right: 0;
         font-family: $ubuntu;
         font-weight: 700;
