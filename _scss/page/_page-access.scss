@@ -47,7 +47,7 @@
     &:last-of-type {
       margin-top: 32px;
       @include mq-up() {
-        margin-top: 100px;
+        margin-top: 7vw;
       }
     }
     & + p {

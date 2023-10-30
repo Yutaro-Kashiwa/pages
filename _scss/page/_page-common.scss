@@ -2,29 +2,27 @@
   position: relative;
   width: 91%;
   padding-top: 24px;
-  padding-bottom: 48px;
   margin: 0 auto;
   z-index: 1;
   overflow-y: scroll;
   @include mq-up() {
     width: 100%;
-    height: calc(100vh - 63.5px);
+    height: calc(100vh - 63.5px - 75px); // - ヘッダー - フッター
     max-width: 1440px;
-    padding-top: 80px;
+    padding-top: 5.5vw;
     padding-left: 60px;
     padding-right: 60px;
-    padding-bottom: 100px;
   }
   @include mq-up() {
     &:not(.page-top) {
       &::after {
         position: fixed;
         display: block;
-        bottom: 72px;
+        bottom: -3px;
         right: 0;
         font-family: $ubuntu;
         font-weight: 700;
-        font-size: 180px;
+        font-size: min(12.5vw, 180px);
         line-height: 1;
         text-align: right;
         color: $gray3;
@@ -62,15 +60,16 @@
       position: relative;
       width: fit-content;
       width: -moz-fit-content;
-      margin-bottom: 72px;
+      margin-bottom: 5vw;
       font-family: $ubuntu;
       font-size: 40px;
+      line-height: 1;
       color: #0168B7;
       z-index: 1;
       &::after {
         content: "";
         position: absolute;
-        top: 35px;
+        top: 15px;
         right: -25px;
         display: block;
         width: 199px;
