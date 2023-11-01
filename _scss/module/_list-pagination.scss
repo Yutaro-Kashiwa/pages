@@ -3,6 +3,8 @@
   justify-content: center;
   flex-direction: row;
   gap: 30px;
+  width: auto !important;
+  height: 266px !important;
   color: $blue;
   writing-mode: vertical-rl;
   @include mq-up() {
@@ -37,6 +39,9 @@
     font-size: 12px;
     writing-mode: vertical-rl;
     @include mq-up() {
+      position: absolute;
+      top: 280px;
+      right: 10px;
       font-size: 20px;
     }
     color: $blue;
@@ -50,5 +55,8 @@
       margin-bottom: 15px;
       background-color: $blue;
     }
+  }
+  & .swiper-pagination-bullet {
+    transform: scale(1);
   }
 }

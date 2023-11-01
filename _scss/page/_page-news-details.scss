@@ -50,6 +50,76 @@
     @include mq-up() {
       margin-top: initial;
     }
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {font-weight: 500;}
+    & h1 {font-size: 200%;}
+    & h2 {font-size: 150%;}
+    & h3 {font-size: 120%;}
+    & h4 {font-size: 100%;}
+    & h5 {font-size: 80%;}
+    & h6 {font-size: 70%;}
+    & p,
+    & blockquote p,
+    & table p {
+      min-height: 1.5em;
+      margin-top: 8px;
+      margin-bottom: 24px;
+      word-break: break-all;
+    }
+    & *:last-child,
+    & blockquote>*:last-child,
+    & table *:last-child {
+      margin-bottom: 0;
+    }
+    & ul {
+      list-style: disc;
+      padding-inline-start: 40px;
+    }
+    & ol {
+      list-style: decimal;
+      padding-inline-start: 40px;
+    }
+    & blockquote {
+      border-left: 4px solid #ccc;
+      padding-left: 16px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      text-align: justify;
+    }
+    & pre {
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      color: #f8f8f2;
+      background-color: #23241f;
+      white-space: pre-wrap;
+      overflow-x: scroll;
+      & code {
+        display: block;
+        width: max-content;
+      }
+    }
+    & sub {
+      vertical-align: sub;
+      font-size: smaller;
+    }
+    & sup {
+      vertical-align: super;
+      font-size: smaller;
+    }
+    & a {
+      text-decoration: underline;
+    }
+    & img {
+      display: inline;
+      max-width: 100%;
+      width: auto;
+    }
   }
   @include mq-up() {
     & .page-common__back-to-list {

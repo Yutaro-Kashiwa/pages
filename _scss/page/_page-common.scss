@@ -4,7 +4,7 @@
   padding-top: 24px;
   margin: 0 auto;
   z-index: 1;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   @include mq-up() {
     width: 100%;
     height: calc(100vh - 63.5px - 75px); // - ヘッダー - フッター
@@ -16,7 +16,7 @@
   @include mq-up() {
     &:not(.page-top) {
       &::after {
-        position: fixed;
+        position: absolute;
         display: block;
         bottom: -3px;
         right: 0;
@@ -51,8 +51,8 @@
     top: 77px;
     right: 0;
     @include mq-up() {
-      top: 200px;
-      right: 60px;
+      top: -11% !important;
+      transform: translateY(0%) !important;
     }
   }
   @include mq-up() {

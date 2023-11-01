@@ -1,5 +1,6 @@
 .page-news {
   @include mq-up() {
+    padding-bottom: 100px;
     &::after {
       content: "\0057\0068\0061\0074\2019\0073\0020\004e\0045\0057";
     }
