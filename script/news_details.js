@@ -2,7 +2,7 @@ const { createClient } = microcms;
 
 // Initialize Client SDK.
 const client = createClient({
-  serviceDomain: "yutato-kashiwa", // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
+  serviceDomain: "yutaro-kashiwa", // YOUR_DOMAIN is the XXXX part of XXXX.microcms.io
   apiKey: "eRqEZjwAg9Qddbc3KZl2iNLyOzj8UzExdMQG",
 });
 
