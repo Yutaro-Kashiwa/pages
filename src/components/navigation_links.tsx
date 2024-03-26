@@ -9,45 +9,45 @@ type Props = {
 type NavigationRoute = {
   path: string;
   title: string;
-}
+};
 
-const routes: (NavigationRoute & { id: string; })[] = [
+const routes: (NavigationRoute & { id: string })[] = [
   {
     id: "646859d8-1f37-43fa-802a-e9e4a75ec90d",
     path: "/whats_new",
-    title: "news"
+    title: "news",
   },
   {
     id: "5714332b-93a7-4952-9993-bdfc90c595a7",
     path: "/self_introduction",
-    title: "自己紹介"
+    title: "自己紹介",
   },
   {
     id: "3aca2619-a313-4bc2-a41d-999472fbe9f8",
     path: "/projects",
-    title: "研究紹介"
+    title: "研究紹介",
   },
   {
     id: "5ec6c574-bb5c-4aed-92c0-c4bd30df73c9",
     path: "/members",
-    title: "メンバー"
+    title: "メンバー",
   },
   {
     id: "5dd7267f-e9c0-4b6c-b644-fc2f52ebd0d1",
     path: "/publications",
-    title: "論文"
+    title: "論文",
   },
   {
     id: "63380e10-baec-4d51-b5b9-7c287b629308",
     path: "/awards",
-    title: "受賞履歴"
+    title: "受賞履歴",
   },
   {
     id: "778dd2cd-8ba6-4ff5-8af1-8b0df94b2b58",
     path: "/access",
-    title: "アクセス"
+    title: "アクセス",
   },
-]
+];
 
 export const NavigationLinks = memo<Props>(({ currentPathname }) => {
   const listContainerRef = useRef<HTMLUListElement>(null);
@@ -63,10 +63,10 @@ export const NavigationLinks = memo<Props>(({ currentPathname }) => {
     const currentDisplayedLinkItem: HTMLLIElement | null =
       linkItems.namedItem(currentPathname);
 
-    currentDisplayedLinkItem?.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-    });
+    // currentDisplayedLinkItem?.scrollIntoView({
+    //   behavior: "smooth",
+    //   inline: "center",
+    // });
   }, [currentPathname]);
 
   return (
