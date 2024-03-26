@@ -24,6 +24,7 @@ import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
 import { ChakraNextImage } from "@/components/chakra_next_image";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type CareerSummaryCardProps = {
   startedAt: Date;

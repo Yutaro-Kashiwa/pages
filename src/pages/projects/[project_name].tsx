@@ -108,7 +108,8 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
           <VStack alignItems="flex-start">
             <Heading
               as="h3"
-              fontFamily={interFont.style.fontFamily}
+              // fontFamily={interFont.style.fontFamily}
+              fontFamily={ubuntuFont.style.fontFamily}
               fontWeight={400}
               fontSize={{
                 base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
@@ -145,7 +146,8 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
 
               <Text
                 w="100%"
-                fontFamily={interFont.style.fontFamily}
+                // fontFamily={interFont.style.fontFamily}
+                fontFamily={ubuntuFont.style.fontFamily}
                 fontWeight={400}
                 fontSize={{
                   base: "calc(0.9375rem + ((1vw - 3.75px) * 0.0939))",
@@ -188,7 +190,8 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
               <VStack w="100%" alignItems="inherit" spacing="2px">
                 <HStack alignItems="center">
                   <Badge
-                    fontFamily={interFont.style.fontFamily}
+                    // fontFamily={interFont.style.fontFamily}
+                    fontFamily={ubuntuFont.style.fontFamily}
                     fontWeight={500}
                     fontSize={{
                       base: "calc(0.875rem + ((1vw - 3.75px) * 0.3756))",
@@ -204,7 +207,8 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
                   </Badge>
 
                   <Text
-                    fontFamily={interFont.style.fontFamily}
+                    // fontFamily={interFont.style.fontFamily}
+                    fontFamily={ubuntuFont.style.fontFamily}
                     fontWeight={400}
                     fontSize={{
                       base: "calc(0.5rem + ((1vw - 3.75px) * 0.7512))",

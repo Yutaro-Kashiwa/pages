@@ -2,6 +2,8 @@ import { ArrowRight } from "@/components/icons/arrow_right";
 import { Box, Container, Heading, Link, Text, VStack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
+import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 export default function TopPage() {
   return (
@@ -33,6 +35,7 @@ export default function TopPage() {
               base: "calc(1.875rem + ((1vw - 3.75px) * 3.1925))",
               xl: "64px",
             }}
+            fontFamily={ubuntuFont.style.fontFamily}
             lineHeight="1.5"
             textDecoration="underline"
             overflowWrap="break-word"

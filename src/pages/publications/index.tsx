@@ -24,7 +24,6 @@ import {
 import { Splide as SplideInstance } from "@splidejs/splide";
 import { motion } from "framer-motion";
 import { first } from "lodash";
-import "@splidejs/react-splide/css/core";
 import { useSize } from "@chakra-ui/react-use-size";
 import { NextPageWithLayout } from "@/types/next_page_with_layout";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
@@ -34,6 +33,7 @@ import { ChevronUp } from "@/components/icons/chevron_up";
 import { SquareAndArrowDown } from "@/components/icons/square_and_arrow_down";
 import { GetServerSideProps } from "next";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type Publication = {
   id: string;

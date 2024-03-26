@@ -20,6 +20,7 @@ import { AvatarIcon } from "@/components/icons/avatar_icon";
 import { motion } from "framer-motion";
 import { GetServerSideProps } from "next";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type Member = {
   uid: string;
