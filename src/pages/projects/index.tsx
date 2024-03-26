@@ -25,6 +25,7 @@ import { motion } from "framer-motion";
 import { Project, mockProjectsList } from "./[project_name]";
 import { useRouter } from "next/router";
 import { ubuntuFont, interFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 const ProjectSummaryCard = memo<
   Project & { shouldReverseImagePlacement: boolean }
@@ -58,7 +59,8 @@ const ProjectSummaryCard = memo<
     <GridItem area="projectTitle">
       <Heading
         as="h3"
-        fontFamily={interFont.style.fontFamily}
+        // fontFamily={interFont.style.fontFamily}
+        fontFamily={ubuntuFont.style.fontFamily}
         fontWeight={400}
         fontSize={{
           base: "calc(1.25rem + ((1vw - 3.75px) * 0.3756))",
@@ -200,7 +202,8 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
       >
         <Container
           maxW="1280px"
-          my="5vh"
+          mt="5vh"
+          mb="20vh"
           overflowX="visible"
           overflowY="visible"
         >

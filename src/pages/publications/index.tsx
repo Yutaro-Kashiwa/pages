@@ -24,7 +24,6 @@ import {
 import { Splide as SplideInstance } from "@splidejs/splide";
 import { motion } from "framer-motion";
 import { first } from "lodash";
-import "@splidejs/react-splide/css/core";
 import { useSize } from "@chakra-ui/react-use-size";
 import { NextPageWithLayout } from "@/types/next_page_with_layout";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
@@ -34,6 +33,7 @@ import { ChevronUp } from "@/components/icons/chevron_up";
 import { SquareAndArrowDown } from "@/components/icons/square_and_arrow_down";
 import { GetServerSideProps } from "next";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type Publication = {
   id: string;
@@ -465,7 +465,33 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
           duration: 0.3,
         }}
       >
-        <Container ref={contentContainerRef} maxW="1280px" my="5vh">
+        <Container ref={contentContainerRef} maxW="1280px" mt="5vh" mb="20vh">
+          <Show above="lg">
+            <HStack position="relative" w="fit-content">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
+
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+                marginInlineStart={0}
+              >
+                publications
+              </Heading>
+            </HStack>
+          </Show>
           <Splide
             onResize={refreshSplide}
             hasTrack={false}
@@ -473,41 +499,13 @@ export const PublicationsPage: NextPageWithLayout<PageProps> = ({
           >
             <VStack align="center" w="100%">
               <HStack
+                h="67vh"
                 w="100%"
                 justify="space-between"
                 align="flex-start"
                 spacing={{ base: "12px", lg: "84px" }}
               >
                 <SplideTrack>
-                  <Show above="lg">
-                    <SplideSlide>
-                      <HStack position="relative" w="fit-content">
-                        <Box
-                          position="absolute"
-                          right="-20px"
-                          bottom="-16px"
-                          w="199px"
-                          zIndex={-1}
-                        >
-                          <AspectRatio w="100%" ratio={199 / 44}>
-                            <TitleBackgroundRect />
-                          </AspectRatio>
-                        </Box>
-
-                        <Heading
-                          as="h2"
-                          fontFamily={ubuntuFont.style.fontFamily}
-                          fontWeight={400}
-                          color="main"
-                          textTransform="uppercase"
-                          marginInlineStart={0}
-                        >
-                          publications
-                        </Heading>
-                      </HStack>
-                    </SplideSlide>
-                  </Show>
-
                   {!!publications &&
                     publications.map(
                       (

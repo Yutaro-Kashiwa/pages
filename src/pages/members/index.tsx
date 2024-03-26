@@ -20,6 +20,7 @@ import { AvatarIcon } from "@/components/icons/avatar_icon";
 import { motion } from "framer-motion";
 import { GetServerSideProps } from "next";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type Member = {
   uid: string;
@@ -200,7 +201,7 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
           duration: 0.3,
         }}
       >
-        <Container maxW="1280px" my="5vh">
+        <Container maxW="1280px" mt="5vh" mb="20vh">
           <VStack
             justifyContent="space-around"
             alignItems="flex-start"

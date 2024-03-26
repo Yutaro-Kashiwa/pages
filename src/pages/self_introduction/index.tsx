@@ -24,6 +24,7 @@ import { format, formatISO } from "date-fns";
 import { motion } from "framer-motion";
 import { ChakraNextImage } from "@/components/chakra_next_image";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 type CareerSummaryCardProps = {
   startedAt: Date;
@@ -216,7 +217,8 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
         display="block"
         position="relative"
         maxW="1280px"
-        my="5vh"
+        mt="5vh"
+        mb="20vh"
         overflowX="visible"
         overflowY="visible"
       >

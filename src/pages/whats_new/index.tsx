@@ -26,7 +26,6 @@ import {
   Options as SplideOptions,
 } from "@splidejs/react-splide";
 import { Grid as SplideGridExtension } from "@splidejs/splide-extension-grid";
-import "@splidejs/react-splide/css/core";
 import { CommonPageLayout } from "@/components/layouts/common_page_layout";
 import type { NextPageWithLayout } from "@/types/next_page_with_layout";
 import { format, formatISO, parseISO } from "date-fns";
@@ -36,13 +35,25 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { ChakraNextImage } from "@/components/chakra_next_image";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
+import { client } from "../../../libs/client";
+import type { Article } from "../../../types/article";
 
 export type NewsSummary = {
   id: string;
   title: string;
   createdAt: string;
   imageURL?: string;
+  articles: Array<Article>;
+  contents: Array<Article>;
 };
+type PageProps = {
+  refererPath: string | null;
+  articles: Array<Article>;
+};
+// type Props = {
+//   articles: Array<Article>;
+// };
 
 const GRID_COLUMN_GAP: number = 72;
 const GRID_ROW_GAP: number = 64;
@@ -55,21 +66,23 @@ const GRID_MAX_ROWS: number = 2;
 
 const WhatsNewGridCard = memo<Omit<NewsSummary, "id">>(
   ({ title, createdAt, imageURL }) => (
-    <VStack
-      maxW={`${GRID_CARD_WIDTH}px`}
-      alignItems="flex-start"
-      spacing="16px"
-    >
+    <VStack maxW={`${GRID_CARD_WIDTH}`} alignItems="flex-start" spacing="16px">
       {!!imageURL ? (
         <ChakraNextImage
           src={imageURL}
           alt={title}
-          width={`${GRID_CARD_WIDTH}px`}
+          width={`${GRID_CARD_WIDTH}`}
           height={135}
           objectFit="cover"
         />
       ) : (
-        <Box w={`${GRID_CARD_WIDTH}px`} h="135px" backgroundColor="gray" />
+        <ChakraNextImage
+          src={"/noimage-white.jpg"}
+          alt={"no image"}
+          width={`${GRID_CARD_WIDTH}`}
+          height={135}
+          objectFit="cover"
+        />
       )}
 
       <VStack alignItems="inherit" spacing="8px">
@@ -121,157 +134,152 @@ const WhatsNewListCard = memo<Omit<NewsSummary, "id">>(
 
 WhatsNewListCard.displayName = "WhatsNewListCard";
 
-const mockNewsList: NewsSummary[] = [
-  {
-    id: "4d79ae26-f7e3-4870-bcc8-6eaf96756083",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 9).toISOString(),
-  },
-  {
-    id: "eb997e46-8e34-4929-9ee5-57b86f03121c",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "24f8ccf3-bd9c-4696-9aa6-bf348c97b314",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "ed9aecfa-52d7-46e8-a647-14f1cc08c384",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "ac1f00c2-c259-4b57-8605-8e65ed4bf932",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "95f2516f-b857-4e0e-8d58-9c067888b987",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "2acd1279-b1a6-4aea-ad9d-b8c8d6bf68c2",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "00214291-d29c-462d-916d-b2cedfc8d448",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "7cf92a12-17b6-43f7-a0e5-adabbe8a5949",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "99eaf1a1-f31c-4e1a-963e-28bcdc47dd38",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "d00fe380-8736-41ab-94f0-b593e39c09a0",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "4e3afc80-6e9f-4209-8e20-7aa3583a964b",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "70de2195-e81a-44bb-bec4-97e9c2fe8796",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "62629805-8914-471a-b41a-a109f607df1b",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "7d560a13-d724-4b4b-88da-0b6d47320995",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "f3b23589-0812-468d-9d19-f55f2e8115c0",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "dafe6106-6a73-4bdc-8a59-85951dd9130f",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "1ca6cf3f-7ea3-4969-949d-78298162156e",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "3609c0fd-d55a-4da0-9d71-7e262ab7753b",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "67400370-1a91-4949-b238-b182419bdec4",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "322dbc88-fce8-4ca6-a579-c8b372fee2a4",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "c8d68c8c-e042-4b4a-944b-b52a879185c7",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "d9e91ab6-76f7-40ac-96f6-b0c354a00593",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "c84c8c48-34f9-44e5-9c72-1bd3963bddc3",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 9).toISOString(),
-  },
-  {
-    id: "cfbde760-8239-4e7e-adc8-d3236400f8d8",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "71fdaba9-0c4d-4270-adcd-828adb723d00",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "b2c17dc7-b510-475b-8c23-70a87db53bb4",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-  {
-    id: "a17d2f64-efeb-44db-a630-c5a9dbdadf8b",
-    title: "タイトルが入ります",
-    createdAt: new Date(2022, 11, 10).toISOString(),
-  },
-];
-
-type PageProps = {
-  refererPath: string | null;
-  newsList?: NewsSummary[];
-};
+// const mockNewsList: NewsSummary[] = [
+//   {
+//     id: "4d79ae26-f7e3-4870-bcc8-6eaf96756083",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 9).toISOString(),
+//   },
+//   {
+//     id: "eb997e46-8e34-4929-9ee5-57b86f03121c",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "24f8ccf3-bd9c-4696-9aa6-bf348c97b314",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "ed9aecfa-52d7-46e8-a647-14f1cc08c384",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "ac1f00c2-c259-4b57-8605-8e65ed4bf932",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "95f2516f-b857-4e0e-8d58-9c067888b987",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "2acd1279-b1a6-4aea-ad9d-b8c8d6bf68c2",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "00214291-d29c-462d-916d-b2cedfc8d448",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "7cf92a12-17b6-43f7-a0e5-adabbe8a5949",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "99eaf1a1-f31c-4e1a-963e-28bcdc47dd38",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "d00fe380-8736-41ab-94f0-b593e39c09a0",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "4e3afc80-6e9f-4209-8e20-7aa3583a964b",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "70de2195-e81a-44bb-bec4-97e9c2fe8796",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "62629805-8914-471a-b41a-a109f607df1b",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "7d560a13-d724-4b4b-88da-0b6d47320995",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "f3b23589-0812-468d-9d19-f55f2e8115c0",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "dafe6106-6a73-4bdc-8a59-85951dd9130f",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "1ca6cf3f-7ea3-4969-949d-78298162156e",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "3609c0fd-d55a-4da0-9d71-7e262ab7753b",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "67400370-1a91-4949-b238-b182419bdec4",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "322dbc88-fce8-4ca6-a579-c8b372fee2a4",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "c8d68c8c-e042-4b4a-944b-b52a879185c7",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "d9e91ab6-76f7-40ac-96f6-b0c354a00593",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "c84c8c48-34f9-44e5-9c72-1bd3963bddc3",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 9).toISOString(),
+//   },
+//   {
+//     id: "cfbde760-8239-4e7e-adc8-d3236400f8d8",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "71fdaba9-0c4d-4270-adcd-828adb723d00",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "b2c17dc7-b510-475b-8c23-70a87db53bb4",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+//   {
+//     id: "a17d2f64-efeb-44db-a630-c5a9dbdadf8b",
+//     title: "タイトルが入ります",
+//     createdAt: new Date(2022, 11, 10).toISOString(),
+//   },
+// ];
 
 export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
   refererPath,
-  newsList,
+  articles,
 }) => {
   const contentContainerRef = useRef<HTMLDivElement>(null);
 
@@ -475,18 +483,20 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
                   columnGap="2%"
                 >
                   <SplideTrack>
-                    {!!newsList &&
-                      newsList.map(({ id, title, createdAt }) => (
-                        <SplideSlide key={id}>
+                    {!!articles &&
+                      articles.map((article) => (
+                        <SplideSlide key={article.id}>
                           <VStack align="flex-start" maxW="70vw">
                             <LinkBox as="article">
                               <LinkOverlay
                                 as={NextLink}
-                                href={`/whats_new/${id}`}
+                                href={`/whats_new/article/${article.id}`}
                               >
                                 <WhatsNewListCard
-                                  title={title}
-                                  createdAt={createdAt}
+                                  title={article.title}
+                                  createdAt={article.createdAt}
+                                  articles={[]}
+                                  contents={[]}
                                 />
                               </LinkOverlay>
                             </LinkBox>
@@ -546,18 +556,21 @@ export const WhatsNewPage: NextPageWithLayout<PageProps> = ({
               >
                 <HStack alignItems="flex-start" spacing="0">
                   <SplideTrack>
-                    {!!newsList &&
-                      newsList.map(({ id, title, createdAt, imageURL }) => (
-                        <SplideSlide key={id}>
+                    {!!articles &&
+                      articles.map((article) => (
+                        <SplideSlide key={article.id}>
                           <LinkBox as="article">
                             <LinkOverlay
                               as={NextLink}
-                              href={`/whats_new/${id}`}
+                              href={`/whats_new/article/${article.id}`}
                             >
                               <WhatsNewGridCard
-                                title={title}
-                                createdAt={createdAt}
-                                imageURL={imageURL}
+                                title={article.title}
+                                createdAt={article.createdAt}
+                                imageURL={"/noimage-white.jpg"}
+                                // imageURL={article.thumbnail.url}
+                                contents={[]}
+                                articles={[]}
                               />
                             </LinkOverlay>
                           </LinkBox>
@@ -616,13 +629,14 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
 ) => {
   const referer = context.req.headers.referer;
 
-  const newsList: NewsSummary[] = mockNewsList;
+  // const newsList: NewsSummary[] = mockNewsList;
+  const data: NewsSummary = await client.get({ endpoint: "news" });
 
   if (!referer) {
     return {
       props: {
         refererPath: null,
-        newsList,
+        articles: data.contents,
       },
     };
   }
@@ -633,7 +647,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   return {
     props: {
       refererPath: refererPath,
-      newsList,
+      articles: data.contents,
     },
   };
 };

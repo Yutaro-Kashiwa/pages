@@ -24,6 +24,7 @@ import { ArrowRight } from "@/components/icons/arrow_right";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { motion } from "framer-motion";
 import { ubuntuFont } from "@/config/next_fonts";
+import "@splidejs/react-splide/css/core";
 
 export const AccessPage: NextPageWithLayout = () => {
   return (
@@ -38,7 +39,8 @@ export const AccessPage: NextPageWithLayout = () => {
       >
         <Container
           maxW="1280px"
-          my="5vh"
+          mt="5vh"
+          mb="20vh"
           overflowX="visible"
           overflowY="visible"
         >
@@ -131,7 +133,7 @@ export const AccessPage: NextPageWithLayout = () => {
                       <Grid
                         w="100%"
                         templateRows="auto"
-                        templateColumns="repeat(auto-fit, minmax(272px, 1fr))"
+                        // templateColumns="repeat(auto-fit, minmax(272px, 1fr))"
                         rowGap="16px"
                       >
                         <GridItem colSpan={1}>
@@ -152,7 +154,7 @@ export const AccessPage: NextPageWithLayout = () => {
                                   lg: "16px",
                                 }}
                               >
-                                ○○駅から徒歩何分
+                                近鉄けいはんな線 学研北生駒駅から徒歩20分
                               </Text>
                             </HStack>
 
@@ -172,7 +174,7 @@ export const AccessPage: NextPageWithLayout = () => {
                                   lg: "16px",
                                 }}
                               >
-                                ○○停留所から徒歩何分
+                                停留所「奈良先端科学技術大学院大学」からすぐ
                               </Text>
                             </HStack>
                           </VStack>
