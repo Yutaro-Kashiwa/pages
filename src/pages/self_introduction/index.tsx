@@ -216,7 +216,8 @@ export const SelfIntroductionPage: NextPageWithLayout = () => {
         display="block"
         position="relative"
         maxW="1280px"
-        my="5vh"
+        mt="5vh"
+        mb="20vh"
         overflowX="visible"
         overflowY="visible"
       >

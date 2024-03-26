@@ -93,7 +93,7 @@ export const RootLayout = ({ children, currentPathname }: RootLayoutProps) => {
       <Container
         key={currentPathname}
         as="footer"
-        position="sticky"
+        position="fixed"
         left={0}
         right={0}
         bottom={0}

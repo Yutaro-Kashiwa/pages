@@ -73,7 +73,7 @@ export const ProjectDetailPage: NextPageWithLayout<Props> = ({
         duration: 0.5,
       }}
     >
-      <Container as="article" maxW="1280px" my="5vh">
+      <Container as="article" maxW="1280px" mt="5vh" mb="20vh">
         <VStack
           justifyContent="space-around"
           alignItems="flex-start"

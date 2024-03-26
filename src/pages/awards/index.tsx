@@ -364,6 +364,31 @@ export const AwardsPage: NextPageWithLayout = () => {
           overflowX="auto"
           overflowY="hidden"
         >
+          <Show above="lg">
+            <HStack position="relative" w="fit-content" mb="5vh">
+              <Box
+                position="absolute"
+                right="-20px"
+                bottom="-16px"
+                w="199px"
+                zIndex={-1}
+              >
+                <AspectRatio w="100%" ratio={199 / 44}>
+                  <TitleBackgroundRect />
+                </AspectRatio>
+              </Box>
+
+              <Heading
+                as="h2"
+                fontFamily={ubuntuFont.style.fontFamily}
+                fontWeight={400}
+                color="main"
+                textTransform="uppercase"
+              >
+                awards
+              </Heading>
+            </HStack>
+          </Show>
           <Splide
             onPaginationMounted={updateInitialNumberOfPages}
             onPaginationUpdated={updateNumberOfPages}
@@ -390,38 +415,11 @@ export const AwardsPage: NextPageWithLayout = () => {
             <VStack align="center" w="100%">
               <HStack
                 alignItems="flex-start"
+                h="62vh"
                 w="100%"
                 spacing={{ base: "12px", lg: "84px" }}
               >
                 <SplideTrack>
-                  <Show above="lg">
-                    <SplideSlide>
-                      <HStack position="relative" w="fit-content">
-                        <Box
-                          position="absolute"
-                          right="-20px"
-                          bottom="-16px"
-                          w="199px"
-                          zIndex={-1}
-                        >
-                          <AspectRatio w="100%" ratio={199 / 44}>
-                            <TitleBackgroundRect />
-                          </AspectRatio>
-                        </Box>
-
-                        <Heading
-                          as="h2"
-                          fontFamily={ubuntuFont.style.fontFamily}
-                          fontWeight={400}
-                          color="main"
-                          textTransform="uppercase"
-                        >
-                          awards
-                        </Heading>
-                      </HStack>
-                    </SplideSlide>
-                  </Show>
-
                   {awardedHistoriesList.map(
                     ({
                       id,

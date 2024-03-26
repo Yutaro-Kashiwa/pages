@@ -200,7 +200,8 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
       >
         <Container
           maxW="1280px"
-          my="5vh"
+          mt="5vh"
+          mb="20vh"
           overflowX="visible"
           overflowY="visible"
         >

@@ -200,7 +200,7 @@ export const MembersPage: NextPageWithLayout<PageProps> = ({ members }) => {
           duration: 0.3,
         }}
       >
-        <Container maxW="1280px" my="5vh">
+        <Container maxW="1280px" mt="5vh" mb="20vh">
           <VStack
             justifyContent="space-around"
             alignItems="flex-start"
