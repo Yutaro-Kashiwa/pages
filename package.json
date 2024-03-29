@@ -37,6 +37,9 @@
     "typescript": "5.0.3",
     "uuid": "^9.0.0"
   },
+  "resolutions": {
+    "@types/react": "18.0.31"
+  },
   "devDependencies": {
     "@types/uuid": "^9.0.1",
     "husky": "^8.0.3",
