@@ -190,13 +190,19 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
             </HStack>
           </Show>
 
-          <VStack justify="space-between" align="flex-start" rowGap="16px">
+          <VStack
+            justify="space-between"
+            align="flex-start"
+            rowGap="16px"
+            width="100%"
+          >
             {article.title}
             <VStack
               flexBasis="100%"
               justify="space-evenly"
               align="inherit"
               spacing="48px"
+              width="100%"
             >
               {!!article.createdAt && !!article.title && (
                 <HStack
@@ -204,6 +210,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                   wrap="wrap"
                   rowGap="8px"
                   columnGap="40px"
+                  width="100%"
                 >
                   {!!article.createdAt && (
                     <Text
@@ -253,7 +260,7 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                 />
               </Show>
 
-              <HStack align="flex-start" spacing="36px">
+              <HStack align="flex-start" spacing="36px" width="100%">
                 {!!article.body && (
                   <Box
                     id="editor_main"
@@ -264,12 +271,13 @@ export const WhatsNewDetailPage: NextPageWithLayout<PageProps> = ({
                     }}
                     lineHeight="1.5"
                     whiteSpace="pre-wrap"
+                    width="calc(100% - 582px - 36px)"
                     dangerouslySetInnerHTML={{ __html: article.body }}
                   ></Box>
                 )}
 
                 <Show above="lg">
-                  <AspectRatio flexBasis="50%">
+                  <AspectRatio flexBasis="50%" max-width="582px">
                     <ChakraNextImage
                       // src={article.thumbnail.url ?? ""}
                       src={"/noimage-white.jpg"}

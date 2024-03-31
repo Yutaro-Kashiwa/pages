@@ -52,20 +52,19 @@ const LIST_CARD_HEIGHT = 64;
 
 const awardedHistoriesList: Award[] = [
   {
-    id: "0e611141-f93b-4967-8a14-0ae52e35644a",
-    awardedDate: "2022.9",
-    awardeeName: "藤本 太郎喜左衛門将時能",
-    awardName:
-      "受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
-    awarderOrganization:
-      "賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります賞を与えた機関名が入ります",
-  },
-  {
     id: "8d463553-b4da-46bf-b8e4-69870d19a0bd",
     awardedDate: "2022.7",
-    awardeeName: "Rhoshandiatellyneshiaunneveshenk Koyaanisquatsiuth Williams",
+    awardeeName: "受賞者名",
     awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
     awarderOrganization: "賞を与えた機関名が入ります",
+  },
+  {
+    id: "0e611141-f93b-4967-8a14-0ae52e35644a",
+    awardedDate: "2022.9",
+    awardeeName: "奈良 太郎",
+    awardName: "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
+    awarderOrganization:
+      "受賞した賞の名前が入ります。受賞した賞の名前が入ります。",
   },
   {
     id: "56d84aaa-3ff9-4ae2-aa9c-e8595e7517f9",

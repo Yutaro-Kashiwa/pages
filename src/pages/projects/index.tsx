@@ -20,7 +20,7 @@ import NextLink from "next/link";
 import TitleBackgroundRect from "@/images/title_background_rect.svg";
 import { ArrowDown } from "@/components/icons/arrow_down";
 import { GetServerSideProps } from "next";
-import NextImage from "next/image";
+// import NextImage from "next/image";
 import { motion } from "framer-motion";
 import { Project, mockProjectsList } from "./[project_name]";
 import { useRouter } from "next/router";
@@ -145,7 +145,7 @@ const ProjectSummaryCard = memo<
 
     <GridItem area="picture">
       <Image
-        as={NextImage}
+        // as={NextImage}
         src={pictureURL}
         alt=""
         fallback={
@@ -250,6 +250,7 @@ export const ProjectsPage: NextPageWithLayout<PageProps> = ({
                         name={name}
                         summary={summary}
                         body={body}
+                        pictureURL={pictureURL}
                         shouldReverseImagePlacement={index % 2 > 0}
                       />
                     </Fragment>
@@ -273,7 +274,7 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   const referer = context.req.headers.referer;
 
   // API取得の代わり
-  const projects: Project[] = [...mockProjectsList, ...mockProjectsList];
+  const projects: Project[] = [...mockProjectsList];
 
   if (!referer) {
     return {
